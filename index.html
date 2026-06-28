@@ -3,798 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apollo Hospitals | Smart Clinic AI — Full Process Demo</title>
+    <title>VAIDYA | AI‑Powered Clinic Intelligence by KALKI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --apollo-navy: #0A1F3F;
-            --apollo-teal: #0E9488;
-            --apollo-teal-light: #CCFBF1;
-            --apollo-gold: #C8963E;
-            --apollo-gold-light: #FDF2E0;
-            --apollo-red: #C62828;
+            --navy: #0A1A2F;
+            --navy-deep: #040F1A;
+            --teal: #0E9488;
+            --teal-light: #CCFBF1;
+            --gold: #C8963E;
+            --gold-light: #FDF2E0;
             --white: #FFFFFF;
-            --bg: #F4F6F9;
-            --gray-50: #F9FAFB;
+            --gray-50: #F8FAFC;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
             --gray-300: #CBD5E1;
             --gray-400: #94A3B8;
             --gray-500: #64748B;
             --gray-600: #475569;
+            --gray-700: #334155;
             --gray-800: #1E293B;
             --text: #1E293B;
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 6px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 16px 32px rgba(0,0,0,0.10);
-            --shadow-xl: 0 24px 48px rgba(0,0,0,0.12);
+            --shadow: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.16);
             --radius-sm: 8px;
-            --radius: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-xs: 0.68rem;
-            --font-sm: 0.78rem;
-            --font-base: 0.875rem;
-            --font-md: 0.95rem;
-            --font-lg: 1.05rem;
-            --font-xl: 1.2rem;
-            --font-2xl: 1.5rem;
-            --font-3xl: 1.8rem;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-xs: 0.72rem;
+            --font-sm: 0.8rem;
+            --font-base: 0.9rem;
+            --font-md: 1rem;
+            --font-lg: 1.15rem;
+            --font-xl: 1.35rem;
+            --font-2xl: 1.75rem;
+            --font-3xl: 2.25rem;
+            --font-hero: 3.5rem;
         }
-        *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-        body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:var(--font-base);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;}
-
-        /* ── COMMON HEADER (Dashboard) ── */
-        .apollo-header {
-            background: linear-gradient(135deg, #0A1F3F 0%, #132D56 40%, #1B4F8A 100%);
-            color:#fff; padding:0.5rem 1.5rem; display:flex; align-items:center; justify-content:space-between;
-            flex-wrap:wrap; gap:0.6rem; border-bottom:3px solid var(--apollo-gold); position:relative; overflow:hidden;
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{
+            font-family:'Inter',system-ui,-apple-system,sans-serif;
+            background:var(--gray-50);
+            color:var(--gray-800);
+            font-size:var(--font-base);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+            overflow-x:hidden;
         }
-        .apollo-header::after{ content:''; position:absolute; top:-50%; right:-5%; width:280px; height:280px;
-            background:radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
-        .header-left{display:flex; align-items:center; gap:0.75rem; z-index:1;}
-        .header-logo{width:48px; height:48px; flex-shrink:0;} .header-logo svg{width:100%;height:100%;}
-        .header-title-group{display:flex; flex-direction:column;}
-        .header-main-title{font-weight:900; font-size:var(--font-xl); letter-spacing:-0.02em; line-height:1.2;}
-        .header-main-title span{color:var(--apollo-gold);}
-        .header-subtitle{font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.7); text-transform:uppercase;}
-        .header-right{display:flex; align-items:center; gap:0.7rem; z-index:1; flex-wrap:wrap;}
-        .header-badge{background:var(--apollo-red); padding:0.25rem 0.7rem; border-radius:50px; font-weight:700; font-size:0.6rem; animation:pulse-emergency 2s infinite; letter-spacing:0.04em; white-space:nowrap;}
-        @keyframes pulse-emergency{0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,0.5)}50%{box-shadow:0 0 0 10px rgba(198,40,40,0)}}
-        .header-contact{font-size:0.6rem; font-weight:500; color:rgba(255,255,255,0.85); white-space:nowrap;}
+        .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;}
 
-        /* ── PAGE SWITCHER ── */
-        .page-switcher{background:#fff; border-bottom:2px solid var(--gray-200); padding:0 1.5rem; display:flex; gap:0; align-items:stretch; box-shadow:var(--shadow-sm); position:sticky; top:0; z-index:99; overflow-x:auto;}
-        .page-switcher button{padding:0.75rem 1.8rem; border:none; background:transparent; font-family:'Inter',sans-serif; font-weight:700; font-size:var(--font-sm); color:var(--gray-500); cursor:pointer; transition:var(--transition); white-space:nowrap; border-bottom:3px solid transparent; margin-bottom:-2px; display:flex; align-items:center; gap:0.5rem;}
-        .page-switcher button:hover{color:var(--apollo-navy); background:var(--gray-50);}
-        .page-switcher button.active-page-btn{color:var(--apollo-teal); border-bottom-color:var(--apollo-teal); background:var(--apollo-teal-light);}
-        .page-container{display:none; animation:fadePageIn 0.4s ease-out;}
-        .page-container.active-page{display:block;}
-        @keyframes fadePageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        /* ── PREMIUM HEADER ── */
+        .main-header {
+            position: sticky;
+            top:0;
+            z-index: 100;
+            background: rgba(10,26,47,0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom:1px solid rgba(255,255,255,0.08);
+            padding:0.85rem 2rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:2rem;
+            box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+            transition:var(--transition);
+        }
+        .header-brand{display:flex;align-items:center;gap:0.8rem;}
+        .brand-icon{
+            width:44px;height:44px;
+            background:linear-gradient(135deg, var(--teal) 0%, #0B7A6F 100%);
+            border-radius:14px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            font-size:1.4rem;
+            box-shadow:0 8px 20px rgba(14,148,136,0.35);
+        }
+        .brand-text{display:flex;flex-direction:column;}
+        .brand-name{
+            font-weight:900;
+            font-size:1.45rem;
+            letter-spacing:-0.02em;
+            color:#fff;
+            line-height:1.2;
+        }
+        .brand-tagline{
+            font-size:0.6rem;
+            font-weight:500;
+            letter-spacing:0.06em;
+            color:rgba(255,255,255,0.55);
+            text-transform:uppercase;
+        }
+        .header-actions{display:flex;align-items:center;gap:1rem;}
+        .btn-header{
+            padding:0.6rem 1.6rem;
+            border-radius:50px;
+            font-weight:600;
+            font-size:var(--font-xs);
+            transition:var(--transition);
+            border:none;
+            cursor:pointer;
+            font-family:'Inter',sans-serif;
+            letter-spacing:0.02em;
+            display:inline-flex;
+            align-items:center;
+            gap:0.45rem;
+            text-decoration:none;
+        }
+        .btn-header-outline{
+            background:transparent;
+            color:#fff;
+            border:1.5px solid rgba(255,255,255,0.3);
+        }
+        .btn-header-outline:hover{
+            border-color:var(--teal);
+            background:rgba(14,148,136,0.12);
+            color:#fff;
+        }
+        .btn-header-primary{
+            background:linear-gradient(135deg, var(--teal) 0%, #0B7A6F 100%);
+            color:#fff;
+            box-shadow:0 6px 18px rgba(14,148,136,0.3);
+            border:1.5px solid var(--teal);
+        }
+        .btn-header-primary:hover{
+            transform:translateY(-2px);
+            box-shadow:0 12px 28px rgba(14,148,136,0.45);
+        }
 
-        /* ── DASHBOARD LAYOUT ── */
-        .main-layout{display:grid; grid-template-columns:62% 38%; gap:1.25rem; padding:1.25rem 1.5rem; max-width:1500px; margin:0 auto; min-height:calc(100vh - 210px);}
-        .left-col{display:flex; flex-direction:column; gap:1.25rem;}
-        .right-col{display:flex; flex-direction:column; gap:1.25rem;}
-        .panel{background:#fff; border-radius:var(--radius-lg); padding:1.3rem 1.5rem; box-shadow:var(--shadow); border:1px solid var(--gray-200); transition:var(--transition); position:relative;}
-        .panel.highlight-glow{border:2px solid var(--apollo-gold); box-shadow:0 0 0 6px rgba(200,150,62,0.07), var(--shadow-md); animation:glowPulse 2s ease-in-out infinite;}
-        @keyframes glowPulse{0%,100%{box-shadow:0 0 0 6px rgba(200,150,62,0.07), var(--shadow-md)}50%{box-shadow:0 0 0 14px rgba(200,150,62,0.02), var(--shadow-lg)}}
-        .panel-header{display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; flex-wrap:wrap;}
-        .panel-icon{font-size:1.3rem; flex-shrink:0;}
-        .panel-title{font-weight:700; font-size:var(--font-lg); color:var(--apollo-navy); letter-spacing:-0.01em;}
-        .panel-badge{font-size:var(--font-xs); font-weight:700; padding:0.2rem 0.6rem; border-radius:50px; letter-spacing:0.03em;}
-        .badge-live{background:#FEF2F2; color:#991B1B; border:1px solid #FECACA; animation:badgePulse 1.5s infinite;}
-        @keyframes badgePulse{0%,100%{opacity:1}50%{opacity:0.5}}
-        .badge-done{background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0;}
-        .badge-idle{background:var(--gray-100); color:var(--gray-500); border:1px solid var(--gray-200);}
-        .chat-container{background:var(--gray-50); border-radius:var(--radius); padding:1rem; max-height:320px; min-height:140px; overflow-y:auto; display:flex; flex-direction:column; gap:0.5rem; border:1px solid var(--gray-200); scroll-behavior:smooth; font-size:var(--font-sm);}
-        .chat-container::-webkit-scrollbar{width:5px;} .chat-container::-webkit-scrollbar-thumb{background:var(--gray-300); border-radius:10px;}
-        .chat-bubble{max-width:84%; padding:0.55rem 0.8rem; border-radius:var(--radius); font-size:var(--font-sm); line-height:1.5; animation:fadeSlideUp 0.35s ease-out; word-break:break-word;}
-        @keyframes fadeSlideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-        .chat-bubble.doctor{align-self:flex-start; background:#fff; border:1.5px solid var(--gray-200); border-bottom-left-radius:4px; color:var(--text);}
-        .chat-bubble.patient{align-self:flex-end; background:#E8F5F5; border:1.5px solid #C5E5E2; border-bottom-right-radius:4px; color:var(--apollo-navy);}
-        .speaker-label{font-weight:700; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:0.12rem; opacity:0.7;}
-        .entity-highlight{background:#FEF08A; padding:0.08rem 0.3rem; border-radius:3px; font-weight:700; color:#92400E; border-bottom:2px solid #F59E0B; cursor:help; transition:var(--transition); white-space:nowrap;}
-        .entity-highlight:hover{background:#FDE047; border-bottom-color:#D97706;}
-        .chat-placeholder{text-align:center; color:var(--gray-400); padding:2rem 1rem; font-size:var(--font-sm); display:flex; flex-direction:column; align-items:center; gap:0.4rem;}
-        .chat-placeholder i{font-size:2.2rem; opacity:0.3;}
-        .rx-widget{background:linear-gradient(135deg,#FFFBF0,#FFF7ED); border:2px dashed #FCD34D; border-radius:var(--radius); padding:0.65rem 1rem; margin-top:0.5rem; font-size:var(--font-sm); font-weight:600; color:#92400E; display:flex; align-items:center; gap:0.5rem; min-height:40px; flex-wrap:wrap; transition:var(--transition);}
-        .rx-pill{background:#fff; border:1.5px solid #FCD34D; border-radius:50px; padding:0.25rem 0.65rem; font-weight:700; font-size:var(--font-xs); color:#B45309; white-space:nowrap;}
-        .form-overlay{background:#fff; border-radius:var(--radius-lg); padding:1.3rem 1.5rem; box-shadow:var(--shadow-md); border:2px solid var(--apollo-teal); border-top:4px solid var(--apollo-teal); display:none; transition:var(--transition);}
-        .form-overlay.visible{display:block; animation:slideDown 0.4s ease-out;}
-        @keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
-        .form-row{display:flex; gap:0.7rem; flex-wrap:wrap; align-items:flex-end;}
-        .form-group{display:flex; flex-direction:column; gap:0.2rem; flex:1; min-width:100px;}
-        .form-group label{font-weight:700; font-size:0.6rem; color:var(--gray-600); text-transform:uppercase; letter-spacing:0.04em;}
-        .form-group input{padding:0.5rem 0.7rem; border:2px solid var(--gray-300); border-radius:var(--radius-sm); font-family:'Inter',sans-serif; font-size:var(--font-sm); transition:var(--transition); background:var(--gray-50); color:var(--text); outline:none;}
-        .form-group input:focus{border-color:var(--apollo-teal); box-shadow:0 0 0 4px rgba(14,148,136,0.07); background:#fff;}
-        .btn{padding:0.55rem 1.2rem; border-radius:50px; font-weight:700; font-size:var(--font-sm); cursor:pointer; border:none; transition:var(--transition); font-family:'Inter',sans-serif; letter-spacing:0.01em; display:inline-flex; align-items:center; gap:0.4rem; white-space:nowrap; position:relative; overflow:hidden;}
-        .btn-teal{background:var(--apollo-teal); color:#fff; box-shadow:0 3px 12px rgba(14,148,136,0.3);}
-        .btn-teal:hover{background:#0F766E; box-shadow:0 6px 20px rgba(14,148,136,0.4); transform:translateY(-2px);}
-        .btn-gold{background:var(--apollo-gold); color:#fff; box-shadow:0 3px 12px rgba(200,150,62,0.3); font-weight:800;}
-        .btn-gold:hover{background:#B8862D; box-shadow:0 6px 20px rgba(200,150,62,0.45); transform:translateY(-2px);}
-        .btn:disabled{background:var(--gray-300); cursor:not-allowed; box-shadow:none; transform:none;}
-        .btn-spinner{display:none; width:15px; height:15px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite;}
-        .btn.loading .btn-spinner{display:inline-block;} .btn.loading{pointer-events:none; opacity:0.8;}
-        @keyframes spin{to{transform:rotate(360deg)}}
-        .ripple-effect{position:absolute; border-radius:50%; background:rgba(255,255,255,0.5); transform:scale(0); animation:ripple 0.6s ease-out; pointer-events:none;}
-        @keyframes ripple{to{transform:scale(4);opacity:0}}
-        .patient-card{background:#fff; border-radius:var(--radius-lg); padding:1.3rem 1.5rem; box-shadow:var(--shadow-md); border:1px solid var(--gray-200); border-left:5px solid var(--apollo-teal); min-height:80px; display:flex; flex-direction:column; justify-content:center; transition:var(--transition);}
-        .patient-card.empty-card{border-left-color:var(--gray-300); opacity:0.6;}
-        .card-eyebrow{font-size:0.55rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--gray-400); font-weight:700; margin-bottom:0.15rem;}
-        .patient-name-lg{font-weight:800; font-size:var(--font-2xl); color:var(--apollo-navy); letter-spacing:-0.02em;}
-        .patient-meta{font-size:var(--font-sm); color:var(--gray-600); margin-top:0.1rem; display:flex; gap:0.8rem; flex-wrap:wrap;}
-        .token-chip{display:inline-block; background:var(--apollo-teal-light); color:#0F766E; font-weight:800; padding:0.15rem 0.6rem; border-radius:50px; font-size:var(--font-xs);}
-        .empty-state-text{color:var(--gray-400); font-style:italic; text-align:center; font-size:var(--font-sm);}
-        .queue-list{list-style:none; display:flex; flex-direction:column; gap:0.4rem; max-height:220px; overflow-y:auto;}
-        .queue-list::-webkit-scrollbar{width:4px;} .queue-list::-webkit-scrollbar-thumb{background:var(--gray-300); border-radius:10px;}
-        .queue-item{display:flex; align-items:center; gap:0.55rem; padding:0.55rem 0.75rem; border-radius:var(--radius); border:2px solid var(--gray-200); cursor:pointer; transition:var(--transition); background:#fff;}
-        .queue-item:hover{border-color:var(--apollo-teal); box-shadow:var(--shadow-md); transform:translateX(3px);}
-        .queue-item.next-in-line{border-color:#10B981; border-width:2.5px; background:#F0FDF9; box-shadow:0 0 0 5px rgba(16,185,129,0.05);}
-        .queue-token-num{font-weight:900; font-size:var(--font-lg); color:var(--apollo-teal); min-width:30px; text-align:center; flex-shrink:0;}
-        .queue-info{flex:1; min-width:0;} .queue-name{font-weight:700; font-size:var(--font-sm); color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-        .queue-concern{font-size:var(--font-xs); color:var(--gray-500); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-        .queue-wait-badge{font-weight:700; font-size:0.6rem; color:#B45309; white-space:nowrap; flex-shrink:0; background:#FEF3C7; padding:0.15rem 0.45rem; border-radius:50px;}
-        .btn-next-full{width:100%; padding:0.7rem; font-size:var(--font-md); font-weight:800; background:var(--apollo-teal); color:#fff; border:none; border-radius:50px; cursor:pointer; transition:var(--transition); letter-spacing:0.02em; box-shadow:0 4px 16px rgba(14,148,136,0.35); font-family:'Inter',sans-serif;}
-        .btn-next-full:hover{background:#0F766E; box-shadow:0 8px 24px rgba(14,148,136,0.5); transform:translateY(-2px);}
-        .btn-next-full:disabled{background:var(--gray-300); cursor:not-allowed; box-shadow:none; transform:none; opacity:0.5;}
-        .flow-mini{background:#fff; border-radius:var(--radius-lg); padding:1rem 1.2rem; box-shadow:var(--shadow); border:1px solid var(--gray-200); text-align:center;}
-        .flow-mini .flow-title{font-weight:700; font-size:0.6rem; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.5rem;}
-        .flow-dots-row{display:flex; align-items:center; justify-content:center; gap:0.25rem; flex-wrap:wrap;}
-        .flow-dot-mini{width:14px; height:14px; border-radius:50%; background:var(--gray-200); flex-shrink:0; transition:var(--transition);}
-        .flow-dot-mini.active-dot{background:var(--apollo-teal); box-shadow:0 0 10px rgba(14,148,136,0.5); animation:bounceDot 0.6s ease-out;}
-        .flow-dot-mini.done-dot{background:#10B981;}
-        @keyframes bounceDot{0%,100%{transform:scale(1)}40%{transform:scale(1.5)}}
-        .flow-arrow-mini{color:var(--gray-300); font-size:0.45rem;}
+        /* ── HERO ── */
+        .hero-section{
+            background:radial-gradient(ellipse at 30% 20%, #0A1A2F 0%, #040F1A 70%);
+            min-height:90vh;
+            display:flex;
+            align-items:center;
+            position:relative;
+            overflow:hidden;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+        }
+        .hero-glow{
+            position:absolute;
+            width:600px;height:600px;
+            background:radial-gradient(circle, rgba(14,148,136,0.18) 0%, transparent 70%);
+            top:-20%;
+            right:-10%;
+            border-radius:50%;
+            pointer-events:none;
+        }
+        .hero-glow.left{
+            left:-10%;
+            top:50%;
+            background:radial-gradient(circle, rgba(200,150,62,0.09) 0%, transparent 70%);
+        }
+        .hero-content{
+            position:relative;
+            z-index:2;
+            max-width:720px;
+            padding:2rem 0;
+        }
+        .hero-badge{
+            display:inline-flex;
+            align-items:center;
+            gap:0.4rem;
+            background:rgba(255,255,255,0.06);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:50px;
+            padding:0.35rem 1rem;
+            font-size:0.7rem;
+            font-weight:600;
+            color:var(--teal-light);
+            letter-spacing:0.04em;
+            margin-bottom:1.2rem;
+            backdrop-filter:blur(8px);
+        }
+        .hero-badge i{color:var(--gold);}
+        .hero-title{
+            font-weight:900;
+            font-size:clamp(2.2rem, 5vw, var(--font-hero));
+            color:#fff;
+            line-height:1.15;
+            letter-spacing:-0.03em;
+            margin-bottom:1rem;
+        }
+        .hero-title span{
+            background:linear-gradient(to right, var(--teal), #5EEAD4);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .hero-desc{
+            font-size:var(--font-lg);
+            color:rgba(255,255,255,0.65);
+            max-width:580px;
+            line-height:1.65;
+            margin-bottom:2rem;
+        }
+        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;}
+        .btn-hero{
+            padding:0.8rem 2rem;
+            border-radius:50px;
+            font-weight:700;
+            font-size:var(--font-sm);
+            border:none;
+            cursor:pointer;
+            font-family:'Inter',sans-serif;
+            letter-spacing:0.02em;
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            transition:var(--transition);
+            text-decoration:none;
+        }
+        .btn-hero-primary{
+            background:var(--teal);
+            color:#fff;
+            box-shadow:0 8px 24px rgba(14,148,136,0.4);
+        }
+        .btn-hero-primary:hover{background:#0F766E;transform:translateY(-3px);box-shadow:0 16px 36px rgba(14,148,136,0.5);}
+        .btn-hero-secondary{
+            background:rgba(255,255,255,0.08);
+            color:#fff;
+            border:1.5px solid rgba(255,255,255,0.2);
+        }
+        .btn-hero-secondary:hover{background:rgba(255,255,255,0.14);border-color:var(--gold);}
+        .hero-visual{
+            position:absolute;
+            right:-80px;
+            bottom:-40px;
+            width:45%;
+            max-width:600px;
+            opacity:0.18;
+            pointer-events:none;
+            background:radial-gradient(circle, rgba(14,148,136,0.3) 0%, transparent 70%);
+            height:100%;
+            border-radius:50%;
+            filter:blur(60px);
+        }
 
-        /* ── MIND MAP PAGE STYLES ── */
-        .mindmap-page{padding:1.5rem; max-width:1400px; margin:0 auto;}
-        .mindmap-header{background:var(--apollo-navy); color:#fff; padding:1rem 1.5rem; border-radius:var(--radius-xl) var(--radius-xl) 0 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; box-shadow:var(--shadow-md);}
-        .mindmap-header h2{font-weight:900; font-size:var(--font-2xl); letter-spacing:-0.02em; color:var(--apollo-gold);}
-        .mindmap-header .back-link{background:rgba(255,255,255,0.1); padding:0.45rem 1rem; border-radius:50px; font-weight:600; font-size:var(--font-xs); color:#fff; cursor:pointer; transition:var(--transition); border:1px solid rgba(255,255,255,0.2); display:inline-flex; align-items:center; gap:0.3rem; text-decoration:none;}
-        .mindmap-header .back-link:hover{background:rgba(255,255,255,0.2);}
-        .mindmap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2rem 1.5rem; margin-top:1.5rem; position:relative;}
-        .mindmap-node{background:#fff; border-radius:var(--radius-xl); box-shadow:var(--shadow-md); border:2px solid var(--gray-200); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column;}
-        .mindmap-node:hover{transform:translateY(-4px); box-shadow:var(--shadow-xl); border-color:var(--apollo-teal);}
-        .node-img-placeholder{width:100%; height:180px; background:linear-gradient(135deg,#F8FAFC 0%,#E2E8F0 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; border-bottom:2px dashed var(--gray-300); position:relative; overflow:hidden;}
-        .node-img-placeholder .placeholder-icon{font-size:3rem; color:var(--gray-400); opacity:0.6; margin-bottom:0.3rem;}
-        .node-img-placeholder .placeholder-text{font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray-400); background:rgba(255,255,255,0.8); padding:0.2rem 0.7rem; border-radius:50px; border:1px solid var(--gray-300);}
-        .node-img-placeholder .placeholder-dims{position:absolute; bottom:6px; right:10px; font-size:0.5rem; color:var(--gray-400); font-weight:500; background:rgba(255,255,255,0.7); padding:0.1rem 0.4rem; border-radius:4px;}
-        .node-body{padding:1rem 1.2rem; flex:1; display:flex; flex-direction:column; gap:0.4rem;}
-        .node-step-num{font-weight:900; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--apollo-teal);}
-        .node-step-title{font-weight:800; font-size:var(--font-lg); color:var(--apollo-navy); letter-spacing:-0.01em;}
-        .node-step-desc{font-size:var(--font-xs); color:var(--gray-500); line-height:1.5;}
-        .node-step-tags{display:flex; gap:0.35rem; flex-wrap:wrap; margin-top:0.3rem;}
-        .node-tag{font-size:0.55rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:50px; background:var(--apollo-teal-light); color:#0F766E; letter-spacing:0.03em;}
-        .node-tag.gold-tag{background:var(--apollo-gold-light); color:#7C5E1A;}
+        /* ── FEATURES ── */
+        .features-section{
+            padding:5rem 0;
+            background:var(--white);
+        }
+        .section-label{
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+            font-weight:700;
+            font-size:0.7rem;
+            color:var(--teal);
+            margin-bottom:0.5rem;
+        }
+        .section-title{
+            font-weight:900;
+            font-size:var(--font-3xl);
+            color:var(--navy);
+            letter-spacing:-0.02em;
+            margin-bottom:2.5rem;
+        }
+        .features-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:2rem;
+        }
+        .feature-card{
+            background:var(--gray-50);
+            border-radius:var(--radius-lg);
+            padding:2rem;
+            border:1px solid var(--gray-200);
+            transition:var(--transition);
+            position:relative;
+            overflow:hidden;
+        }
+        .feature-card:hover{
+            transform:translateY(-6px);
+            box-shadow:var(--shadow-lg);
+            border-color:var(--teal-light);
+        }
+        .feature-icon{
+            width:56px;height:56px;
+            background:linear-gradient(135deg, var(--teal-light) 0%, #B2ECE0 100%);
+            border-radius:var(--radius);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:1.6rem;
+            margin-bottom:1.2rem;
+            color:var(--teal);
+        }
+        .feature-title{font-weight:700;font-size:1.15rem;margin-bottom:0.5rem;color:var(--navy);}
+        .feature-desc{font-size:0.82rem;color:var(--gray-500);line-height:1.6;}
 
-        /* ── TOAST ── */
-        .toast-container{position:fixed; bottom:1.5rem; right:1.5rem; z-index:9999; display:flex; flex-direction:column-reverse; gap:0.5rem; pointer-events:none;}
-        .toast{background:var(--apollo-navy); color:#fff; padding:0.65rem 1rem; border-radius:var(--radius); font-weight:600; font-size:var(--font-sm); box-shadow:var(--shadow-xl); animation:toastIn 0.4s ease-out, toastOut 0.35s ease-in forwards; animation-delay:0s, 3.8s; pointer-events:auto; display:flex; align-items:center; gap:0.5rem; max-width:440px; border-left:4px solid var(--apollo-gold);}
-        .toast.whatsapp-toast{border-left-color:#25D366; background:#075E54;}
-        .toast.success-toast{border-left-color:#10B981;}
-        @keyframes toastIn{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(50px)}}
+        /* ── HOW IT WORKS ── */
+        .how-section{
+            padding:5rem 0;
+            background:var(--gray-50);
+            border-top:1px solid var(--gray-200);
+        }
+        .steps-horizontal{
+            display:flex;
+            justify-content:space-between;
+            gap:1.5rem;
+            margin-top:2rem;
+        }
+        .step-item{
+            flex:1;
+            text-align:center;
+            background:#fff;
+            border-radius:var(--radius-lg);
+            padding:1.8rem 1rem;
+            border:1px solid var(--gray-200);
+            transition:var(--transition);
+        }
+        .step-item:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);}
+        .step-number{
+            width:44px;height:44px;
+            background:var(--navy);
+            color:#fff;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:800;
+            font-size:1rem;
+            margin:0 auto 0.8rem;
+        }
+        .step-item h4{font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:0.3rem;}
+        .step-item p{font-size:0.75rem;color:var(--gray-500);}
 
-        /* ── RESPONSIVE ── */
-        @media(max-width:1100px){.main-layout{grid-template-columns:1fr; padding:1rem;} .mindmap-grid{grid-template-columns:repeat(2,1fr); gap:1.25rem;} }
-        @media(max-width:700px){.mindmap-grid{grid-template-columns:1fr; gap:1rem;} .chat-container{max-height:220px;} .queue-list{max-height:150px;} .form-row{flex-direction:column;} .mindmap-node .node-img-placeholder{height:140px;} }
+        /* ── CTA ── */
+        .cta-section{
+            padding:4rem 0;
+            background:linear-gradient(135deg, var(--navy) 0%, #061220 100%);
+            text-align:center;
+            color:#fff;
+        }
+        .cta-section h2{font-weight:900;font-size:var(--font-2xl);margin-bottom:1rem;}
+        .cta-section p{color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 2rem;}
+        .btn-cta{
+            padding:0.8rem 2.2rem;
+            background:var(--teal);
+            color:#fff;
+            border:none;
+            border-radius:50px;
+            font-weight:700;
+            font-family:'Inter',sans-serif;
+            cursor:pointer;
+            transition:var(--transition);
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            text-decoration:none;
+            font-size:var(--font-sm);
+        }
+        .btn-cta:hover{background:#0F766E;box-shadow:0 10px 28px rgba(14,148,136,0.5);transform:translateY(-2px);}
+
+        /* ── FOOTER ── */
+        .footer{background:var(--navy-deep);color:rgba(255,255,255,0.6);padding:2rem 1.5rem;text-align:center;font-size:0.7rem;}
+
+        @media(max-width:900px){.features-grid{grid-template-columns:1fr;}.steps-horizontal{flex-direction:column;}}
+        @media(max-width:600px){.hero-content{padding:1rem;}.hero-title{font-size:2rem;}}
     </style>
 </head>
 <body>
-    <!-- ═══════════ APOLLO HEADER (shared) ═══════════ -->
-    <header class="apollo-header" id="apolloHeader">
-        <div class="header-left">
-            <div class="header-logo">
-                <svg viewBox="0 0 50 50" fill="none"><rect width="50" height="50" rx="12" fill="#0A1F3F"/><rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/><line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="39" cy="39" r="8" fill="#C8963E"/><text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text></svg>
-            </div>
-            <div class="header-title-group">
-                <div class="header-main-title">Apollo <span>Smart Clinic AI</span></div>
-                <div class="header-subtitle">Full Process Demonstration • सम्पूर्ण प्रक्रिया डेमो</div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="main-header">
+        <div class="header-brand">
+            <div class="brand-icon"><i class="fa-solid fa-staff-snake"></i></div>
+            <div class="brand-text">
+                <span class="brand-name">VAIDYA</span>
+                <span class="brand-tagline">by KALKI INTELLIGENCE</span>
             </div>
         </div>
-        <div class="header-right">
-            <span class="header-contact"><i class="fa-solid fa-phone"></i> +91 44 2829 0200</span>
-            <span class="header-contact"><i class="fa-solid fa-location-dot"></i> 70+ Centers</span>
-            <span class="header-badge">🆘 EMERGENCY: 1066</span>
+        <div class="header-actions">
+            <a href="index.html" class="btn-header btn-header-outline"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="mind-map.html" class="btn-header btn-header-primary"><i class="fa-solid fa-brain"></i> Full Demo</a>
         </div>
     </header>
 
-    <!-- ═══════════ PAGE SWITCHER ═══════════ -->
-    <div class="page-switcher" id="pageSwitcher">
-        <button class="active-page-btn" data-page="dashboard"><i class="fa-solid fa-stethoscope"></i> Live Dashboard</button>
-        <button data-page="mindmap"><i class="fa-solid fa-brain"></i> Full Process Mind Map</button>
-    </div>
-
-    <!-- ═══════════ PAGE 1: DASHBOARD ═══════════ -->
-    <div class="page-container active-page" id="pageDashboard">
-        <div class="main-layout">
-            <div class="left-col">
-                <div class="panel" id="consultationPanel">
-                    <div class="panel-header">
-                        <span class="panel-icon">🎙️</span>
-                        <span class="panel-title">Live Consultation & AI Transcription</span>
-                        <span class="panel-badge badge-idle" id="transcriptionBadge">⏸ Idle</span>
-                    </div>
-                    <div class="chat-container" id="chatContainer">
-                        <div class="chat-placeholder" id="chatPlaceholder">
-                            <i class="fa-solid fa-user-doctor"></i>
-                            <span><strong>No active consultation yet.</strong></span>
-                            <span style="font-size:0.7rem;">Click <strong>NEXT PATIENT</strong> or <strong>Auto Demo</strong> to begin.</span>
-                        </div>
-                    </div>
-                    <div class="rx-widget" id="rxWidget">
-                        <span>💊</span>
-                        <span id="rxContent" style="color:#94A3B8;font-weight:400;">Waiting for AI to extract prescription...</span>
-                    </div>
-                </div>
-                <div class="form-overlay" id="patientFormOverlay">
-                    <div style="font-weight:800;font-size:var(--font-lg);color:var(--apollo-navy);margin-bottom:0.6rem;">📋 Finalize & Send Patient Report</div>
-                    <div class="form-row">
-                        <div class="form-group"><label>Patient Full Name</label><input type="text" id="patient_name" placeholder="e.g., Rajesh Kumar"></div>
-                        <div class="form-group" style="max-width:75px;"><label>Age</label><input type="number" id="patient_age" placeholder="45" min="0" max="150"></div>
-                        <div class="form-group"><label>WhatsApp (+country code)</label><input type="tel" id="patient_whatsapp" placeholder="+91 98765 43210"></div>
-                    </div>
-                    <button class="btn btn-gold" id="sendReportBtn" style="margin-top:0.7rem;" disabled>
-                        <span class="btn-spinner"></span> 🚀 Generate PDF & Send via WhatsApp
-                    </button>
-                </div>
-            </div>
-            <div class="right-col">
-                <div class="patient-card empty-card" id="currentPatientCard">
-                    <div class="card-eyebrow">🪪 Currently Consulting</div>
-                    <div class="empty-state-text" id="currentPatientContent">Waiting for next patient...</div>
-                </div>
-                <div class="panel" style="padding-bottom:0.6rem;">
-                    <div class="panel-header" style="margin-bottom:0.35rem;">
-                        <span class="panel-icon">📌</span>
-                        <span class="panel-title">Waiting Queue <span style="font-weight:400;font-size:0.65rem;color:#64748B;">(Token System)</span></span>
-                    </div>
-                    <ul class="queue-list" id="queueList"></ul>
-                    <button class="btn-next-full" id="nextPatientBtn" style="margin-top:0.6rem;">⏩ CALL NEXT PATIENT</button>
-                    <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-                        <button class="btn btn-teal" id="btnAutoDemo" style="flex:1;">▶️ Auto Demo</button>
-                        <button class="btn" id="btnReset" style="flex:1; background:#fff; border:1.5px solid #CBD5E1; color:#64748B;">🔄 Reset</button>
-                    </div>
-                </div>
-                <div class="flow-mini">
-                    <div class="flow-title">🔄 Live Process Flow</div>
-                    <div class="flow-dots-row" id="flowMiniDots">
-                        <span class="flow-dot-mini active-dot" data-fs="1"></span><span class="flow-arrow-mini">→</span>
-                        <span class="flow-dot-mini" data-fs="2"></span><span class="flow-arrow-mini">→</span>
-                        <span class="flow-dot-mini" data-fs="3"></span><span class="flow-arrow-mini">→</span>
-                        <span class="flow-dot-mini" data-fs="4"></span><span class="flow-arrow-mini">→</span>
-                        <span class="flow-dot-mini" data-fs="5"></span><span class="flow-arrow-mini">→</span>
-                        <span class="flow-dot-mini" data-fs="6"></span>
-                    </div>
-                    <div style="font-size:0.55rem;color:var(--gray-400);margin-top:0.3rem;">Step <span id="flowStepLabel">1</span> of 6 — <span id="flowStepName">Patient Check‑in</span></div>
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero-section">
+        <div class="hero-glow"></div>
+        <div class="hero-glow left"></div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fa-solid fa-circle-check"></i> AI‑Powered Clinic Operating System</div>
+                <h1 class="hero-title">Transform Your Clinic with <span>VAIDYA</span></h1>
+                <p class="hero-desc">From patient check‑in to prescription delivery — a single intelligent platform that digitises every step of the care journey. Built for Indian clinics, powered by KALKI.</p>
+                <div class="hero-buttons">
+                    <a href="dashboard.html" class="btn-hero btn-hero-primary"><i class="fa-solid fa-play"></i> See Live Dashboard</a>
+                    <a href="mind-map.html" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-map"></i> Full Process Map</a>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="hero-visual"></div>
+    </section>
 
-    <!-- ═══════════ PAGE 2: MIND MAP ═══════════ -->
-    <div class="page-container" id="pageMindmap">
-        <div class="mindmap-page">
-            <div class="mindmap-header">
-                <h2>🧠 Apollo Smart Clinic AI — Process Mind Map</h2>
-                <button class="back-link" id="backToDashboard"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
-            </div>
-            <div class="mindmap-grid" id="mindmapGrid">
-                <!-- Node 1 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">📱</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 1</span>
-                        <span class="node-step-title">📱 Patient Check‑in</span>
-                        <span class="node-step-desc">Patient scans QR code at reception or sends WhatsApp message. Basic details captured automatically.</span>
-                        <div class="node-step-tags"><span class="node-tag">QR Code</span><span class="node-tag">WhatsApp</span><span class="node-tag gold-tag">Auto-detect</span></div>
-                    </div>
+    <!-- ═══════════ FEATURES ═══════════ -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-label">Why VAIDYA</div>
+            <h2 class="section-title">Everything your clinic needs,<br>in one elegant system.</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="feature-title">QR‑Based Check‑in</div>
+                    <div class="feature-desc">Patients scan a QR at reception – instantly opening WhatsApp for seamless data capture. No forms, no queues.</div>
                 </div>
-                <!-- Node 2 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">🤖</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 2</span>
-                        <span class="node-step-title">🤖 AI Triage Bot</span>
-                        <span class="node-step-desc">AI chatbot captures patient name, age, and chief concern before doctor sees them. Data populates the dashboard.</span>
-                        <div class="node-step-tags"><span class="node-tag">NLP</span><span class="node-tag">Auto-form</span><span class="node-tag gold-tag">Smart</span></div>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-robot"></i></div>
+                    <div class="feature-title">AI Triage Assistant</div>
+                    <div class="feature-desc">A smart bot collects name, age, and chief complaint before the patient even meets the doctor. Data pre‑fills the dashboard.</div>
                 </div>
-                <!-- Node 3 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">🔢</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 3</span>
-                        <span class="node-step-title">🔢 Token Queue System</span>
-                        <span class="node-step-desc">Patient receives token number. Queue updates in real-time. "Number lagao" system digitized.</span>
-                        <div class="node-step-tags"><span class="node-tag">Token</span><span class="node-tag">Queue</span><span class="node-tag gold-tag">Real-time</span></div>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-ticket"></i></div>
+                    <div class="feature-title">Digital Token System</div>
+                    <div class="feature-desc">Patients receive a live token with queue position. No crowding – they can wait anywhere and get notified.</div>
                 </div>
-                <!-- Node 4 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">👨‍⚕️</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 4</span>
-                        <span class="node-step-title">👨‍⚕️ Live Consultation</span>
-                        <span class="node-step-desc">Doctor speaks naturally. AI transcribes in real-time. Medical entities highlighted automatically.</span>
-                        <div class="node-step-tags"><span class="node-tag">AI Live</span><span class="node-tag">Transcribe</span><span class="node-tag gold-tag">Voice</span></div>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <div class="feature-title">Auto Voice Calling</div>
+                    <div class="feature-desc">When a token is near, VAIDYA makes an AI voice call to the patient, directing them to the right room – hands‑free.</div>
                 </div>
-                <!-- Node 5 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">💊</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 5</span>
-                        <span class="node-step-title">💊 Prescription AI Engine</span>
-                        <span class="node-step-desc">AI extracts medicine names, dosages, and instructions. Floating prescription widget updates live.</span>
-                        <div class="node-step-tags"><span class="node-tag">AI Extract</span><span class="node-tag">Dosage</span><span class="node-tag gold-tag">Auto</span></div>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <div class="feature-title">Live AI Transcription</div>
+                    <div class="feature-desc">During consultation, VAIDYA listens and transcribes every word, highlighting medicines and dosages in real time.</div>
                 </div>
-                <!-- Node 6 -->
-                <div class="mindmap-node">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">📄</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 6</span>
-                        <span class="node-step-title">📄 WhatsApp Report Delivery</span>
-                        <span class="node-step-desc">PDF prescription generated. Sent instantly via WhatsApp API. Patient receives report with directions.</span>
-                        <div class="node-step-tags"><span class="node-tag">PDF</span><span class="node-tag">WhatsApp API</span><span class="node-tag gold-tag">Instant</span></div>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="feature-title">Instant WhatsApp Reports</div>
+                    <div class="feature-desc">A complete, branded PDF prescription is auto‑generated and delivered to the patient’s phone before they leave.</div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ═══════════ TOAST CONTAINER ═══════════ -->
-    <div class="toast-container" id="toastContainer"></div>
+    <!-- ═══════════ HOW IT WORKS ═══════════ -->
+    <section class="how-section">
+        <div class="container">
+            <div class="section-label">The Journey</div>
+            <h2 class="section-title">From entry to exit in 9 simple steps.</h2>
+            <div class="steps-horizontal">
+                <div class="step-item"><div class="step-number">1</div><h4>Check‑in</h4><p>QR scan + WhatsApp</p></div>
+                <div class="step-item"><div class="step-number">2</div><h4>Triage</h4><p>AI bot collects data</p></div>
+                <div class="step-item"><div class="step-number">3</div><h4>Token</h4><p>Digital queue</p></div>
+                <div class="step-item"><div class="step-number">4</div><h4>Voice Call</h4><p>Auto room alert</p></div>
+                <div class="step-item"><div class="step-number">5</div><h4>Consult</h4><p>Live AI scribe</p></div>
+                <div class="step-item"><div class="step-number">6</div><h4>Prescription</h4><p>Auto extraction</p></div>
+                <div class="step-item"><div class="step-number">7</div><h4>Queue Mgmt</h4><p>Doctor dashboard</p></div>
+                <div class="step-item"><div class="step-number">8</div><h4>Report</h4><p>WhatsApp PDF</p></div>
+                <div class="step-item"><div class="step-number">9</div><h4>Exit</h4><p>Summary & closure</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to see VAIDYA in action?</h2>
+            <p>Explore the full, interactive demonstration – every feature, every screen, every interaction.</p>
+            <a href="mind-map.html" class="btn-cta"><i class="fa-solid fa-arrow-right"></i> Open Full Demo</a>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+        <p>© 2025 KALKI INTELLIGENCE. VAIDYA is a product of KALKI. All rights reserved. | Apollo Hospitals Demo Integration</p>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ──────────────────────────────────────
-            // STATE (TTS removed)
-            // ──────────────────────────────────────
-            const state = {
-                currentStep: 1,
-                currentPatient: null,
-                waitingQueue: [
-                    { token: 12, name: 'Ravi Singh', age: 34, concern: 'Persistent cough & fever', wait_time: '25 mins' },
-                    { token: 13, name: 'Anita Desai', age: 52, concern: 'Joint pain in knees', wait_time: '15 mins' },
-                    { token: 14, name: 'Vikram Patel', age: 28, concern: 'Allergic skin rash', wait_time: '5 mins' },
-                ],
-                isTranscribing: false,
-                transcriptionTimeoutIds: [],
-                extractedMeds: [],
-                formVisible: false,
-                autoDemoActive: false,
-                autoDemoTimeoutIds: [],
-            };
-
-            const stepNames = ['Patient Check‑in', 'AI Triage', 'Token Queue', 'Live Consultation', 'Prescription AI', 'WhatsApp Report'];
-            const mockScript = [
-                { speaker: 'Doctor', text: 'Good morning, Mr. Ravi. Tell me about your symptoms.' },
-                { speaker: 'Patient', text: 'Doctor, 5 days se dry cough hai. Raat mein bohot takleef hoti hai. (5 days dry cough, worse at night.)' },
-                { speaker: 'Doctor', text: 'Any fever or body pain?' },
-                { speaker: 'Patient', text: 'Haan, evening mein mild fever aata hai. (Yes, mild evening fever.)' },
-                { speaker: 'Doctor', text: 'I am prescribing Azithromycin 500mg once daily for 3 days. Also Paracetamol 650mg if fever exceeds 101°F.' },
-                { speaker: 'Patient', text: 'Okay doctor. Aur kuch? (Anything else?)' },
-                { speaker: 'Doctor', text: 'Take warm fluids. Avoid cold items. I am also sharing a diet chart via WhatsApp.' },
-            ];
-
-            // ──────────────────────────────────────
-            // DOM REFS
-            // ──────────────────────────────────────
-            const $ = (s) => document.querySelector(s);
-            const $$ = (s) => document.querySelectorAll(s);
-
-            const pageSwitcherBtns = $$('.page-switcher button');
-            const pageDashboard = $('#pageDashboard');
-            const pageMindmap = $('#pageMindmap');
-            const btnAutoDemo = $('#btnAutoDemo');
-            const btnReset = $('#btnReset');
-            const transcriptionBadge = $('#transcriptionBadge');
-            const chatContainer = $('#chatContainer');
-            const chatPlaceholder = $('#chatPlaceholder');
-            const rxWidget = $('#rxWidget');
-            const rxContent = $('#rxContent');
-            const patientFormOverlay = $('#patientFormOverlay');
-            const patientNameInput = $('#patient_name');
-            const patientAgeInput = $('#patient_age');
-            const patientWhatsappInput = $('#patient_whatsapp');
-            const sendReportBtn = $('#sendReportBtn');
-            const currentPatientCard = $('#currentPatientCard');
-            const currentPatientContent = $('#currentPatientContent');
-            const queueList = $('#queueList');
-            const nextPatientBtn = $('#nextPatientBtn');
-            const flowMiniDots = $('#flowMiniDots');
-            const flowStepLabel = $('#flowStepLabel');
-            const flowStepName = $('#flowStepName');
-            const toastContainer = $('#toastContainer');
-            const consultationPanel = $('#consultationPanel');
-            const backToDashboardBtn = $('#backToDashboard');
-
-            // ──────────────────────────────────────
-            // PAGE SWITCHING
-            // ──────────────────────────────────────
-            function switchPage(pageName) {
-                pageDashboard.classList.toggle('active-page', pageName === 'dashboard');
-                pageMindmap.classList.toggle('active-page', pageName === 'mindmap');
-                pageSwitcherBtns.forEach(btn => {
-                    btn.classList.toggle('active-page-btn', btn.dataset.page === pageName);
-                });
-            }
-
-            pageSwitcherBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    switchPage(this.dataset.page);
-                });
+        // Smooth scroll for anchor links (if any added later)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior:'smooth' });
             });
-            backToDashboardBtn.addEventListener('click', () => switchPage('dashboard'));
-
-            // ──────────────────────────────────────
-            // INIT
-            // ──────────────────────────────────────
-            function init() {
-                renderQueue();
-                updateAllUI();
-                setupEventListeners();
-                showToast('👋 Welcome to <strong>Apollo Smart Clinic AI</strong>. Use tabs to explore Dashboard & Mind Map.', 'info');
-            }
-
-            function setupEventListeners() {
-                btnAutoDemo.addEventListener('click', toggleAutoDemo);
-                btnReset.addEventListener('click', resetEverything);
-                nextPatientBtn.addEventListener('click', handleNextPatient);
-                nextPatientBtn.addEventListener('mousedown', addRipple);
-                sendReportBtn.addEventListener('click', handleSendReport);
-                sendReportBtn.addEventListener('mousedown', addRipple);
-                patientWhatsappInput.addEventListener('input', () => {
-                    sendReportBtn.disabled = !patientWhatsappInput.value.trim() || !state.currentPatient;
-                });
-            }
-
-            // ──────────────────────────────────────
-            // UI UPDATES
-            // ──────────────────────────────────────
-            function updateAllUI() {
-                updateStepperUI();
-                updateNextButtonState();
-                updateTranscriptionBadge();
-                updateCurrentPatientCardUI();
-            }
-
-            function updateStepperUI() {
-                const dots = $$('.flow-dot-mini');
-                dots.forEach((dot, i) => {
-                    const s = i + 1;
-                    dot.classList.remove('active-dot', 'done-dot');
-                    if (s < state.currentStep) dot.classList.add('done-dot');
-                    if (s === state.currentStep) dot.classList.add('active-dot');
-                });
-                flowStepLabel.textContent = state.currentStep;
-                flowStepName.textContent = stepNames[state.currentStep - 1] || '';
-            }
-
-            function updateTranscriptionBadge() {
-                if (state.isTranscribing) {
-                    transcriptionBadge.textContent = '🔴 LIVE';
-                    transcriptionBadge.className = 'panel-badge badge-live';
-                } else if (state.currentPatient && !state.isTranscribing && state.formVisible) {
-                    transcriptionBadge.textContent = '✅ Done';
-                    transcriptionBadge.className = 'panel-badge badge-done';
-                } else {
-                    transcriptionBadge.textContent = '⏸ Idle';
-                    transcriptionBadge.className = 'panel-badge badge-idle';
-                }
-            }
-
-            function updateNextButtonState() {
-                nextPatientBtn.disabled = state.waitingQueue.length === 0 || state.isTranscribing;
-                nextPatientBtn.style.opacity = (state.waitingQueue.length === 0 || state.isTranscribing) ? '0.45' : '1';
-            }
-
-            function updateCurrentPatientCardUI() {
-                if (!state.currentPatient) {
-                    currentPatientCard.classList.add('empty-card');
-                    currentPatientContent.innerHTML = '<div class="empty-state-text">Waiting for next patient...</div>';
-                } else {
-                    currentPatientCard.classList.remove('empty-card');
-                    const p = state.currentPatient;
-                    currentPatientContent.innerHTML = `
-                        <div class="patient-name-lg">${p.name}</div>
-                        <div class="patient-meta">
-                            <span>🎂 Age: ${p.age}</span><span>🩺 ${p.concern}</span>
-                            <span class="token-chip">Token #${p.token}</span>
-                        </div>`;
-                }
-            }
-
-            // ──────────────────────────────────────
-            // QUEUE
-            // ──────────────────────────────────────
-            function renderQueue() {
-                queueList.innerHTML = '';
-                if (state.waitingQueue.length === 0) {
-                    queueList.innerHTML = '<li style="text-align:center;color:#94A3B8;padding:1.5rem;font-style:italic;">All patients seen. Queue empty.</li>';
-                } else {
-                    state.waitingQueue.forEach((patient, index) => {
-                        const li = document.createElement('li');
-                        li.className = 'queue-item' + (index === 0 ? ' next-in-line' : '');
-                        li.dataset.token = patient.token;
-                        li.innerHTML = `
-                            <span style="color:#CBD5E1;cursor:grab;font-size:0.8rem;">⋮⋮</span>
-                            <span class="queue-token-num">#${patient.token}</span>
-                            <div class="queue-info"><div class="queue-name">${patient.name}</div><div class="queue-concern">${patient.concern}</div></div>
-                            <span class="queue-wait-badge">⏱ ${patient.wait_time}</span>`;
-                        li.addEventListener('click', () => {
-                            if (!state.isTranscribing && !state.autoDemoActive) loadSpecificPatient(patient.token);
-                        });
-                        queueList.appendChild(li);
-                    });
-                }
-                updateNextButtonState();
-            }
-
-            // ──────────────────────────────────────
-            // NEXT PATIENT
-            // ──────────────────────────────────────
-            function handleNextPatient() {
-                if (state.isTranscribing) { showToast('⚠️ Please wait — consultation is still recording.', 'info'); return; }
-                if (state.waitingQueue.length === 0) { showToast('📭 No more patients in the queue.', 'info'); return; }
-                clearAllTranscriptionTimeouts();
-                const patient = state.waitingQueue.shift();
-                state.currentPatient = patient;
-                state.extractedMeds = [];
-                state.formVisible = false;
-                rxContent.innerHTML = '<span style="color:#94A3B8;font-weight:400;">Listening for prescription details...</span>';
-                patientFormOverlay.classList.remove('visible');
-                patientNameInput.value = ''; patientAgeInput.value = ''; patientWhatsappInput.value = '';
-                sendReportBtn.disabled = true; sendReportBtn.classList.remove('loading');
-                updateCurrentPatientCardUI(); renderQueue();
-                chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'none';
-                state.isTranscribing = true; state.currentStep = 4; updateAllUI();
-                consultationPanel.classList.add('highlight-glow');
-                showToast(`📱 <strong>WhatsApp Alert:</strong> Token #${patient.token} — "Your turn! Please proceed to Room 201." 🗺️ <em>Google Maps attached.</em>`, 'whatsapp-toast');
-                startTranscription(patient);
-            }
-
-            function loadSpecificPatient(token) {
-                const index = state.waitingQueue.findIndex(p => p.token === token);
-                if (index === -1) return;
-                clearAllTranscriptionTimeouts();
-                const patient = state.waitingQueue.splice(index, 1)[0];
-                state.currentPatient = patient; state.extractedMeds = []; state.formVisible = false;
-                rxContent.innerHTML = '<span style="color:#94A3B8;font-weight:400;">Listening for prescription details...</span>';
-                patientFormOverlay.classList.remove('visible');
-                patientNameInput.value = ''; patientAgeInput.value = ''; patientWhatsappInput.value = '';
-                sendReportBtn.disabled = true; sendReportBtn.classList.remove('loading');
-                updateCurrentPatientCardUI(); renderQueue();
-                chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'none';
-                state.isTranscribing = true; state.currentStep = 4; updateAllUI();
-                consultationPanel.classList.add('highlight-glow');
-                showToast(`📱 <strong>WhatsApp Alert:</strong> Token #${patient.token} — "Your turn!"`, 'whatsapp-toast');
-                startTranscription(patient);
-            }
-
-            // ──────────────────────────────────────
-            // TRANSCRIPTION
-            // ──────────────────────────────────────
-            function startTranscription(patient) {
-                state.isTranscribing = true; updateAllUI();
-                chatContainer.innerHTML = '';
-                rxContent.innerHTML = '<span style="color:#94A3B8;font-weight:400;">Listening for prescription details...</span>';
-                const allWords = [];
-                mockScript.forEach(entry => {
-                    const words = entry.text.split(/\s+/);
-                    words.forEach((w, idx) => allWords.push({ speaker: entry.speaker, word: w, isFirst: idx === 0, fullLineText: entry.text }));
-                });
-                let idx = 0, currentBubble = null, currentSpeaker = null;
-                function streamWord() {
-                    if (idx >= allWords.length) { finishTranscription(patient); return; }
-                    const entry = allWords[idx];
-                    if (entry.isFirst || entry.speaker !== currentSpeaker) {
-                        currentSpeaker = entry.speaker;
-                        currentBubble = document.createElement('div');
-                        currentBubble.className = 'chat-bubble ' + (entry.speaker === 'Doctor' ? 'doctor' : 'patient');
-                        const label = document.createElement('span');
-                        label.className = 'speaker-label';
-                        label.textContent = entry.speaker === 'Doctor' ? '👨‍⚕️ Doctor' : '🧑‍🦰 Patient';
-                        currentBubble.appendChild(label);
-                        const msgSpan = document.createElement('span'); msgSpan.className = 'msg-text';
-                        currentBubble.appendChild(msgSpan); chatContainer.appendChild(currentBubble);
-                    }
-                    const msgSpan = currentBubble.querySelector('.msg-text');
-                    const highlighted = highlightEntity(entry.word);
-                    if (highlighted !== entry.word) {
-                        const span = document.createElement('span'); span.innerHTML = ' ' + highlighted;
-                        msgSpan.appendChild(span); extractMedFromWord(entry.word);
-                    } else { msgSpan.appendChild(document.createTextNode(' ' + entry.word)); }
-                    updateRxWidget(); chatContainer.scrollTop = chatContainer.scrollHeight;
-                    idx++;
-                    const tid = setTimeout(streamWord, 260 + Math.random() * 90);
-                    state.transcriptionTimeoutIds.push(tid);
-                }
-                const initTid = setTimeout(streamWord, 350); state.transcriptionTimeoutIds.push(initTid);
-            }
-
-            function highlightEntity(word) {
-                const clean = word.replace(/[.,;:!?]+$/, ''); const suffix = word.slice(clean.length);
-                if (/\d+mg/i.test(clean) || /\d+ml/i.test(clean) || /\d+mcg/i.test(clean)) return `<mark class="entity-highlight" title="Dosage">${clean}</mark>${suffix}`;
-                if (/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine|Omeprazole|Metformin)$/i.test(clean)) return `<mark class="entity-highlight" title="Medicine">${clean}</mark>${suffix}`;
-                if (/^(once|twice|three\s+times)\s+daily$/i.test(clean) || /^daily$/i.test(clean)) return `<mark class="entity-highlight" title="Instruction">${clean}</mark>${suffix}`;
-                return word;
-            }
-
-            function extractMedFromWord(word) {
-                const clean = word.replace(/[.,;:!?]+$/, '');
-                const medMatch = clean.match(/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine)$/i);
-                const doseMatch = clean.match(/^(\d+mg|\d+ml|\d+mcg)$/i);
-                if (medMatch && !state.extractedMeds.find(m => m.name.toLowerCase() === medMatch[1].toLowerCase())) state.extractedMeds.push({ name: medMatch[1], dosage: '', instruction: '' });
-                if (doseMatch && state.extractedMeds.length > 0) { const last = state.extractedMeds[state.extractedMeds.length-1]; if (!last.dosage) last.dosage = doseMatch[1]; }
-                const freqMatch = clean.match(/^(once|twice|three\s+times)\s+daily\s+for\s+(\d+)\s+days?$/i);
-                if (freqMatch && state.extractedMeds.length > 0) state.extractedMeds[state.extractedMeds.length-1].instruction = freqMatch[0];
-            }
-
-            function updateRxWidget() {
-                if (state.extractedMeds.length === 0) { rxContent.innerHTML = '<span style="color:#94A3B8;font-weight:400;">Listening for prescription details...</span>'; return; }
-                rxContent.innerHTML = state.extractedMeds.map(m => {
-                    let t = `<span class="rx-pill">💊 <strong>${m.name}</strong>`;
-                    if (m.dosage) t += ` ${m.dosage}`; if (m.instruction) t += ` — ${m.instruction}`;
-                    return t + '</span>';
-                }).join(' ');
-            }
-
-            function finishTranscription(patient) {
-                state.isTranscribing = false; state.currentStep = 5; updateAllUI();
-                clearAllTranscriptionTimeouts(); consultationPanel.classList.remove('highlight-glow');
-                updateRxWidget();
-                showToast('✅ <strong>Transcription complete!</strong> Prescription extracted. Please fill the form.', 'success-toast');
-                setTimeout(() => {
-                    patientFormOverlay.classList.add('visible'); state.formVisible = true;
-                    patientNameInput.value = patient.name || ''; patientAgeInput.value = patient.age || '';
-                    patientWhatsappInput.value = ''; sendReportBtn.disabled = true; sendReportBtn.classList.remove('loading');
-                    state.currentStep = 6; updateAllUI();
-                    patientFormOverlay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 600);
-            }
-
-            function clearAllTranscriptionTimeouts() { state.transcriptionTimeoutIds.forEach(id => clearTimeout(id)); state.transcriptionTimeoutIds = []; }
-
-            // ──────────────────────────────────────
-            // SEND REPORT
-            // ──────────────────────────────────────
-            function handleSendReport() {
-                if (!state.currentPatient) return;
-                const whatsapp = patientWhatsappInput.value.trim();
-                if (!whatsapp) { showToast('⚠️ Please enter WhatsApp number.', 'info'); return; }
-                sendReportBtn.classList.add('loading'); sendReportBtn.disabled = true;
-                setTimeout(() => {
-                    const pname = patientNameInput.value || state.currentPatient.name;
-                    const page = patientAgeInput.value || state.currentPatient.age;
-                    const pdfText = `Apollo Prescription - ${pname} | Token #${state.currentPatient.token}\n${state.extractedMeds.map(m=>m.name+' '+m.dosage+' '+m.instruction).join('\n')}`;
-                    const blob = new Blob([pdfText], {type:'application/pdf'});
-                    const url = URL.createObjectURL(blob); const a = document.createElement('a');
-                    a.href = url; a.download = `Apollo_Prescription_${pname.replace(/\s+/g,'_')}_T${state.currentPatient.token}.pdf`;
-                    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-                    sendReportBtn.classList.remove('loading'); sendReportBtn.disabled = false;
-                    showToast(`📄 PDF sent via WhatsApp to ${whatsapp.slice(0,5)}**** ✅`, 'whatsapp-toast');
-                    patientFormOverlay.classList.remove('visible'); state.formVisible = false; state.currentStep = 6; updateAllUI();
-                }, 2000);
-            }
-
-            // ──────────────────────────────────────
-            // AUTO DEMO
-            // ──────────────────────────────────────
-            function toggleAutoDemo() { state.autoDemoActive ? stopAutoDemo() : startAutoDemo(); }
-            function startAutoDemo() {
-                state.autoDemoActive = true; btnAutoDemo.textContent = '⏸ Stop Demo'; btnAutoDemo.style.background='#C62828'; btnAutoDemo.style.color='#fff';
-                showToast('▶️ Auto Demo Started!', 'info'); resetEverythingSilent(); runAutoDemoStep(0);
-            }
-            function stopAutoDemo() {
-                state.autoDemoActive = false; btnAutoDemo.textContent = '▶️ Auto Demo'; btnAutoDemo.style.background=''; btnAutoDemo.style.color='';
-                state.autoDemoTimeoutIds.forEach(id=>clearTimeout(id)); state.autoDemoTimeoutIds=[]; clearAllTranscriptionTimeouts();
-                state.isTranscribing=false; updateAllUI(); consultationPanel.classList.remove('highlight-glow');
-                showToast('⏸ Demo stopped.', 'info');
-            }
-            function runAutoDemoStep(stepIndex) {
-                if (!state.autoDemoActive) return;
-                const steps = [
-                    ()=>{ state.currentStep=1; updateAllUI(); showToast('Step 1: Patient Check‑in', 'info'); state.autoDemoTimeoutIds.push(setTimeout(()=>runAutoDemoStep(1),2000)); },
-                    ()=>{ state.currentStep=2; updateAllUI(); showToast('Step 2: AI Triage', 'info'); state.autoDemoTimeoutIds.push(setTimeout(()=>runAutoDemoStep(2),2000)); },
-                    ()=>{ state.currentStep=3; updateAllUI(); showToast('Step 3: Token Queue', 'info'); state.autoDemoTimeoutIds.push(setTimeout(()=>runAutoDemoStep(3),2000)); },
-                    ()=>{
-                        if(state.waitingQueue.length===0){showToast('Queue empty. Demo complete.','success-toast');stopAutoDemo();return;}
-                        state.currentStep=4; updateAllUI(); consultationPanel.classList.add('highlight-glow');
-                        const patient=state.waitingQueue.shift(); state.currentPatient=patient; state.extractedMeds=[]; state.formVisible=false;
-                        rxContent.innerHTML='<span style="color:#94A3B8;">Listening...</span>'; patientFormOverlay.classList.remove('visible');
-                        patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';sendReportBtn.disabled=true;
-                        updateCurrentPatientCardUI();renderQueue();chatContainer.innerHTML='';chatPlaceholder.style.display='none';
-                        state.isTranscribing=true;updateAllUI();showToast('Step 4: Live Consultation','info');
-                        startTranscriptionForDemo(patient, ()=>{ if(state.autoDemoActive) state.autoDemoTimeoutIds.push(setTimeout(()=>runAutoDemoStep(4),800)); });
-                    },
-                    ()=>{
-                        state.currentStep=5; updateAllUI(); patientFormOverlay.classList.add('visible'); state.formVisible=true;
-                        if(state.currentPatient){patientNameInput.value=state.currentPatient.name; patientAgeInput.value=state.currentPatient.age;}
-                        patientWhatsappInput.value='+91 98101 23456'; sendReportBtn.disabled=false; state.currentStep=6; updateAllUI();
-                        showToast('Step 5–6: Send Report','info');
-                        state.autoDemoTimeoutIds.push(setTimeout(()=>{ if(state.autoDemoActive) sendReportBtn.click(); state.autoDemoTimeoutIds.push(setTimeout(()=>{ if(state.autoDemoActive){ updateAllUI(); showToast('Full Process Complete!','success-toast'); state.autoDemoTimeoutIds.push(setTimeout(()=>stopAutoDemo(),3000)); } },2500)); },1600));
-                    },
-                ];
-                if(stepIndex<steps.length) steps[stepIndex]();
-            }
-            function startTranscriptionForDemo(patient, callback) { /* similar to manual but with callback */ 
-                state.isTranscribing=true; updateAllUI(); chatContainer.innerHTML='';
-                const allWords=[]; mockScript.forEach(e=>{ const words=e.text.split(/\s+/); words.forEach((w,i)=>allWords.push({speaker:e.speaker,word:w,isFirst:i===0,fullLineText:e.text})); });
-                let idx=0,currentBubble=null,currentSpeaker=null;
-                function streamWord(){
-                    if(!state.autoDemoActive){state.isTranscribing=false;updateAllUI();return;}
-                    if(idx>=allWords.length){state.isTranscribing=false;state.currentStep=5;updateAllUI();consultationPanel.classList.remove('highlight-glow');updateRxWidget();if(callback)callback();return;}
-                    const entry=allWords[idx];
-                    if(entry.isFirst||entry.speaker!==currentSpeaker){currentSpeaker=entry.speaker;currentBubble=document.createElement('div');currentBubble.className='chat-bubble '+(entry.speaker==='Doctor'?'doctor':'patient');const l=document.createElement('span');l.className='speaker-label';l.textContent=entry.speaker==='Doctor'?'👨‍⚕️ Doctor':'🧑‍🦰 Patient';currentBubble.appendChild(l);const m=document.createElement('span');m.className='msg-text';currentBubble.appendChild(m);chatContainer.appendChild(currentBubble);}
-                    const msg=currentBubble.querySelector('.msg-text'); const h=highlightEntity(entry.word);
-                    if(h!==entry.word){const s=document.createElement('span');s.innerHTML=' '+h;msg.appendChild(s);extractMedFromWord(entry.word);}else{msg.appendChild(document.createTextNode(' '+entry.word));}
-                    updateRxWidget();chatContainer.scrollTop=chatContainer.scrollHeight;idx++;
-                    state.transcriptionTimeoutIds.push(setTimeout(streamWord,200+Math.random()*70));
-                }
-                state.transcriptionTimeoutIds.push(setTimeout(streamWord,300));
-            }
-
-            // ──────────────────────────────────────
-            // RESET
-            // ──────────────────────────────────────
-            function resetEverything() { stopAutoDemo(); resetEverythingSilent(); showToast('🔄 Reset complete.', 'info'); }
-            function resetEverythingSilent() {
-                clearAllTranscriptionTimeouts(); state.autoDemoTimeoutIds.forEach(id=>clearTimeout(id)); state.autoDemoTimeoutIds=[];
-                state.isTranscribing=false; state.autoDemoActive=false; state.currentPatient=null; state.extractedMeds=[]; state.formVisible=false; state.currentStep=1;
-                state.waitingQueue=[ {token:12,name:'Ravi Singh',age:34,concern:'Persistent cough & fever',wait_time:'25 mins'},{token:13,name:'Anita Desai',age:52,concern:'Joint pain in knees',wait_time:'15 mins'},{token:14,name:'Vikram Patel',age:28,concern:'Allergic skin rash',wait_time:'5 mins'} ];
-                chatContainer.innerHTML=''; chatPlaceholder.style.display='flex'; rxContent.innerHTML='<span style="color:#94A3B8;">Waiting for AI to extract prescription...</span>';
-                patientFormOverlay.classList.remove('visible'); patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';sendReportBtn.disabled=true;sendReportBtn.classList.remove('loading');
-                consultationPanel.classList.remove('highlight-glow'); btnAutoDemo.textContent='▶️ Auto Demo'; btnAutoDemo.style.background='';btnAutoDemo.style.color='';
-                updateCurrentPatientCardUI(); renderQueue(); updateAllUI();
-                const dots=$$('.flow-dot-mini'); dots.forEach(d=>{d.classList.remove('done-dot','active-dot');}); if(dots[0])dots[0].classList.add('active-dot');
-                flowStepLabel.textContent='1'; flowStepName.textContent='Patient Check‑in';
-            }
-
-            // ──────────────────────────────────────
-            // TOAST
-            // ──────────────────────────────────────
-            function showToast(msg, type='info') {
-                const t=document.createElement('div'); t.className='toast'+(type==='whatsapp-toast'?' whatsapp-toast':'')+(type==='success-toast'?' success-toast':'');
-                t.innerHTML=msg; toastContainer.appendChild(t); setTimeout(()=>{if(t.parentNode)t.remove();},4300);
-            }
-            function addRipple(e){const b=e.currentTarget;const r=document.createElement('span');r.className='ripple-effect';const rect=b.getBoundingClientRect();const s=Math.max(rect.width,rect.height);r.style.width=s+'px';r.style.height=s+'px';r.style.left=(e.clientX-rect.left-s/2)+'px';r.style.top=(e.clientY-rect.top-s/2)+'px';b.appendChild(r);r.addEventListener('animationend',()=>r.remove());}
-
-            init();
-            console.log('🏥 Apollo Smart Clinic AI ready. Dashboard & Mind Map pages active.');
         });
+        console.log('VAIDYA by KALKI INTELLIGENCE – Elegant demo page ready.');
     </script>
 </body>
 </html>
