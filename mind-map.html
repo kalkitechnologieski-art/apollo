@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apollo Smart Clinic AI | 9‑Step Process Mind Map</title>
+    <title>VAIDYA · Full Process Mind Map · 9‑Step Workflow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --apollo-navy: #0A1F3F;
-            --apollo-navy-light: #132D56;
-            --apollo-teal: #0E9488;
-            --apollo-teal-light: #CCFBF1;
-            --apollo-gold: #C8963E;
-            --apollo-gold-light: #FDF2E0;
-            --apollo-red: #C62828;
+            --navy: #0A1A2F;
+            --navy-deep: #040F1A;
+            --teal: #0E9488;
+            --teal-light: #CCFBF1;
+            --gold: #C8963E;
+            --gold-light: #FDF2E0;
             --white: #FFFFFF;
-            --bg: #F4F6F9;
-            --gray-50: #F9FAFB;
+            --gray-50: #F8FAFC;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
             --gray-300: #CBD5E1;
@@ -30,627 +28,380 @@
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
             --shadow: 0 4px 12px rgba(0,0,0,0.06);
             --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-            --shadow-lg: 0 16px 40px rgba(0,0,0,0.10);
-            --shadow-xl: 0 24px 60px rgba(0,0,0,0.12);
-            --radius-sm: 10px;
-            --radius: 16px;
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.16);
+            --radius-sm: 8px;
+            --radius: 14px;
             --radius-lg: 20px;
-            --radius-xl: 24px;
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-xs: 0.68rem;
-            --font-sm: 0.78rem;
-            --font-base: 0.875rem;
-            --font-md: 0.95rem;
-            --font-lg: 1.05rem;
-            --font-xl: 1.25rem;
-            --font-2xl: 1.5rem;
-            --font-3xl: 2rem;
+            --radius-xl: 28px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-xs: 0.72rem;
+            --font-sm: 0.8rem;
+            --font-base: 0.9rem;
+            --font-md: 1rem;
+            --font-lg: 1.15rem;
+            --font-xl: 1.35rem;
+            --font-2xl: 1.75rem;
+            --font-3xl: 2.25rem;
         }
         *{margin:0;padding:0;box-sizing:border-box;}
         html{scroll-behavior:smooth;}
         body{
             font-family:'Inter',system-ui,-apple-system,sans-serif;
-            background:var(--bg);
+            background:var(--gray-50);
             color:var(--text);
             font-size:var(--font-base);
             line-height:1.6;
-            min-height:100vh;
             -webkit-font-smoothing:antialiased;
-            background-image:
-                radial-gradient(circle at 15% 35%, rgba(14,148,136,0.04) 0%, transparent 50%),
-                radial-gradient(circle at 85% 65%, rgba(200,150,62,0.04) 0%, transparent 50%);
+            overflow-x:hidden;
         }
+        .container{max-width:1400px;margin:0 auto;padding:0 1.5rem;}
 
-        /* ── APOLLO HEADER ── */
-        .apollo-header {
-            background: linear-gradient(135deg, #0A1F3F 0%, #132D56 40%, #1B4F8A 100%);
-            color:#fff;
-            padding:0.7rem 2rem;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            flex-wrap:wrap;
-            gap:0.75rem;
-            border-bottom:3px solid var(--apollo-gold);
+        /* ── HEADER ── */
+        .main-header {
+            position: sticky;
+            top:0; z-index:100;
+            background: rgba(10,26,47,0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom:1px solid rgba(255,255,255,0.08);
+            padding:0.85rem 2rem;
+            display:flex; align-items:center; justify-content:space-between; gap:2rem;
+            box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+        }
+        .header-brand{display:flex; align-items:center; gap:0.8rem;}
+        .brand-icon{
+            width:44px; height:44px;
+            background:linear-gradient(135deg, var(--teal) 0%, #0B7A6F 100%);
+            border-radius:14px;
+            display:flex; align-items:center; justify-content:center;
+            color:#fff; font-size:1.4rem;
+            box-shadow:0 8px 20px rgba(14,148,136,0.35);
+        }
+        .brand-text{display:flex; flex-direction:column;}
+        .brand-name{font-weight:900; font-size:1.45rem; letter-spacing:-0.02em; color:#fff; line-height:1.2;}
+        .brand-tagline{font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.55); text-transform:uppercase;}
+        .header-actions{display:flex; align-items:center; gap:1rem;}
+        .btn-header{
+            padding:0.6rem 1.6rem; border-radius:50px;
+            font-weight:600; font-size:var(--font-xs);
+            transition:var(--transition); border:none;
+            cursor:pointer; font-family:'Inter',sans-serif;
+            letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.45rem; text-decoration:none;
+        }
+        .btn-header-outline{background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.3);}
+        .btn-header-outline:hover{border-color:var(--teal); background:rgba(14,148,136,0.12);}
+        .btn-header-primary{background:var(--teal); color:#fff; box-shadow:0 6px 18px rgba(14,148,136,0.3); border:1.5px solid var(--teal);}
+        .btn-header-primary:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(14,148,136,0.45);}
+
+        /* ── PAGE HERO ── */
+        .page-hero{
+            background:linear-gradient(180deg, var(--navy) 0%, #0C233A 100%);
+            color:#fff; padding:3rem 1.5rem 2rem;
+            text-align:center; position:relative; overflow:hidden;
+        }
+        .page-hero h1{font-weight:900; font-size:clamp(1.8rem, 4vw, var(--font-3xl)); letter-spacing:-0.02em;}
+        .page-hero h1 span{color:var(--teal-light);}
+        .page-hero p{color:rgba(255,255,255,0.7); max-width:600px; margin:0.8rem auto 0; font-size:var(--font-sm);}
+        .flow-indicator{
+            display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:1.5rem;
+            font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.5);
+        }
+        .flow-dot{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.2);}
+        .flow-dot.active{background:var(--teal); box-shadow:0 0 12px var(--teal);}
+
+        /* ── FLOWCHART CONTAINER ── */
+        .flowchart-section{
+            padding:3rem 1.5rem 4rem;
+            background:var(--white);
+            border-bottom:1px solid var(--gray-200);
+        }
+        .flowchart-grid{
+            display:flex; flex-wrap:wrap; justify-content:center; gap:2rem 1rem;
             position:relative;
-            overflow:hidden;
-            box-shadow:var(--shadow-md);
         }
-        .apollo-header::after{
-            content:'';
-            position:absolute;
-            top:-60%; right:-5%;
-            width:320px; height:320px;
-            background:radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%);
-            border-radius:50%;
-            pointer-events:none;
+        /* Horizontal connector lines */
+        .connector {
+            display:none;
+            position:absolute; top:50%; height:3px; background:linear-gradient(90deg, var(--teal), var(--gold));
+            opacity:0.2; z-index:0;
         }
-        .header-left{display:flex; align-items:center; gap:0.85rem; z-index:1;}
-        .header-logo{width:50px; height:50px; flex-shrink:0;}
-        .header-logo svg{width:100%;height:100%;}
-        .header-title-group{display:flex; flex-direction:column;}
-        .header-main-title{font-weight:900; font-size:var(--font-xl); letter-spacing:-0.02em; line-height:1.2;}
-        .header-main-title span{color:var(--apollo-gold);}
-        .header-subtitle{font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.7); text-transform:uppercase;}
-        .header-right{display:flex; align-items:center; gap:1rem; z-index:1; flex-wrap:wrap;}
-        .back-link{
-            background:rgba(255,255,255,0.1);
-            padding:0.5rem 1.2rem;
-            border-radius:50px;
-            font-weight:600;
-            font-size:var(--font-xs);
-            color:#fff;
-            cursor:pointer;
-            transition:var(--transition);
-            border:1px solid rgba(255,255,255,0.25);
-            display:inline-flex;
-            align-items:center;
-            gap:0.35rem;
-            text-decoration:none;
+        @media(min-width:900px){
+            .flowchart-grid{
+                display:grid; grid-template-columns:repeat(9,1fr);
+                align-items:start; gap:0.5rem;
+            }
+            .connector{display:block;}
+            .connector.left{left:0; right:calc(50% + 1.5rem);}
+            .connector.right{left:calc(50% + 1.5rem); right:0;}
         }
-        .back-link:hover{background:rgba(255,255,255,0.2); border-color:var(--apollo-gold);}
 
-        /* ── PAGE CONTENT ── */
-        .mindmap-container {
-            max-width:1500px;
-            margin:2rem auto;
-            padding:0 1.5rem;
-        }
-        .mindmap-title {
-            text-align:center;
-            margin-bottom:2.5rem;
-        }
-        .mindmap-title h1 {
-            font-weight:900;
-            font-size:var(--font-3xl);
-            color:var(--apollo-navy);
-            letter-spacing:-0.03em;
-        }
-        .mindmap-title h1 span {color:var(--apollo-teal);}
-        .mindmap-title p {
-            color:var(--gray-500);
-            font-size:var(--font-sm);
-            margin-top:0.4rem;
-            max-width:700px;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        .flow-progress {
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:0.4rem;
-            margin:1.2rem 0;
-            flex-wrap:wrap;
-        }
-        .flow-step-dot {
-            width:12px; height:12px;
-            border-radius:50%;
-            background:var(--gray-300);
-            transition:var(--transition);
-            flex-shrink:0;
-        }
-        .flow-step-dot.active {background:var(--apollo-teal); box-shadow:0 0 12px rgba(14,148,136,0.5);}
-        .flow-arrow {color:var(--gray-300); font-size:0.6rem; margin:0 0.2rem;}
-
-        /* ── GRID ── */
-        .steps-grid {
-            display:grid;
-            grid-template-columns:repeat(3, 1fr);
-            gap:2rem 1.5rem;
-        }
-        .step-card {
-            background:rgba(255,255,255,0.85);
-            backdrop-filter:blur(10px);
-            -webkit-backdrop-filter:blur(10px);
+        /* ── STEP NODE ── */
+        .step-node{
+            background:#fff;
             border-radius:var(--radius-xl);
             box-shadow:var(--shadow-lg);
             border:2px solid var(--gray-200);
             transition:var(--transition-slow);
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
+            position:relative; z-index:2;
+            width:100%; max-width:320px;
+            margin:0 auto;
+            display:flex; flex-direction:column;
         }
-        .step-card:hover {
-            transform:translateY(-6px);
+        .step-node:hover{
+            transform:translateY(-8px);
             box-shadow:var(--shadow-xl);
-            border-color:var(--apollo-teal);
+            border-color:var(--teal);
         }
-        .step-card.active-step {
-            border-color:var(--apollo-gold);
-            box-shadow:0 0 0 6px rgba(200,150,62,0.12), var(--shadow-xl);
+        .step-node.active-step{
+            border-color:var(--gold);
+            box-shadow:0 0 0 8px rgba(200,150,62,0.1), var(--shadow-xl);
         }
-
-        /* ── VIDEO PLACEHOLDER ── */
-        .video-placeholder {
+        .video-placeholder{
             position:relative;
-            width:100%;
+            width:100%; aspect-ratio:16/9;
             background:linear-gradient(145deg, #1E293B 0%, #0F172A 100%);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-direction:column;
-            aspect-ratio:16/9;
-            cursor:pointer;
-            overflow:hidden;
+            border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+            display:flex; align-items:center; justify-content:center;
+            overflow:hidden; cursor:pointer;
         }
-        .video-placeholder::before {
-            content:'';
-            position:absolute;
-            inset:0;
-            background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="white" stroke-opacity="0.2" stroke-width="2"/><polygon points="40,35 40,65 68,50" fill="white" fill-opacity="0.6"/></svg>') center/cover no-repeat;
-            opacity:0.15;
-        }
-        .video-placeholder .play-icon {
-            font-size:2.8rem;
-            color:white;
-            opacity:0.85;
-            z-index:1;
-            filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        .video-placeholder .play-circle{
+            width:60px; height:60px;
+            background:rgba(255,255,255,0.15);
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.2);
             transition:var(--transition);
         }
-        .video-placeholder:hover .play-icon {
-            transform:scale(1.1);
-            opacity:1;
+        .video-placeholder:hover .play-circle{
+            background:rgba(255,255,255,0.25);
+            transform:scale(1.05);
         }
-        .video-placeholder .webm-badge {
-            position:absolute;
-            bottom:10px;
-            right:12px;
-            background:rgba(0,0,0,0.7);
-            color:#ccc;
-            font-size:0.55rem;
-            font-weight:700;
-            padding:0.2rem 0.6rem;
-            border-radius:50px;
-            letter-spacing:0.04em;
+        .play-circle i{font-size:1.8rem; color:#fff; opacity:0.9;}
+        .webm-badge{
+            position:absolute; bottom:10px; right:10px;
+            background:rgba(0,0,0,0.7); color:#ccc;
+            font-size:0.55rem; font-weight:700; padding:0.2rem 0.7rem;
+            border-radius:50px; letter-spacing:0.04em;
             backdrop-filter:blur(4px);
-            z-index:1;
         }
-        .video-placeholder .step-number-overlay {
-            position:absolute;
-            top:12px;
-            left:12px;
-            background:var(--apollo-teal);
-            color:white;
-            font-weight:800;
-            font-size:0.7rem;
-            padding:0.25rem 0.6rem;
-            border-radius:50px;
-            z-index:2;
-            letter-spacing:0.04em;
+        .step-number-badge{
+            position:absolute; top:12px; left:12px;
+            background:var(--teal); color:white;
+            font-weight:800; font-size:0.7rem; padding:0.25rem 0.7rem;
+            border-radius:50px; z-index:2;
             box-shadow:0 2px 8px rgba(0,0,0,0.2);
         }
-
-        /* ── CARD BODY ── */
-        .card-body {
-            padding:1.2rem 1.3rem;
-            flex:1;
-            display:flex;
-            flex-direction:column;
-            gap:0.5rem;
-        }
-        .card-title {
-            font-weight:800;
-            font-size:1.05rem;
-            color:var(--apollo-navy);
-            letter-spacing:-0.01em;
-        }
-        .card-summary {
-            font-size:0.72rem;
-            color:var(--gray-500);
-            line-height:1.5;
-            margin-bottom:0.3rem;
-        }
-
-        /* ── EXPANDABLE DETAILS ── */
-        .details-toggle {
-            background:var(--apollo-teal-light);
-            border:1px solid #B2ECE0;
-            border-radius:50px;
-            padding:0.45rem 0.9rem;
-            font-weight:700;
-            font-size:0.65rem;
-            color:#0F766E;
-            cursor:pointer;
-            transition:var(--transition);
-            display:inline-flex;
-            align-items:center;
-            gap:0.3rem;
-            align-self:flex-start;
+        .node-body{padding:1rem 1.2rem 1.2rem; display:flex; flex-direction:column; gap:0.4rem;}
+        .node-title{font-weight:800; font-size:1rem; color:var(--navy);}
+        .node-summary{font-size:0.7rem; color:var(--gray-500); line-height:1.5;}
+        .expand-btn{
+            background:var(--teal-light); border:1px solid #B2ECE0;
+            border-radius:50px; padding:0.4rem 0.9rem;
+            font-weight:700; font-size:0.65rem; color:#0F766E;
+            cursor:pointer; transition:var(--transition);
+            align-self:flex-start; display:inline-flex; align-items:center; gap:0.3rem;
             font-family:'Inter',sans-serif;
-            letter-spacing:0.02em;
         }
-        .details-toggle:hover {
-            background:#B2ECE0;
-            border-color:var(--apollo-teal);
-        }
-        .details-toggle i {
-            transition:transform 0.3s;
-        }
-        .details-toggle.open i {
-            transform:rotate(180deg);
-        }
-        .details-content {
-            max-height:0;
-            overflow:hidden;
-            transition:max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .expand-btn:hover{background:#B2ECE0; border-color:var(--teal);}
+        .expand-btn i{transition:transform 0.3s;}
+        .expand-btn.open i{transform:rotate(180deg);}
+        .detail-panel{
+            max-height:0; overflow:hidden;
+            transition:max-height 0.6s ease;
             margin-top:0.5rem;
+            border-top:1px solid var(--gray-100);
+            padding-top:0;
         }
-        .details-content.expanded {
-            max-height:600px;
-        }
-        .details-list {
-            list-style:none;
-            padding:0;
-            margin:0;
-        }
-        .details-list li {
-            padding:0.4rem 0;
-            font-size:0.7rem;
-            color:var(--gray-600);
-            display:flex;
-            gap:0.5rem;
-            align-items:baseline;
-            border-bottom:1px solid var(--gray-100);
-        }
-        .details-list li:last-child {border-bottom:none;}
-        .details-list li::before {
-            content:'▹';
-            color:var(--apollo-teal);
-            font-weight:700;
-            flex-shrink:0;
-        }
-        .details-subheader {
-            font-weight:700;
-            font-size:0.65rem;
-            text-transform:uppercase;
-            letter-spacing:0.05em;
-            color:var(--apollo-navy);
+        .detail-panel.expanded{max-height:800px; padding-top:0.8rem;}
+        .detail-panel .subhead{
+            font-weight:700; font-size:0.65rem; text-transform:uppercase;
+            letter-spacing:0.05em; color:var(--navy);
             margin:0.6rem 0 0.2rem;
         }
+        .detail-panel ul{list-style:none; padding:0; margin:0;}
+        .detail-panel li{
+            padding:0.35rem 0; font-size:0.68rem; color:var(--gray-600);
+            display:flex; gap:0.4rem; align-items:baseline;
+            border-bottom:1px solid var(--gray-50);
+        }
+        .detail-panel li::before{content:'▹'; color:var(--teal); font-weight:700;}
 
-        /* ── RESPONSIVE ── */
-        @media (max-width:1100px){.steps-grid{grid-template-columns:repeat(2,1fr); gap:1.5rem;}}
-        @media (max-width:700px){.steps-grid{grid-template-columns:1fr; gap:1.2rem;}}
+        /* ── CTA ── */
+        .cta-footer{
+            padding:3rem 1.5rem; text-align:center;
+            background:var(--gray-50); border-top:1px solid var(--gray-200);
+        }
+        .cta-footer h3{font-weight:800; color:var(--navy); margin-bottom:0.5rem;}
+        .cta-footer a{color:var(--teal); font-weight:700; text-decoration:none;}
+
+        @media(max-width:900px){.flowchart-grid{flex-direction:column; align-items:center;}}
     </style>
 </head>
 <body>
-    <!-- ═══════════ APOLLO HEADER ═══════════ -->
-    <header class="apollo-header">
-        <div class="header-left">
-            <div class="header-logo">
-                <svg viewBox="0 0 50 50" fill="none"><rect width="50" height="50" rx="12" fill="#0A1F3F"/><rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/><line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="39" cy="39" r="8" fill="#C8963E"/><text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text></svg>
-            </div>
-            <div class="header-title-group">
-                <div class="header-main-title">Apollo <span>Smart Clinic AI</span></div>
-                <div class="header-subtitle">9‑Step Process Mind Map • विस्तृत प्रक्रिया</div>
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="main-header">
+        <div class="header-brand">
+            <div class="brand-icon"><i class="fa-solid fa-staff-snake"></i></div>
+            <div class="brand-text">
+                <span class="brand-name">VAIDYA</span>
+                <span class="brand-tagline">by KALKI INTELLIGENCE</span>
             </div>
         </div>
-        <div class="header-right">
-            <span style="font-size:0.6rem;color:rgba(255,255,255,0.7);"><i class="fa-solid fa-phone"></i> +91 44 2829 0200</span>
-            <a href="./dashboard.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+        <div class="header-actions">
+            <a href="index.html" class="btn-header btn-header-outline"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="dashboard.html" class="btn-header btn-header-primary"><i class="fa-solid fa-play"></i> Live Dashboard</a>
         </div>
     </header>
 
-    <!-- ═══════════ MIND MAP CONTENT ═══════════ -->
-    <div class="mindmap-container">
-        <div class="mindmap-title">
-            <h1>🧠 Full Workflow <span>Mind Map</span></h1>
-            <p>Every stage of the Apollo Smart Clinic journey — from entry to exit — is visualized with <strong>.webm video placeholders</strong> and expandable, point‑by‑point explanations.</p>
-            <div class="flow-progress">
-                <span class="flow-step-dot active" title="Step 1"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 2"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 3"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 4"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 5"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 6"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 7"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 8"></span><span class="flow-arrow">→</span>
-                <span class="flow-step-dot" title="Step 9"></span>
-            </div>
-        </div>
-
-        <!-- 9 Steps Grid -->
-        <div class="steps-grid" id="stepsGrid">
-            <!-- Card 1 -->
-            <div class="step-card" data-step="1">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">1</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">📱 Patient Check‑in</div>
-                    <p class="card-summary">QR scan at reception, WhatsApp opens instantly.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <ul class="details-list">
-                            <li>Patient arrives, scans QR code on reception desk</li>
-                            <li>WhatsApp opens with pre‑filled greeting message</li>
-                            <li>Receptionist confirms identity digitally</li>
-                            <li>System logs check‑in time automatically</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="step-card" data-step="2">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">2</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">🤖 AI Triage Bot</div>
-                    <p class="card-summary">WhatsApp chat captures name, age, concern.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <div class="details-subheader">Bot Interaction</div>
-                        <ul class="details-list">
-                            <li>AI bot asks patient’s full name</li>
-                            <li>Patient replies “Rahul Sharma”</li>
-                            <li>Bot immediately requests age</li>
-                            <li>Patient types “32”</li>
-                            <li>Bot asks chief concern; patient describes “Fever and cough for 2 days”</li>
-                        </ul>
-                        <div class="details-subheader">Data Processing</div>
-                        <ul class="details-list">
-                            <li>AI extracts structured data (age, symptoms)</li>
-                            <li>Patient’s information populates dashboard in real‑time</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="step-card" data-step="3">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">3</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">🔢 Token Queue System</div>
-                    <p class="card-summary">Digital token assigned, live queue on phone.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <ul class="details-list">
-                            <li>System generates token #12 for Rahul</li>
-                            <li>WhatsApp message confirms token and queue position (3 patients ahead)</li>
-                            <li>Live progress bar shows real‑time position</li>
-                            <li>Waiting room display board updates dynamically</li>
-                            <li>No physical token paper needed</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="step-card" data-step="4">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">4</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">📞 AI Voice Call</div>
-                    <p class="card-summary">Auto‑call when token is near, directed to room.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <div class="details-subheader">Incoming Call</div>
-                        <ul class="details-list">
-                            <li>Rahul’s phone rings, caller ID: “Clinic Assistant”</li>
-                            <li>He answers; AI voice announces: “Your turn in ~5 minutes. Please go to Room 3.”</li>
-                            <li>Call duration auto‑logged (22 sec)</li>
-                        </ul>
-                        <div class="details-subheader">Patient Action</div>
-                        <ul class="details-list">
-                            <li>Patient stands, walks toward consultation area</li>
-                            <li>No need to ask staff for directions</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="step-card" data-step="5">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">5</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">👨‍⚕️ Live Consultation</div>
-                    <p class="card-summary">Doctor speaks, AI transcribes live.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <div class="details-subheader">In‑Room Setup</div>
-                        <ul class="details-list">
-                            <li>Doctor (white coat, stethoscope) greets patient</li>
-                            <li>Laptop on desk shows AI dashboard with patient card</li>
-                            <li>Microphone icon pulses green – transcription active</li>
-                        </ul>
-                        <div class="details-subheader">Real‑Time Transcription</div>
-                        <ul class="details-list">
-                            <li>Speech instantly converted to text</li>
-                            <li>Medical entities (fever, cough, chest congestion) highlighted in blue</li>
-                            <li>Conversation scrolls smoothly in chat panel</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="step-card" data-step="6">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">6</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">💊 Prescription AI Engine</div>
-                    <p class="card-summary">AI extracts meds, dosages, preventive measures.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <div class="details-subheader">Auto‑Extraction</div>
-                        <ul class="details-list">
-                            <li>Floating “Prescription Extractor” widget appears</li>
-                            <li>Detects Azithromycin 500mg – Once daily, 3 days</li>
-                            <li>Paracetamol 650mg – Twice daily, 5 days</li>
-                            <li>Timing: After breakfast / With food</li>
-                        </ul>
-                        <div class="details-subheader">Smart Additions</div>
-                        <ul class="details-list">
-                            <li>Diagnosis auto‑filled: “Acute Viral Infection”</li>
-                            <li>Preventive tips: hydration, rest, avoid cold drinks</li>
-                            <li>“Generate Report” button pulses softly</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 7 -->
-            <div class="step-card" data-step="7">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">7</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">🖥️ Dashboard Queue Control</div>
-                    <p class="card-summary">Doctor clicks “Next” to call next patient.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <ul class="details-list">
-                            <li>Dashboard shows live queue with statuses</li>
-                            <li>Current patient: #09 Rajesh (With Doctor)</li>
-                            <li>Next: #10 Priya (Waiting), #11 Amit, #12 Rahul</li>
-                            <li>Doctor clicks green “✅ Next” button</li>
-                            <li>Toast notification: “📞 Calling Patient #10 (Priya)…”</li>
-                            <li>Queue updates automatically, call log recorded</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 8 -->
-            <div class="step-card" data-step="8">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">8</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">📄 WhatsApp Report Delivery</div>
-                    <p class="card-summary">PDF report sent instantly to patient.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <ul class="details-list">
-                            <li>Dashboard shows “✅ Report sent to Rahul Sharma”</li>
-                            <li>Patient receives WhatsApp message with PDF attachment</li>
-                            <li>Push notification: “Your consultation report is ready”</li>
-                            <li>PDF opens – clinic letterhead, medicine timetable, diagnosis</li>
-                            <li>Full transcribed conversation included at end</li>
-                            <li>Patient scrolls through report seamlessly</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 9 -->
-            <div class="step-card" data-step="9">
-                <div class="video-placeholder">
-                    <div class="step-number-overlay">9</div>
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                    <span class="webm-badge">WEBM</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">✅ Workflow Complete & Patient Exit</div>
-                    <p class="card-summary">Happy patient leaves, dashboard shows summary.</p>
-                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
-                    <div class="details-content">
-                        <div class="details-subheader">Closure</div>
-                        <ul class="details-list">
-                            <li>Rahul walks out, gives thumbs‑up to receptionist</li>
-                            <li>Receptionist waves back</li>
-                        </ul>
-                        <div class="details-subheader">Dashboard Recap</div>
-                        <ul class="details-list">
-                            <li>Total patients today: 24</li>
-                            <li>Queue cleared, reports sent: 18</li>
-                            <li>Token #12 marked “Completed” with green check</li>
-                            <li>Bird’s‑eye view of clinic with workflow overlay</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- ═══════════ HERO ═══════════ -->
+    <div class="page-hero">
+        <h1>🧠 <span>9‑Step</span> Intelligent Workflow</h1>
+        <p>Every phase of the patient journey visualised in one interactive map. Click any step to reveal detailed actions.</p>
+        <div class="flow-indicator" id="heroFlowDots">
+            <span class="flow-dot active" data-dot="1"></span> <span>Step 1</span>
+            <span class="flow-dot" data-dot="2"></span> <span>Step 2</span>
+            <span class="flow-dot" data-dot="3"></span> <span>Step 3</span>
+            <span class="flow-dot" data-dot="4"></span> <span>Step 4</span>
+            <span class="flow-dot" data-dot="5"></span> <span>Step 5</span>
+            <span class="flow-dot" data-dot="6"></span> <span>Step 6</span>
+            <span class="flow-dot" data-dot="7"></span> <span>Step 7</span>
+            <span class="flow-dot" data-dot="8"></span> <span>Step 8</span>
+            <span class="flow-dot" data-dot="9"></span> <span>Step 9</span>
         </div>
     </div>
 
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <div style="text-align:center; padding:2rem 1rem; color:var(--gray-400); font-size:0.65rem; border-top:1px solid var(--gray-200); margin-top:2.5rem;">
-        © Apollo Hospitals Enterprise Limited • Smart Clinic AI • Replace .webm placeholders with actual demonstration videos.
+    <!-- ═══════════ FLOWCHART ═══════════ -->
+    <section class="flowchart-section">
+        <div class="container flowchart-grid" id="flowchartGrid">
+            <!-- Step nodes rendered by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <div class="cta-footer">
+        <h3>Want to see the live system?</h3>
+        <p><a href="dashboard.html">Open the interactive dashboard →</a></p>
     </div>
 
     <script>
-        // Accordion behavior for all detail toggles
-        document.querySelectorAll('.details-toggle').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const card = this.closest('.step-card');
-                const content = card.querySelector('.details-content');
-                const isOpen = content.classList.contains('expanded');
-                // Close any other open in the same card (just in case)
-                card.querySelectorAll('.details-content.expanded').forEach(c => {
-                    if (c !== content) c.classList.remove('expanded');
-                });
-                content.classList.toggle('expanded');
-                this.classList.toggle('open');
-                // Toggle icon
-                const icon = this.querySelector('i');
-                if (icon) icon.classList.toggle('fa-chevron-down', !content.classList.contains('expanded'));
-                if (icon) icon.classList.toggle('fa-chevron-up', content.classList.contains('expanded'));
-            });
-        });
+        const stepsData = [
+            { id:1, icon:"📱", title:"Patient Check‑in", summary:"QR scan at reception → WhatsApp opens.", details:[
+                {subhead:"Reception", items:["Patient scans QR code placed on counter","WhatsApp auto‑opens with pre‑filled greeting","Receptionist confirms identity digitally","System logs check‑in timestamp"]},
+                {subhead:"Data Capture", items:["No manual forms required","Patient details pulled from previous visits if available"]}
+            ]},
+            { id:2, icon:"🤖", title:"AI Triage Bot", summary:"WhatsApp chatbot collects name, age, concern.", details:[
+                {subhead:"Bot Conversation", items:["Bot asks: 'Your full name?' → Patient replies","Bot requests age → Patient inputs number","Bot asks chief concern → Patient describes symptoms","AI extracts structured data (age, symptoms, urgency)"]},
+                {subhead:"Dashboard Update", items:["Patient card auto‑populated in real time","Doctor can review triage data before consultation"]}
+            ]},
+            { id:3, icon:"🔢", title:"Token Queue", summary:"Digital token + live queue position.", details:[
+                {subhead:"Assignment", items:["System generates token number (e.g., #12)","WhatsApp message confirms token and queue position","Live progress bar shows how many patients are ahead","No physical token paper – purely digital"]},
+                {subhead:"Waiting Area", items:["Large display board updates tokens in real time","Patients can wait anywhere, notified via app"]}
+            ]},
+            { id:4, icon:"📞", title:"AI Voice Call", summary:"Auto‑call when token is near.", details:[
+                {subhead:"Proactive Alert", items:["Patient’s phone rings – caller ID: 'Clinic Assistant'","AI voice announces: 'Your turn in 5 min. Please go to Room 3'","Call duration logged automatically (avg 20–30 sec)"]},
+                {subhead:"Guidance", items:["Exact room location provided verbally","Reduces staff workload and patient confusion"]}
+            ]},
+            { id:5, icon:"👨‍⚕️", title:"Live Consultation", summary:"Doctor + patient, AI transcribes speech.", details:[
+                {subhead:"In‑Room Setup", items:["Doctor’s laptop shows dashboard with patient card","Microphone icon glowing green – AI listening"]},
+                {subhead:"Real‑Time Transcription", items:["Speech converted to text instantly","Medical entities (medicines, dosages) highlighted in blue","Conversation scrolls live in chat panel"]}
+            ]},
+            { id:6, icon:"💊", title:"Prescription AI", summary:"AI extracts medicines, dosage, preventive tips.", details:[
+                {subhead:"Auto Extraction", items:["Floating widget detects drug names and dosages","E.g., Azithromycin 500mg – Once daily, 3 days","Paracetamol 650mg – Twice daily, 5 days"]},
+                {subhead:"Smart Additions", items:["Diagnosis auto‑filled (e.g., Acute Viral Infection)","Preventive measures suggested: hydration, rest, avoid cold drinks","'Generate Report' button appears"]}
+            ]},
+            { id:7, icon:"🖥️", title:"Queue Control", summary:"Doctor clicks 'Next' to call next patient.", details:[
+                {subhead:"Dashboard View", items:["Full queue with status indicators (Waiting / With Doctor / Completed)","Current patient highlighted"]},
+                {subhead:"Action", items:["Doctor clicks green '✅ Next' button","Toast notification: '📞 Calling Patient #10 (Priya)...'","Queue auto‑shifts, call log updated"]}
+            ]},
+            { id:8, icon:"📄", title:"WhatsApp Report", summary:"PDF report delivered instantly.", details:[
+                {subhead:"Generation", items:["Dashboard shows '✅ Report sent to Rahul Sharma'","Patient receives WhatsApp message with PDF attachment","Push notification: 'Your consultation report is ready'"]},
+                {subhead:"PDF Contents", items:["Clinic letterhead, medicine timetable, diagnosis summary","Full transcribed conversation appended","Patient scrolls through report on phone"]}
+            ]},
+            { id:9, icon:"✅", title:"Exit & Summary", summary:"Happy patient leaves, dashboard shows daily recap.", details:[
+                {subhead:"Patient Exit", items:["Rahul walks out, gives thumbs‑up to receptionist","Report saved on phone for future reference"]},
+                {subhead:"Dashboard Recap", items:["Today's stats: total patients, queue cleared, reports sent","Token #12 marked 'Completed' with green checkmark","Bird’s‑eye view of clinic efficiency"]}
+            ]}
+        ];
 
-        // Interactive flow dots: highlight on card hover
-        const cards = document.querySelectorAll('.step-card');
-        const flowDots = document.querySelectorAll('.flow-step-dot');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const step = card.dataset.step;
-                flowDots.forEach(dot => dot.classList.remove('active'));
-                if (step && flowDots[step-1]) flowDots[step-1].classList.add('active');
-                cards.forEach(c => c.classList.remove('active-step'));
-                card.classList.add('active-step');
+        const flowchartGrid = document.getElementById('flowchartGrid');
+        const heroFlowDots = document.getElementById('heroFlowDots');
+
+        function buildStepNode(step) {
+            const node = document.createElement('div');
+            node.className = 'step-node';
+            node.dataset.step = step.id;
+            node.innerHTML = `
+                <div class="video-placeholder" title="Click to play ${step.title} video">
+                    <div class="step-number-badge">${step.id}</div>
+                    <div class="play-circle"><i class="fa-solid fa-play"></i></div>
+                    <span class="webm-badge">videos/step${step.id}.webm</span>
+                </div>
+                <div class="node-body">
+                    <div class="node-title">${step.icon} ${step.title}</div>
+                    <div class="node-summary">${step.summary}</div>
+                    <button class="expand-btn"><i class="fa-solid fa-chevron-down"></i> Details</button>
+                    <div class="detail-panel">
+                        ${step.details.map(d => `
+                            <div class="subhead">${d.subhead}</div>
+                            <ul>${d.items.map(i => `<li>${i}</li>`).join('')}</ul>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            return node;
+        }
+
+        function renderFlowchart() {
+            flowchartGrid.innerHTML = '';
+            stepsData.forEach(step => {
+                flowchartGrid.appendChild(buildStepNode(step));
             });
-            card.addEventListener('mouseleave', () => {
-                card.classList.remove('active-step');
-                flowDots.forEach(dot => dot.classList.remove('active'));
+            attachEvents();
+        }
+
+        function attachEvents() {
+            const nodes = document.querySelectorAll('.step-node');
+            nodes.forEach(node => {
+                const btn = node.querySelector('.expand-btn');
+                const panel = node.querySelector('.detail-panel');
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = panel.classList.contains('expanded');
+                    // Close all other panels
+                    document.querySelectorAll('.detail-panel.expanded').forEach(p => {
+                        if (p !== panel) p.classList.remove('expanded');
+                    });
+                    document.querySelectorAll('.expand-btn.open').forEach(b => {
+                        if (b !== btn) b.classList.remove('open');
+                    });
+                    panel.classList.toggle('expanded');
+                    btn.classList.toggle('open');
+                });
+                // Hover highlighting
+                node.addEventListener('mouseenter', () => {
+                    const step = node.dataset.step;
+                    heroFlowDots.querySelectorAll('.flow-dot').forEach(dot => {
+                        dot.classList.toggle('active', dot.dataset.dot === step);
+                    });
+                    nodes.forEach(n => n.classList.remove('active-step'));
+                    node.classList.add('active-step');
+                });
+                node.addEventListener('mouseleave', () => {
+                    node.classList.remove('active-step');
+                    heroFlowDots.querySelectorAll('.flow-dot').forEach(d => d.classList.remove('active'));
+                });
+                // Video placeholder click (mock)
+                const videoPlaceholder = node.querySelector('.video-placeholder');
+                videoPlaceholder.addEventListener('click', () => {
+                    alert(`▶️ Playing video: videos/step${node.dataset.step}.webm\n\n(Placeholder – replace with actual .webm file in videos folder.)`);
+                });
             });
-        });
+        }
+
+        renderFlowchart();
     </script>
 </body>
 </html>
