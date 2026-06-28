@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAIDYA · Full Process Mind Map · 9‑Step Roadmap</title>
+    <title>VAIDYA · Interactive 9‑Step Roadmap</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
@@ -46,9 +46,11 @@
             line-height:1.6;
             -webkit-font-smoothing:antialiased;
             overflow-x:hidden;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(14,148,136,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(200,150,62,0.03) 0%, transparent 50%);
         }
         .container{max-width:1400px;margin:0 auto;padding:0 1.5rem;}
-
         /* ── HEADER ── */
         .main-header {
             background: rgba(10,26,47,0.94);
@@ -57,7 +59,7 @@
             border-bottom:1px solid rgba(255,255,255,0.08);
             padding:0.75rem 2rem;
             display:flex; align-items:center; justify-content:space-between;
-            gap:2rem; position:sticky; top:0; z-index:100;
+            gap:2rem; position:sticky; top:0; z-index:1000;
             box-shadow:0 8px 30px rgba(0,0,0,0.3);
         }
         .header-brand{display:flex;align-items:center;gap:0.8rem;}
@@ -90,104 +92,183 @@
         .page-hero h1 span{color:var(--teal-light);}
         .page-hero p{color:rgba(255,255,255,0.7);max-width:600px;margin:0.5rem auto 0;font-size:0.8rem;}
 
-        /* ── ROADMAP GRID ── */
-        .roadmap-wrapper {
+        /* ── SNAKE ROADMAP ── */
+        .roadmap-container {
             position:relative;
             padding:3rem 1.5rem 4rem;
-            margin:0 auto;
             max-width:1400px;
+            margin:0 auto;
         }
         .roadmap-grid {
             display:grid;
-            grid-template-columns:repeat(3, 1fr);
-            gap:3rem 2rem;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:3rem 2.5rem;
             position:relative;
             z-index:2;
         }
         @media (max-width:1000px){
-            .roadmap-grid{grid-template-columns:repeat(2,1fr);gap:2rem 1.5rem;}
+            .roadmap-grid{grid-template-columns:1fr 1fr; gap:2.5rem 1.8rem;}
         }
         @media (max-width:650px){
-            .roadmap-grid{grid-template-columns:1fr;gap:2rem;}
+            .roadmap-grid{grid-template-columns:1fr; gap:2rem;}
         }
         .step-card {
-            background:#fff;
+            background:var(--white);
             border-radius:var(--radius-xl);
             box-shadow:var(--shadow-lg);
             border:2px solid var(--gray-200);
             transition:var(--transition);
             position:relative;
             overflow:visible;
+            cursor:pointer;
+            display:flex;
+            flex-direction:column;
         }
         .step-card:hover {
             transform:translateY(-6px);
             box-shadow:var(--shadow-xl);
             border-color:var(--teal);
         }
-        .step-card.active-step{border-color:var(--gold);box-shadow:0 0 0 6px rgba(200,150,62,0.12),var(--shadow-xl);}
-        .video-placeholder {
+        .step-card.active-step{
+            border-color:var(--gold);
+            box-shadow:0 0 0 8px rgba(200,150,62,0.15), var(--shadow-xl);
+        }
+        .step-card .video-wrapper {
             position:relative;
             width:100%; aspect-ratio:16/9;
             background:linear-gradient(145deg, #1E293B 0%, #0F172A 100%);
             border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-            display:flex; align-items:center; justify-content:center;
-            overflow:hidden; cursor:pointer;
+            overflow:hidden;
         }
-        .video-placeholder .play-circle {
-            width:64px; height:64px;
-            background:rgba(255,255,255,0.15); border-radius:50%;
+        .step-card .video-wrapper video {
+            width:100%; height:100%; object-fit:cover; display:none;
+        }
+        .step-card .video-wrapper video.active { display:block; }
+        .video-placeholder-overlay {
+            position:absolute; inset:0;
             display:flex; align-items:center; justify-content:center;
-            backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.2);
+            background:rgba(0,0,0,0.3);
+            cursor:pointer;
             transition:var(--transition);
         }
-        .video-placeholder:hover .play-circle{background:rgba(255,255,255,0.25);transform:scale(1.05);}
-        .play-circle i{font-size:2rem;color:#fff;opacity:0.9;}
-        .webm-badge {
-            position:absolute; bottom:10px; right:10px;
-            background:rgba(0,0,0,0.7); color:#ccc; font-size:0.55rem; font-weight:700;
-            padding:0.2rem 0.7rem; border-radius:50px; letter-spacing:0.04em;
+        .video-placeholder-overlay:hover { background:rgba(0,0,0,0.45); }
+        .play-button {
+            width:64px; height:64px;
+            background:rgba(255,255,255,0.2);
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            backdrop-filter:blur(8px);
+            border:2px solid rgba(255,255,255,0.3);
+            transition:var(--transition);
         }
+        .play-button i { font-size:1.8rem; color:#fff; }
         .step-num-badge {
-            position:absolute; top:12px; left:12px; background:var(--teal); color:#fff;
-            font-weight:800; font-size:0.7rem; padding:0.25rem 0.8rem; border-radius:50px;
-            z-index:2; box-shadow:0 2px 8px rgba(0,0,0,0.2);
+            position:absolute; top:12px; left:12px;
+            background:var(--teal); color:white;
+            font-weight:800; font-size:0.8rem; padding:0.3rem 0.9rem;
+            border-radius:50px; z-index:3;
+            box-shadow:0 2px 8px rgba(0,0,0,0.3);
         }
-        .card-body{padding:1.2rem 1.4rem;}
-        .card-title{font-weight:800;font-size:1.05rem;color:var(--navy);margin-bottom:0.3rem;}
-        .card-summary{font-size:0.72rem;color:var(--gray-500);margin-bottom:0.8rem;line-height:1.5;}
+        .card-body { padding:1.3rem 1.5rem; flex:1; display:flex; flex-direction:column; gap:0.5rem; }
+        .card-title { font-weight:800; font-size:1.15rem; color:var(--navy); }
+        .card-summary { font-size:0.78rem; color:var(--gray-500); line-height:1.5; margin-bottom:0.3rem; }
         .expand-btn {
-            background:var(--teal-light); border:1px solid #B2ECE0;
-            border-radius:50px; padding:0.4rem 0.9rem; font-weight:700; font-size:0.65rem;
-            color:#0F766E; cursor:pointer; transition:var(--transition);
-            display:inline-flex; align-items:center; gap:0.3rem; font-family:'Inter',sans-serif;
+            background:var(--teal-light);
+            border:1px solid #B2ECE0;
+            border-radius:50px;
+            padding:0.45rem 1rem;
+            font-weight:700; font-size:0.7rem;
+            color:#0F766E;
+            cursor:pointer;
+            transition:var(--transition);
+            display:inline-flex; align-items:center; gap:0.35rem;
+            font-family:'Inter',sans-serif;
+            align-self:flex-start;
         }
-        .expand-btn:hover{background:#B2ECE0;}
+        .expand-btn:hover { background:#B2ECE0; }
         .detail-panel {
             max-height:0; overflow:hidden; transition:max-height 0.6s ease;
-            margin-top:0.5rem; border-top:1px solid var(--gray-100); padding-top:0;
+            margin-top:0.5rem; border-top:1px solid var(--gray-100);
         }
-        .detail-panel.expanded{max-height:600px;padding-top:0.8rem;}
-        .detail-panel .subhead{font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--navy);margin:0.6rem 0 0.3rem;}
-        .detail-panel ul{list-style:none;padding:0;margin:0;}
-        .detail-panel li{padding:0.35rem 0;font-size:0.68rem;color:var(--gray-600);display:flex;gap:0.4rem;align-items:baseline;border-bottom:1px solid var(--gray-50);}
-        .detail-panel li::before{content:'▹';color:var(--teal);font-weight:700;}
+        .detail-panel.expanded { max-height:400px; padding-top:0.8rem; }
+        .detail-panel .subhead {
+            font-weight:700; font-size:0.7rem; text-transform:uppercase;
+            letter-spacing:0.05em; color:var(--navy); margin:0.6rem 0 0.3rem;
+        }
+        .detail-panel ul { list-style:none; padding:0; margin:0; }
+        .detail-panel li {
+            padding:0.35rem 0; font-size:0.7rem; color:var(--gray-600);
+            display:flex; gap:0.4rem; align-items:baseline;
+            border-bottom:1px solid var(--gray-50);
+        }
+        .detail-panel li::before { content:'▹'; color:var(--teal); font-weight:700; }
 
-        /* ── SVG CONNECTOR LAYER ── */
+        /* ── SVG CONNECTORS ── */
         .connector-svg {
             position:absolute; top:0; left:0; width:100%; height:100%;
             pointer-events:none; z-index:1;
         }
         .connector-path {
-            fill:none; stroke:url(#lineGradient); stroke-width:4; stroke-linecap:round;
-            stroke-dasharray:10 6; animation:dashMove 2s linear infinite;
+            fill:none;
+            stroke:url(#lineGradient);
+            stroke-width:5;
+            stroke-linecap:round;
+            stroke-linejoin:round;
+            stroke-dasharray:12 6;
+            animation: dashMove 1.8s linear infinite;
         }
-        @keyframes dashMove{to{stroke-dashoffset:-16;}}
-        .connector-path.solid{stroke-dasharray:none;animation:none;opacity:0.35;}
+        .connector-path.solid { stroke-dasharray:none; animation:none; opacity:0.4; }
+        @keyframes dashMove { to { stroke-dashoffset:-18; } }
+
+        /* ── MODAL ── */
+        .video-modal {
+            display:none;
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85); z-index:9999;
+            align-items:center; justify-content:center;
+        }
+        .video-modal.active { display:flex; }
+        .video-modal .close-modal {
+            position:absolute; top:20px; right:30px;
+            font-size:2.2rem; color:#fff; cursor:pointer; z-index:10;
+        }
+        .video-modal video {
+            max-width:90%; max-height:90%; border-radius:12px;
+            box-shadow:0 0 40px rgba(0,0,0,0.5);
+        }
+
+        /* ── NAVIGATION ── */
+        .nav-buttons {
+            display:flex; justify-content:center; gap:1rem; margin-top:2rem;
+        }
+        .nav-btn {
+            padding:0.7rem 1.8rem; border-radius:50px; font-weight:700; font-size:0.85rem;
+            border:2px solid var(--gray-300); background:var(--white);
+            cursor:pointer; transition:var(--transition);
+            font-family:'Inter',sans-serif; display:inline-flex; align-items:center; gap:0.4rem;
+        }
+        .nav-btn:hover { border-color:var(--teal); color:var(--teal); }
+        .nav-btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .nav-btn.primary { background:var(--teal); color:#fff; border-color:var(--teal); }
+        .nav-btn.primary:hover { background:var(--teal-dark); }
+
+        .progress-indicator {
+            text-align:center; margin:1.5rem 0 0.5rem; font-weight:600; color:var(--gray-500);
+        }
+        .progress-dots {
+            display:flex; justify-content:center; gap:0.5rem; margin-bottom:1rem;
+        }
+        .progress-dot {
+            width:12px; height:12px; border-radius:50%; background:var(--gray-300);
+            transition:var(--transition);
+        }
+        .progress-dot.active { background:var(--teal); box-shadow:0 0 10px var(--teal); }
+        .progress-dot.done { background:#10B981; }
 
         /* ── FOOTER ── */
         .footer {
             text-align:center; padding:2rem; color:var(--gray-400); font-size:0.65rem;
-            border-top:1px solid var(--gray-200);
+            border-top:1px solid var(--gray-200); margin-top:2rem;
         }
     </style>
 </head>
@@ -207,11 +288,11 @@
     </header>
 
     <div class="page-hero">
-        <h1>🧠 <span>9‑Step</span> Intelligent Roadmap</h1>
-        <p>Every phase of the patient journey visualised as an interactive flowchart. Hover over cards to see connections glow.</p>
+        <h1>🧠 <span>9‑Step</span> Interactive Roadmap</h1>
+        <p>Click on any video to play, expand details, and navigate sequentially.</p>
     </div>
 
-    <div class="roadmap-wrapper" id="roadmapWrapper">
+    <div class="roadmap-container" id="roadmapContainer">
         <div class="roadmap-grid" id="roadmapGrid">
             <!-- Cards rendered by JavaScript -->
         </div>
@@ -230,11 +311,36 @@
         </svg>
     </div>
 
+    <div class="progress-dots" id="progressDots">
+        <span class="progress-dot active"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+    </div>
+    <div class="progress-indicator">Step <span id="currentStepDisplay">1</span> of 9</div>
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+        <button class="nav-btn primary" id="nextBtn">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <video id="modalVideo" controls autoplay></video>
+    </div>
+
     <footer class="footer">
-        © 2025 KALKI INTELLIGENCE · VAIDYA is a product of KALKI · Replace .webm placeholders with actual videos.
+        © 2025 KALKI INTELLIGENCE · VAIDYA · Replace placeholder .webm with actual videos.
     </footer>
 
     <script>
+        const VIDEO_BASE = 'https://raw.githubusercontent.com/kalkitechnologieski-art/apollo/main/videos/';
+
         const stepsData = [
             { id:1, icon:"📱", title:"Patient Check‑in", summary:"QR scan at reception → WhatsApp opens.", details:[
                 {subhead:"Reception", items:["Patient scans QR code placed on counter","WhatsApp auto‑opens with pre‑filled greeting","Receptionist confirms identity digitally","System logs check‑in timestamp"]},
@@ -265,18 +371,33 @@
             ]},
         ];
 
+        const cols = 3; // number of columns in grid
+        const snakeOrder = [0, 1, 2, 5, 4, 3, 6, 7, 8]; // indices to create snake pattern
+
         const roadmapGrid = document.getElementById('roadmapGrid');
         const connectorGroup = document.getElementById('connectorGroup');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentStepDisplay = document.getElementById('currentStepDisplay');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const closeModal = document.getElementById('closeModal');
 
-        function buildCard(step) {
+        let currentActiveIndex = 0; // index in snakeOrder (0-8)
+
+        function buildCard(step, indexInSnake) {
             const card = document.createElement('div');
             card.className = 'step-card';
-            card.dataset.step = step.id;
+            card.dataset.stepId = step.id;
+            card.dataset.snakeIndex = indexInSnake;
             card.innerHTML = `
-                <div class="video-placeholder" title="Play ${step.title} video">
-                    <div class="step-num-badge">${step.id}</div>
-                    <div class="play-circle"><i class="fa-solid fa-play"></i></div>
-                    <span class="webm-badge">videos/step${step.id}.webm</span>
+                <div class="video-wrapper">
+                    <video class="step-video" src="${VIDEO_BASE}step${step.id}.webm" muted loop playsinline></video>
+                    <div class="video-placeholder-overlay">
+                        <div class="step-num-badge">${step.id}</div>
+                        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-title">${step.icon} ${step.title}</div>
@@ -295,70 +416,111 @@
 
         function renderCards() {
             roadmapGrid.innerHTML = '';
-            stepsData.forEach(step => roadmapGrid.appendChild(buildCard(step)));
+            snakeOrder.forEach((dataIndex, snakeIndex) => {
+                const card = buildCard(stepsData[dataIndex], snakeIndex);
+                roadmapGrid.appendChild(card);
+            });
             attachCardEvents();
+            updateActiveStepUI();
             drawConnectors();
         }
 
         function attachCardEvents() {
             document.querySelectorAll('.step-card').forEach(card => {
-                const btn = card.querySelector('.expand-btn');
+                const video = card.querySelector('.step-video');
+                const overlay = card.querySelector('.video-placeholder-overlay');
+                const playBtn = overlay.querySelector('.play-button');
+
+                overlay.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openModal(video.src);
+                });
+
+                const expandBtn = card.querySelector('.expand-btn');
                 const panel = card.querySelector('.detail-panel');
-                btn.addEventListener('click', (e) => {
+                expandBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const isOpen = panel.classList.contains('expanded');
                     document.querySelectorAll('.detail-panel.expanded').forEach(p => p.classList.remove('expanded'));
                     document.querySelectorAll('.expand-btn').forEach(b => b.classList.remove('open'));
                     if (!isOpen) {
                         panel.classList.add('expanded');
-                        btn.classList.add('open');
-                        btn.querySelector('i').classList.replace('fa-chevron-down','fa-chevron-up');
+                        expandBtn.classList.add('open');
+                        expandBtn.querySelector('i').classList.replace('fa-chevron-down','fa-chevron-up');
                     } else {
                         panel.classList.remove('expanded');
-                        btn.classList.remove('open');
-                        btn.querySelector('i').classList.replace('fa-chevron-up','fa-chevron-down');
+                        expandBtn.classList.remove('open');
+                        expandBtn.querySelector('i').classList.replace('fa-chevron-up','fa-chevron-down');
                     }
                 });
-                const video = card.querySelector('.video-placeholder');
-                video.addEventListener('click', () => {
-                    alert(`▶️ Playing video: videos/step${card.dataset.step}.webm\n(Placeholder – replace with actual .webm file.)`);
-                });
-                card.addEventListener('mouseenter', () => {
-                    document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active-step'));
-                    card.classList.add('active-step');
-                });
-                card.addEventListener('mouseleave', () => card.classList.remove('active-step'));
             });
+        }
+
+        function updateActiveStepUI() {
+            // Remove active from all
+            document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active-step'));
+            const activeCard = document.querySelector(`.step-card[data-snake-index="${currentActiveIndex}"]`);
+            if (activeCard) activeCard.classList.add('active-step');
+
+            // Update progress dots
+            progressDots.forEach((dot, idx) => {
+                dot.classList.remove('active', 'done');
+                if (idx < currentActiveIndex) dot.classList.add('done');
+                if (idx === currentActiveIndex) dot.classList.add('active');
+            });
+            currentStepDisplay.textContent = currentActiveIndex + 1;
+
+            // Update navigation buttons
+            prevBtn.disabled = currentActiveIndex === 0;
+            nextBtn.disabled = currentActiveIndex === snakeOrder.length - 1;
+
+            // Scroll active card into view
+            if (activeCard) {
+                activeCard.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+            }
+        }
+
+        function navigateToIndex(index) {
+            if (index < 0 || index >= snakeOrder.length) return;
+            currentActiveIndex = index;
+            updateActiveStepUI();
+        }
+
+        function openModal(videoSrc) {
+            modalVideo.src = videoSrc;
+            videoModal.classList.add('active');
+            modalVideo.play();
+        }
+
+        function closeModalHandler() {
+            videoModal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.removeAttribute('src');
         }
 
         function drawConnectors() {
             connectorGroup.innerHTML = '';
             const cards = document.querySelectorAll('.step-card');
             if (cards.length < 2) return;
-            const wrapper = document.getElementById('roadmapWrapper');
-            const wrapperRect = wrapper.getBoundingClientRect();
-
-            // The layout order is snake: 0->1->2->5->4->3->6->7->8 (depending on grid columns)
-            // In a 3-column grid, the visual order is: (0,0) (0,1) (0,2) (1,2) (1,1) (1,0) (2,0) (2,1) (2,2)
-            const cols = 3;
-            const order = [0,1,2,5,4,3,6,7,8]; // indices of stepsData mapped to grid cell order
+            const container = document.getElementById('roadmapContainer');
+            const containerRect = container.getBoundingClientRect();
 
             function getCenter(el) {
                 const rect = el.getBoundingClientRect();
                 return {
-                    x: rect.left + rect.width/2 - wrapperRect.left,
-                    y: rect.top + rect.height/2 - wrapperRect.top
+                    x: rect.left + rect.width/2 - containerRect.left,
+                    y: rect.top + rect.height/2 - containerRect.top
                 };
             }
 
-            for (let i = 0; i < order.length - 1; i++) {
-                const fromCard = cards[order[i]];
-                const toCard = cards[order[i+1]];
+            // Connect snake order: from card with snakeIndex i to i+1
+            for (let i = 0; i < snakeOrder.length - 1; i++) {
+                const fromCard = document.querySelector(`[data-snake-index="${i}"]`);
+                const toCard = document.querySelector(`[data-snake-index="${i+1}"]`);
                 if (!fromCard || !toCard) continue;
                 const from = getCenter(fromCard);
                 const to = getCenter(toCard);
 
-                // Create a curved path
                 const midX = (from.x + to.x) / 2;
                 const midY = (from.y + to.y) / 2;
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -369,11 +531,26 @@
             }
         }
 
-        // Redraw connectors on resize
+        // Event listeners
+        prevBtn.addEventListener('click', () => navigateToIndex(currentActiveIndex - 1));
+        nextBtn.addEventListener('click', () => navigateToIndex(currentActiveIndex + 1));
+
+        closeModal.addEventListener('click', closeModalHandler);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeModalHandler();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') navigateToIndex(currentActiveIndex + 1);
+            if (e.key === 'ArrowLeft') navigateToIndex(currentActiveIndex - 1);
+        });
+
+        // Resize handler for SVG connectors
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(drawConnectors, 150);
+            resizeTimeout = setTimeout(drawConnectors, 200);
         });
 
         // Initial render
