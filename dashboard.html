@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAIDYA Dashboard · Apollo Smart Clinic Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0A1F3F;
+            --navy-light: #132D56;
+            --teal: #0E9488;
+            --teal-dark: #0B7A6F;
+            --teal-light: #CCFBF1;
+            --gold: #C8963E;
+            --gold-light: #FDF2E0;
+            --red: #C62828;
+            --white: #FFFFFF;
+            --bg: #F4F6F9;
+            --gray-50: #F9FAFB;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --text: #1E293B;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.10);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.14);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-xs: 0.68rem;
+            --font-sm: 0.78rem;
+            --font-base: 0.875rem;
+            --font-md: 0.95rem;
+            --font-lg: 1.05rem;
+            --font-xl: 1.2rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.8rem;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: var(--font-base);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        /* ── HEADER ── */
+        .header {
+            position: sticky;
+            top:0; z-index:1000;
+            background: rgba(10,26,47,0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom:1px solid rgba(255,255,255,0.08);
+            padding:0.75rem 1.8rem;
+            display:flex; align-items:center; justify-content:space-between;
+            gap:2rem; box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+        }
+        .header-brand { display:flex; align-items:center; gap:0.8rem; }
+        .brand-icon {
+            width:44px; height:44px;
+            background:linear-gradient(135deg, var(--teal) 0%, #0B7A6F 100%);
+            border-radius:14px;
+            display:flex; align-items:center; justify-content:center;
+            color:#fff; font-size:1.4rem;
+            box-shadow:0 8px 20px rgba(14,148,136,0.35);
+        }
+        .brand-text { display:flex; flex-direction:column; }
+        .brand-name { font-weight:900; font-size:1.45rem; letter-spacing:-0.02em; color:#fff; line-height:1.2; }
+        .brand-tagline { font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.55); text-transform:uppercase; }
+        .header-actions { display:flex; align-items:center; gap:0.75rem; }
+        .btn-header {
+            padding:0.5rem 1.2rem; border-radius:50px;
+            font-weight:600; font-size:0.7rem; cursor:pointer;
+            border:1.5px solid rgba(255,255,255,0.3); background:transparent; color:#fff;
+            transition:var(--transition); font-family:'Inter',sans-serif;
+            display:inline-flex; align-items:center; gap:0.4rem; text-decoration:none;
+        }
+        .btn-header:hover { background:rgba(255,255,255,0.1); border-color:var(--teal); }
+        .btn-header-primary { background:var(--teal); border-color:var(--teal); }
+        .btn-header-primary:hover { background:var(--teal-dark); }
+        .btn-header.auto-demo-active { background:var(--red); border-color:var(--red); }
+
+        /* ── MAIN LAYOUT ── */
+        .dashboard-grid {
+            display:grid;
+            grid-template-columns: 1fr 360px;
+            gap:1.25rem;
+            padding:1.25rem 1.5rem;
+            max-width:1600px;
+            margin:0 auto;
+            min-height:calc(100vh - 150px);
+        }
+        @media (max-width:1200px) {
+            .dashboard-grid { grid-template-columns:1fr; }
+        }
+        .left-panel { display:flex; flex-direction:column; gap:1.25rem; }
+        .right-panel { display:flex; flex-direction:column; gap:1.25rem; }
+
+        .panel {
+            background:#fff;
+            border-radius:var(--radius-lg);
+            padding:1.3rem 1.5rem;
+            box-shadow:var(--shadow);
+            border:1px solid var(--gray-200);
+            transition:var(--transition);
+        }
+        .panel-header { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; flex-wrap:wrap; }
+        .panel-title { font-weight:700; font-size:var(--font-md); color:var(--navy); }
+
+        /* ── CHAT ── */
+        .chat-container {
+            background:var(--gray-50); border-radius:var(--radius);
+            padding:1rem; max-height:320px; min-height:180px; overflow-y:auto;
+            display:flex; flex-direction:column; gap:0.5rem; border:1px solid var(--gray-200);
+        }
+        .chat-bubble {
+            max-width:84%; padding:0.55rem 0.8rem; border-radius:var(--radius);
+            font-size:0.78rem; line-height:1.5; animation:fadeSlide 0.35s ease-out;
+            word-break:break-word;
+        }
+        @keyframes fadeSlide { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        .chat-bubble.doctor { align-self:flex-start; background:#fff; border:1.5px solid var(--gray-200); border-bottom-left-radius:4px; }
+        .chat-bubble.patient { align-self:flex-end; background:#E8F5F5; border:1.5px solid #C5E5E2; border-bottom-right-radius:4px; }
+        .speaker-label { font-weight:700; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:0.12rem; opacity:0.7; }
+        .entity-highlight { background:#FEF08A; padding:0.08rem 0.3rem; border-radius:3px; font-weight:700; color:#92400E; border-bottom:2px solid #F59E0B; }
+
+        /* ── RX WIDGET ── */
+        .rx-widget {
+            background:linear-gradient(135deg,#FFFBF0,#FFF7ED); border:2px dashed #FCD34D;
+            border-radius:var(--radius); padding:0.65rem 1rem; margin-top:0.5rem;
+            font-size:0.8rem; font-weight:600; color:#92400E;
+            display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
+        }
+        .rx-pill {
+            background:#fff; border:1.5px solid #FCD34D; border-radius:50px;
+            padding:0.25rem 0.65rem; font-weight:700; font-size:0.7rem; color:#B45309;
+        }
+
+        /* ── FORM ── */
+        .form-overlay {
+            background:#fff; border-radius:var(--radius-lg); padding:1.3rem 1.5rem;
+            box-shadow:var(--shadow-md); border:2px solid var(--teal); border-top:4px solid var(--teal);
+            display:none; transition:var(--transition-slow);
+        }
+        .form-overlay.visible { display:block; animation:slideDown 0.4s ease-out; }
+        @keyframes slideDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+        .form-row { display:flex; gap:0.7rem; flex-wrap:wrap; }
+        .form-group { display:flex; flex-direction:column; gap:0.2rem; flex:1; min-width:100px; }
+        .form-group label { font-weight:700; font-size:0.6rem; color:var(--gray-600); text-transform:uppercase; }
+        .form-group input {
+            padding:0.5rem 0.7rem; border:2px solid var(--gray-300); border-radius:var(--radius-sm);
+            font-family:'Inter',sans-serif; font-size:0.8rem; background:var(--gray-50);
+        }
+        .form-group input:focus { border-color:var(--teal); outline:none; }
+
+        .btn {
+            padding:0.6rem 1.3rem; border-radius:50px; font-weight:700; font-size:0.8rem; cursor:pointer;
+            border:none; transition:var(--transition); font-family:'Inter',sans-serif;
+            display:inline-flex; align-items:center; gap:0.4rem;
+        }
+        .btn-teal { background:var(--teal); color:#fff; box-shadow:0 4px 12px rgba(14,148,136,0.3); }
+        .btn-teal:hover { background:var(--teal-dark); transform:translateY(-2px); }
+        .btn-gold { background:var(--gold); color:#fff; box-shadow:0 4px 12px rgba(200,150,62,0.3); }
+        .btn-gold:hover { background:#B8862D; transform:translateY(-2px); }
+        .btn:disabled { background:var(--gray-300); cursor:not-allowed; box-shadow:none; transform:none; }
+        .btn-spinner { display:none; width:15px; height:15px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; }
+        .btn.loading .btn-spinner { display:inline-block; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+
+        /* ── PATIENT CARD ── */
+        .patient-card {
+            background:#fff; border-radius:var(--radius-lg); padding:1.2rem 1.5rem;
+            box-shadow:var(--shadow-md); border:1px solid var(--gray-200);
+            border-left:5px solid var(--teal); min-height:80px; display:flex; flex-direction:column; justify-content:center;
+        }
+        .patient-card.empty { border-left-color:var(--gray-300); opacity:0.6; }
+        .card-eyebrow { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--gray-400); font-weight:700; }
+        .patient-name-lg { font-weight:800; font-size:1.5rem; color:var(--navy); }
+
+        /* ── QUEUE ── */
+        .queue-list { list-style:none; display:flex; flex-direction:column; gap:0.4rem; max-height:200px; overflow-y:auto; }
+        .queue-item {
+            display:flex; align-items:center; gap:0.55rem; padding:0.55rem 0.75rem;
+            border-radius:var(--radius); border:2px solid var(--gray-200); cursor:pointer;
+            transition:var(--transition); background:#fff;
+        }
+        .queue-item:hover { border-color:var(--teal); transform:translateX(3px); }
+        .queue-item.next { border-color:#10B981; background:#F0FDF9; }
+        .token-num { font-weight:900; font-size:1.1rem; color:var(--teal); min-width:30px; }
+
+        /* ── MOBILE SIMULATOR ── */
+        .phone-frame {
+            width:100%; max-width:320px; margin:0 auto;
+            background:#111; border-radius:40px; padding:12px; box-shadow:var(--shadow-xl);
+            position:relative;
+        }
+        .phone-screen {
+            background:#fff; border-radius:28px; overflow:hidden; height:600px;
+            display:flex; flex-direction:column; font-size:0.75rem;
+        }
+        .phone-status-bar {
+            background:#f8f8f8; padding:8px 16px; display:flex; justify-content:space-between;
+            font-weight:600; font-size:0.65rem;
+        }
+        .phone-content { flex:1; overflow-y:auto; padding:12px; background:#e5ddd5; }
+        .phone-whatsapp { background:#fff; border-radius:12px; padding:10px; }
+        .phone-msg {
+            max-width:85%; margin:8px 0; padding:8px 12px; border-radius:16px;
+            font-size:0.7rem; line-height:1.4;
+        }
+        .phone-msg.bot { background:#fff; align-self:flex-start; border-bottom-left-radius:4px; }
+        .phone-msg.user { background:#dcf8c6; align-self:flex-end; border-bottom-right-radius:4px; text-align:right; }
+        .phone-token-card {
+            background:#fff; border-radius:16px; padding:16px; margin:12px 0;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;
+        }
+        .phone-call-ui {
+            background:#1c1c1e; color:#fff; border-radius:24px; padding:20px; text-align:center;
+        }
+        .phone-pdf-view { background:#fff; border-radius:12px; padding:16px; }
+
+        /* ── STATS BAR ── */
+        .stats-bar { display:flex; gap:1rem; margin-top:0.8rem; font-size:0.65rem; font-weight:600; }
+        .stats-bar span { background:var(--gray-100); padding:0.25rem 0.7rem; border-radius:50px; }
+
+        /* ── TOAST ── */
+        .toast-container { position:fixed; bottom:1.5rem; right:1.5rem; z-index:9999; display:flex; flex-direction:column-reverse; gap:0.5rem; }
+        .toast {
+            background:var(--navy); color:#fff; padding:0.65rem 1rem; border-radius:var(--radius);
+            font-weight:600; font-size:0.8rem; box-shadow:var(--shadow-xl); animation:toastIn 0.4s ease-out, toastOut 0.35s ease-in forwards; animation-delay:0s, 3.8s;
+            max-width:400px; border-left:4px solid var(--gold);
+        }
+        @keyframes toastIn { from { opacity:0; transform:translateX(50px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes toastOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(50px); } }
+
+        .ripple-effect {
+            position:absolute; border-radius:50%; background:rgba(255,255,255,0.5);
+            transform:scale(0); animation:ripple 0.6s ease-out; pointer-events:none;
+        }
+        @keyframes ripple { to { transform:scale(4); opacity:0; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <div class="brand-icon"><i class="fa-solid fa-staff-snake"></i></div>
+            <div class="brand-text">
+                <span class="brand-name">VAIDYA</span>
+                <span class="brand-tagline">by KALKI INTELLIGENCE</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn-header"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="mind-map.html" class="btn-header"><i class="fa-solid fa-brain"></i> Mind Map</a>
+            <button class="btn-header btn-header-primary" id="btnAutoDemo"><i class="fa-solid fa-play"></i> Auto Demo</button>
+            <button class="btn-header" id="btnReset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+    </header>
+
+    <div class="dashboard-grid">
+        <!-- LEFT: Doctor Dashboard -->
+        <div class="left-panel">
+            <div class="panel" id="consultationPanel">
+                <div class="panel-header">
+                    <span style="font-size:1.2rem;">🎙️</span>
+                    <span class="panel-title">Live Consultation & AI Transcription</span>
+                    <span class="badge badge-idle" id="transcriptionBadge" style="font-size:0.7rem; background:#E2E8F0; padding:0.2rem 0.6rem; border-radius:50px;">⏸ Idle</span>
+                </div>
+                <div class="chat-container" id="chatContainer">
+                    <div style="text-align:center; color:#94A3B8; padding:2rem;" id="chatPlaceholder">
+                        <i class="fa-solid fa-microphone-lines" style="font-size:2rem; opacity:0.3;"></i><br>
+                        <span style="font-size:0.8rem;">Click <b>NEXT PATIENT</b> or <b>Auto Demo</b></span>
+                    </div>
+                </div>
+                <div class="rx-widget" id="rxWidget">
+                    <span>💊</span> <span id="rxContent" style="color:#94A3B8;">Waiting for AI extraction...</span>
+                </div>
+            </div>
+
+            <div class="form-overlay" id="patientFormOverlay">
+                <div style="font-weight:800; font-size:1rem; color:var(--navy); margin-bottom:0.6rem;">📋 Finalize & Send Patient Report</div>
+                <div class="form-row">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="patient_name" placeholder="Rahul Sharma"></div>
+                    <div class="form-group" style="max-width:70px;"><label>Age</label><input type="number" id="patient_age" placeholder="32"></div>
+                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="patient_whatsapp" placeholder="+91 98101 23456"></div>
+                </div>
+                <button class="btn btn-gold" id="sendReportBtn" style="margin-top:0.7rem;" disabled>
+                    <span class="btn-spinner"></span> 🚀 Generate PDF & Send via WhatsApp
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT: Patient Simulator + Queue -->
+        <div class="right-panel">
+            <div class="patient-card empty" id="currentPatientCard">
+                <div class="card-eyebrow">🪪 Currently Consulting</div>
+                <div id="currentPatientContent" style="color:#94A3B8;">Waiting for next patient...</div>
+            </div>
+            <div class="panel">
+                <div style="font-weight:700; margin-bottom:0.5rem;">📱 Patient's Phone</div>
+                <div class="phone-frame">
+                    <div class="phone-screen" id="phoneScreen">
+                        <div class="phone-status-bar"><span>9:41</span><span>📶 🔋</span></div>
+                        <div class="phone-content" id="phoneContent">
+                            <!-- Dynamic patient journey UI -->
+                            <div style="text-align:center; padding:30px; color:#888;">Waiting for check-in...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div style="font-weight:700; margin-bottom:0.3rem;">📌 Waiting Queue</div>
+                <ul class="queue-list" id="queueList"></ul>
+                <button class="btn btn-teal" id="nextPatientBtn" style="width:100%; margin-top:0.5rem;">⏩ CALL NEXT PATIENT</button>
+                <div class="stats-bar">
+                    <span><i class="fa-solid fa-users"></i> Today: <b id="statPatients">0</b></span>
+                    <span><i class="fa-solid fa-file-pdf"></i> Reports: <b id="statReports">0</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // ─── STATE ───────────────────────────
+        const state = {
+            currentPatient: null,
+            waitingQueue: [
+                { token: 12, name: 'Ravi Singh', age: 34, concern: 'Persistent cough & fever' },
+                { token: 13, name: 'Anita Desai', age: 52, concern: 'Joint pain in knees' },
+                { token: 14, name: 'Vikram Patel', age: 28, concern: 'Allergic skin rash' },
+            ],
+            isTranscribing: false,
+            transcriptionTimeouts: [],
+            extractedMeds: [],
+            formVisible: false,
+            autoDemoActive: false,
+            autoDemoTimeouts: [],
+            stats: { patients:0, reports:0 },
+            phoneStep: 0, // 0=idle,1=WhatsApp,2=token,3=voice call,4=consulting,5=report
+            phonePatient: null,
+        };
+
+        const mockScript = [
+            { speaker:'Doctor', text:'Good morning, Mr. Ravi. Tell me about your symptoms.' },
+            { speaker:'Patient', text:'Doctor, 5 days se dry cough hai. Raat mein bohot takleef hoti hai.' },
+            { speaker:'Doctor', text:'Any fever or body pain?' },
+            { speaker:'Patient', text:'Haan, evening mein mild fever aata hai.' },
+            { speaker:'Doctor', text:'I am prescribing Azithromycin 500mg once daily for 3 days. Also Paracetamol 650mg if fever exceeds 101°F.' },
+            { speaker:'Patient', text:'Okay doctor. Aur kuch?' },
+            { speaker:'Doctor', text:'Take warm fluids. Avoid cold items. Diet chart bhej raha hoon.' },
+        ];
+
+        // ─── DOM ─────────────────────────────
+        const $ = s => document.querySelector(s);
+        const $$ = s => document.querySelectorAll(s);
+
+        const btnAutoDemo = $('#btnAutoDemo');
+        const btnReset = $('#btnReset');
+        const nextPatientBtn = $('#nextPatientBtn');
+        const sendReportBtn = $('#sendReportBtn');
+        const chatContainer = $('#chatContainer');
+        const chatPlaceholder = $('#chatPlaceholder');
+        const rxContent = $('#rxContent');
+        const patientFormOverlay = $('#patientFormOverlay');
+        const patientNameInput = $('#patient_name');
+        const patientAgeInput = $('#patient_age');
+        const patientWhatsappInput = $('#patient_whatsapp');
+        const currentPatientContent = $('#currentPatientContent');
+        const queueList = $('#queueList');
+        const phoneContent = $('#phoneContent');
+        const transcriptionBadge = $('#transcriptionBadge');
+        const consultationPanel = $('#consultationPanel');
+        const toastContainer = $('#toastContainer');
+        const statPatients = $('#statPatients');
+        const statReports = $('#statReports');
+
+        // ─── INIT ────────────────────────────
+        function init() {
+            renderQueue();
+            updateStats();
+            attachEvents();
+        }
+        function attachEvents() {
+            btnAutoDemo.addEventListener('click', toggleAutoDemo);
+            btnReset.addEventListener('click', fullReset);
+            nextPatientBtn.addEventListener('click', handleNextPatient);
+            sendReportBtn.addEventListener('click', handleSendReport);
+            patientWhatsappInput.addEventListener('input', () => {
+                sendReportBtn.disabled = !patientWhatsappInput.value.trim() || !state.currentPatient;
+            });
+        }
+
+        function renderQueue() {
+            queueList.innerHTML = '';
+            if (state.waitingQueue.length === 0) {
+                queueList.innerHTML = '<li style="text-align:center;color:#94A3B8;padding:1rem;">Queue empty</li>';
+            } else {
+                state.waitingQueue.forEach((p, idx) => {
+                    const li = document.createElement('li');
+                    li.className = 'queue-item' + (idx===0 ? ' next' : '');
+                    li.dataset.token = p.token;
+                    li.innerHTML = `<span style="color:#CBD5E1;">⋮⋮</span><span class="token-num">#${p.token}</span><div><b>${p.name}</b><br><small>${p.concern}</small></div>`;
+                    li.addEventListener('click', ()=> { if(!state.isTranscribing && !state.autoDemoActive) loadSpecificPatient(p.token); });
+                    queueList.appendChild(li);
+                });
+            }
+            nextPatientBtn.disabled = state.waitingQueue.length===0 || state.isTranscribing;
+        }
+
+        function updateStats() {
+            statPatients.textContent = state.stats.patients;
+            statReports.textContent = state.stats.reports;
+        }
+
+        // ─── PATIENT PHONE UI ─────────────────
+        function updatePhoneUI(step, patient) {
+            state.phoneStep = step;
+            state.phonePatient = patient;
+            const pc = phoneContent;
+            pc.innerHTML = '';
+            switch(step) {
+                case 1: // WhatsApp AI
+                    pc.innerHTML = `
+                        <div class="phone-whatsapp">
+                            <div style="font-weight:700; color:#075E54;">🏥 Apollo Clinic</div>
+                            <div class="phone-msg bot">🤖 Hello! I'm VAIDYA AI assistant. May I know your full name?</div>
+                            <div class="phone-msg user">${patient.name}</div>
+                            <div class="phone-msg bot">Age?</div>
+                            <div class="phone-msg user">${patient.age}</div>
+                            <div class="phone-msg bot">What brings you today?</div>
+                            <div class="phone-msg user">${patient.concern}</div>
+                            <div class="phone-msg bot">✅ Thank you! We've captured your details.</div>
+                        </div>`;
+                    break;
+                case 2: // Token
+                    pc.innerHTML = `
+                        <div class="phone-token-card">
+                            <div style="font-size:2rem;">🎫</div>
+                            <div style="font-size:2.5rem; font-weight:900; color:var(--teal);">#${patient.token}</div>
+                            <div>Your token number</div>
+                            <div style="margin-top:8px;"><b>Queue position:</b> 3 ahead</div>
+                            <div style="background:#eee; height:6px; border-radius:3px; margin:8px 0;"><div style="width:25%; background:var(--teal); height:100%; border-radius:3px;"></div></div>
+                            <small>We'll notify you when it's your turn.</small>
+                        </div>`;
+                    break;
+                case 3: // Voice call
+                    pc.innerHTML = `
+                        <div class="phone-call-ui">
+                            <div style="font-size:3rem;">📞</div>
+                            <div style="font-size:1.2rem; font-weight:700;">Clinic Assistant</div>
+                            <div style="margin:12px 0;">"Hello ${patient.name}, your turn is in 5 minutes. Please proceed to Room 201."</div>
+                            <div style="color:#aaa;">Call ended · 0:22</div>
+                        </div>`;
+                    break;
+                case 4: // Consulting
+                    pc.innerHTML = `
+                        <div style="text-align:center; padding:20px;">
+                            <i class="fa-solid fa-user-doctor" style="font-size:3rem; color:var(--teal);"></i>
+                            <p style="margin-top:10px;">Consultation in progress...</p>
+                            <small>AI is transcribing your conversation.</small>
+                        </div>`;
+                    break;
+                case 5: // Report received
+                    pc.innerHTML = `
+                        <div class="phone-pdf-view">
+                            <div style="font-weight:700; margin-bottom:10px;">📄 Consultation Report</div>
+                            <div><b>Patient:</b> ${patient.name}</div>
+                            <div><b>Date:</b> ${new Date().toLocaleDateString()}</div>
+                            <div style="margin-top:8px;"><b>Prescription:</b></div>
+                            <div>💊 Azithromycin 500mg - Once daily x 3 days</div>
+                            <div>💊 Paracetamol 650mg - Twice daily x 5 days</div>
+                            <div style="margin-top:10px; background:#e0f7fa; padding:8px; border-radius:8px;">
+                                <small>✅ Report saved to your phone.</small>
+                            </div>
+                        </div>`;
+                    break;
+                default: pc.innerHTML = '<div style="text-align:center; padding:30px; color:#888;">Waiting for check-in...</div>';
+            }
+        }
+
+        // ─── NEXT PATIENT ────────────────────
+        function handleNextPatient() {
+            if (state.isTranscribing) return showToast('⚠️ Consultation in progress.');
+            if (state.waitingQueue.length===0) return showToast('📭 Queue empty.');
+            clearTranscriptionTimeouts();
+            const patient = state.waitingQueue.shift();
+            state.currentPatient = patient;
+            state.extractedMeds = [];
+            state.formVisible = false;
+            rxContent.innerHTML = '<span style="color:#94A3B8;">Listening...</span>';
+            patientFormOverlay.classList.remove('visible');
+            patientNameInput.value = ''; patientAgeInput.value = ''; patientWhatsappInput.value = '';
+            sendReportBtn.disabled = true; sendReportBtn.classList.remove('loading');
+            updateCurrentPatientCard(patient);
+            renderQueue();
+            chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'none';
+            state.isTranscribing = true;
+            updateTranscriptionBadge('live');
+            consultationPanel.classList.add('highlight-gold');
+            // Phone steps sequence
+            updatePhoneUI(1, patient);
+            setTimeout(() => updatePhoneUI(2, patient), 1500);
+            setTimeout(() => {
+                updatePhoneUI(3, patient);
+                showToast(`📞 AI voice call to ${patient.name} · Token #${patient.token}`, 'whatsapp-toast');
+            }, 3000);
+            setTimeout(() => {
+                updatePhoneUI(4, patient);
+                startTranscription(patient);
+            }, 4500);
+        }
+
+        function loadSpecificPatient(token) {
+            const idx = state.waitingQueue.findIndex(p=>p.token===token);
+            if (idx===-1) return;
+            const patient = state.waitingQueue.splice(idx,1)[0];
+            state.currentPatient = patient; state.extractedMeds=[]; state.formVisible=false;
+            rxContent.innerHTML = '<span style="color:#94A3B8;">Listening...</span>';
+            patientFormOverlay.classList.remove('visible');
+            patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';
+            sendReportBtn.disabled=true; sendReportBtn.classList.remove('loading');
+            updateCurrentPatientCard(patient);
+            renderQueue();
+            chatContainer.innerHTML=''; chatPlaceholder.style.display='none';
+            state.isTranscribing=true;
+            updateTranscriptionBadge('live');
+            consultationPanel.classList.add('highlight-gold');
+            updatePhoneUI(1, patient);
+            setTimeout(()=>updatePhoneUI(2, patient),1500);
+            setTimeout(()=>{updatePhoneUI(3, patient); showToast(`📞 Voice call to ${patient.name}`, 'whatsapp-toast');},3000);
+            setTimeout(()=>{updatePhoneUI(4, patient); startTranscription(patient);},4500);
+        }
+
+        function updateCurrentPatientCard(p) {
+            const card = $('#currentPatientCard');
+            if (!p) {
+                card.classList.add('empty');
+                currentPatientContent.innerHTML = '<span style="color:#94A3B8;">Waiting for next patient...</span>';
+            } else {
+                card.classList.remove('empty');
+                currentPatientContent.innerHTML = `<div class="patient-name-lg">${p.name}</div><div>🎂 ${p.age} · 🩺 ${p.concern} <span class="token-chip" style="background:#CCFBF1; padding:2px 8px; border-radius:20px;">#${p.token}</span></div>`;
+            }
+        }
+
+        function updateTranscriptionBadge(status) {
+            if (status==='live') { transcriptionBadge.textContent='🔴 LIVE'; transcriptionBadge.style.background='#FEF2F2'; }
+            else if (status==='done') { transcriptionBadge.textContent='✅ Done'; transcriptionBadge.style.background='#ECFDF5'; }
+            else { transcriptionBadge.textContent='⏸ Idle'; transcriptionBadge.style.background='#E2E8F0'; }
+        }
+
+        // ─── TRANSCRIPTION ────────────────────
+        function startTranscription(patient) {
+            state.isTranscribing = true;
+            chatContainer.innerHTML = '';
+            const allWords = [];
+            mockScript.forEach(entry => {
+                const words = entry.text.split(/\s+/);
+                words.forEach((w,i)=> allWords.push({ speaker:entry.speaker, word:w, isFirst:i===0 }));
+            });
+            let idx=0, currentBubble=null, currentSpeaker=null;
+            function stream() {
+                if (idx >= allWords.length) {
+                    finishTranscription(patient); return;
+                }
+                const entry = allWords[idx];
+                if (entry.isFirst || entry.speaker!==currentSpeaker) {
+                    currentSpeaker = entry.speaker;
+                    currentBubble = document.createElement('div');
+                    currentBubble.className = `chat-bubble ${entry.speaker==='Doctor'?'doctor':'patient'}`;
+                    const label = document.createElement('span'); label.className='speaker-label';
+                    label.textContent = entry.speaker==='Doctor'?'👨‍⚕️ Doctor':'🧑‍🦰 Patient';
+                    currentBubble.appendChild(label);
+                    const msg = document.createElement('span');
+                    currentBubble.appendChild(msg);
+                    chatContainer.appendChild(currentBubble);
+                }
+                const msgSpan = currentBubble.lastChild;
+                const highlighted = highlightEntity(entry.word);
+                if (highlighted !== entry.word) {
+                    const span = document.createElement('span'); span.innerHTML = ' ' + highlighted;
+                    msgSpan.appendChild(span);
+                    extractMed(entry.word);
+                } else {
+                    msgSpan.appendChild(document.createTextNode(' ' + entry.word));
+                }
+                updateRxWidget();
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                idx++;
+                state.transcriptionTimeouts.push(setTimeout(stream, 260+Math.random()*90));
+            }
+            state.transcriptionTimeouts.push(setTimeout(stream, 350));
+        }
+
+        function highlightEntity(word) {
+            const clean = word.replace(/[.,;!?]+$/, ''); const suffix = word.slice(clean.length);
+            if (/\d+mg/i.test(clean) || /\d+ml/i.test(clean)) return `<mark class="entity-highlight">${clean}</mark>${suffix}`;
+            if (/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine)$/i.test(clean)) return `<mark class="entity-highlight">${clean}</mark>${suffix}`;
+            return word;
+        }
+        function extractMed(word) {
+            const clean = word.replace(/[.,;!?]+$/, '');
+            const medMatch = clean.match(/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine)$/i);
+            const doseMatch = clean.match(/^(\d+mg|\d+ml)$/i);
+            if (medMatch && !state.extractedMeds.find(m=>m.name.toLowerCase()===medMatch[1].toLowerCase())) {
+                state.extractedMeds.push({ name:medMatch[1], dosage:'', instruction:'' });
+            }
+            if (doseMatch && state.extractedMeds.length) {
+                const last = state.extractedMeds[state.extractedMeds.length-1];
+                if (!last.dosage) last.dosage = doseMatch[1];
+            }
+            const freq = clean.match(/^(once|twice|three\s+times)\s+daily\s+for\s+(\d+)\s+days?$/i);
+            if (freq && state.extractedMeds.length) {
+                state.extractedMeds[state.extractedMeds.length-1].instruction = freq[0];
+            }
+        }
+        function updateRxWidget() {
+            if (!state.extractedMeds.length) { rxContent.innerHTML='<span style="color:#94A3B8;">Listening...</span>'; return; }
+            rxContent.innerHTML = state.extractedMeds.map(m => `<span class="rx-pill">💊 ${m.name} ${m.dosage} ${m.instruction}</span>`).join(' ');
+        }
+        function finishTranscription(patient) {
+            state.isTranscribing = false;
+            updateTranscriptionBadge('done');
+            consultationPanel.classList.remove('highlight-gold');
+            clearTranscriptionTimeouts();
+            updateRxWidget();
+            showToast('✅ Prescription extracted. Fill the form to send report.', 'success-toast');
+            setTimeout(() => {
+                patientFormOverlay.classList.add('visible');
+                state.formVisible = true;
+                patientNameInput.value = patient.name;
+                patientAgeInput.value = patient.age;
+                patientWhatsappInput.value = '';
+                sendReportBtn.disabled = true;
+                sendReportBtn.classList.remove('loading');
+            }, 600);
+        }
+
+        // ─── SEND REPORT ──────────────────────
+        function handleSendReport() {
+            if (!state.currentPatient) return;
+            const whatsapp = patientWhatsappInput.value.trim();
+            if (!whatsapp) { showToast('⚠️ Enter WhatsApp number.'); return; }
+            sendReportBtn.classList.add('loading');
+            sendReportBtn.disabled = true;
+            setTimeout(() => {
+                const pname = patientNameInput.value;
+                const pdfContent = `VAIDYA Prescription\nPatient: ${pname}\n${state.extractedMeds.map(m=>`${m.name} ${m.dosage} ${m.instruction}`).join('\n')}`;
+                const blob = new Blob([pdfContent], {type:'application/pdf'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a'); a.href=url; a.download=`VAIDYA_${pname}_Report.pdf`;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                sendReportBtn.classList.remove('loading'); sendReportBtn.disabled=false;
+                state.stats.reports++; state.stats.patients++;
+                updateStats();
+                showToast(`📄 PDF sent via WhatsApp to ${whatsapp.slice(0,5)}**** ✅`, 'whatsapp-toast');
+                patientFormOverlay.classList.remove('visible'); state.formVisible=false;
+                updatePhoneUI(5, state.currentPatient);
+                // Reset current patient after a while
+                setTimeout(() => {
+                    state.currentPatient = null;
+                    updateCurrentPatientCard(null);
+                    updatePhoneUI(0, null);
+                }, 4000);
+            }, 2000);
+        }
+
+        // ─── AUTO DEMO ─────────────────────────
+        function toggleAutoDemo() {
+            state.autoDemoActive ? stopAutoDemo() : startAutoDemo();
+        }
+        function startAutoDemo() {
+            state.autoDemoActive = true;
+            btnAutoDemo.classList.add('auto-demo-active');
+            btnAutoDemo.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Demo';
+            showToast('▶️ Auto Demo started — full patient journey.', 'info');
+            fullResetSilent();
+            // Simulate a patient check-in
+            setTimeout(() => {
+                if (!state.autoDemoActive) return;
+                const patient = state.waitingQueue[0];
+                updatePhoneUI(1, patient);
+                showToast('📱 Patient WhatsApp check-in started.', 'info');
+            }, 500);
+            setTimeout(() => {
+                if (!state.autoDemoActive) return;
+                const patient = state.waitingQueue[0];
+                updatePhoneUI(2, patient);
+            }, 2000);
+            setTimeout(() => {
+                if (!state.autoDemoActive) return;
+                handleNextPatient(); // triggers full flow with voice call etc.
+            }, 3500);
+        }
+        function stopAutoDemo() {
+            state.autoDemoActive = false;
+            btnAutoDemo.classList.remove('auto-demo-active');
+            btnAutoDemo.innerHTML = '<i class="fa-solid fa-play"></i> Auto Demo';
+            state.autoDemoTimeouts.forEach(clearTimeout);
+            state.autoDemoTimeouts = [];
+        }
+
+        // ─── RESET ────────────────────────────
+        function fullReset() {
+            stopAutoDemo();
+            fullResetSilent();
+            showToast('🔄 Dashboard fully reset.', 'info');
+        }
+        function fullResetSilent() {
+            clearTranscriptionTimeouts();
+            state.autoDemoTimeouts.forEach(clearTimeout);
+            state.autoDemoTimeouts = [];
+            state.isTranscribing = false;
+            state.autoDemoActive = false;
+            state.currentPatient = null;
+            state.extractedMeds = [];
+            state.formVisible = false;
+            state.waitingQueue = [
+                { token:12, name:'Ravi Singh', age:34, concern:'Persistent cough & fever' },
+                { token:13, name:'Anita Desai', age:52, concern:'Joint pain in knees' },
+                { token:14, name:'Vikram Patel', age:28, concern:'Allergic skin rash' },
+            ];
+            state.stats = { patients:0, reports:0 };
+            chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'block';
+            rxContent.innerHTML = '<span style="color:#94A3B8;">Waiting for AI extraction...</span>';
+            patientFormOverlay.classList.remove('visible');
+            patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';
+            sendReportBtn.disabled=true; sendReportBtn.classList.remove('loading');
+            consultationPanel.classList.remove('highlight-gold');
+            updateTranscriptionBadge('idle');
+            updateCurrentPatientCard(null);
+            renderQueue();
+            updateStats();
+            updatePhoneUI(0, null);
+        }
+
+        function clearTranscriptionTimeouts() {
+            state.transcriptionTimeouts.forEach(clearTimeout);
+            state.transcriptionTimeouts = [];
+        }
+
+        // ─── TOAST ────────────────────────────
+        function showToast(msg, type='info') {
+            const t = document.createElement('div'); t.className = 'toast';
+            if (type==='whatsapp-toast') t.style.borderLeftColor='#25D366';
+            else if (type==='success-toast') t.style.borderLeftColor='#10B981';
+            t.innerHTML = msg; toastContainer.appendChild(t);
+            setTimeout(() => { if(t.parentNode) t.remove(); }, 4300);
+        }
+
+        init();
+    </script>
+</body>
+</html>
