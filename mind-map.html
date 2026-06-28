@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apollo Hospitals | Smart Clinic AI — Full Process Mind Map</title>
+    <title>Apollo Smart Clinic AI | 9‑Step Process Mind Map</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
         :root {
             --apollo-navy: #0A1F3F;
             --apollo-navy-light: #132D56;
-            --apollo-blue: #1B4F8A;
             --apollo-teal: #0E9488;
             --apollo-teal-light: #CCFBF1;
             --apollo-gold: #C8963E;
@@ -29,15 +28,14 @@
             --gray-600: #475569;
             --text: #1E293B;
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 6px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 16px 32px rgba(0,0,0,0.10);
-            --shadow-xl: 0 24px 48px rgba(0,0,0,0.12);
-            --radius-sm: 8px;
-            --radius: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --radius-2xl: 28px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.10);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.12);
+            --radius-sm: 10px;
+            --radius: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
             --font-xs: 0.68rem;
@@ -49,296 +47,293 @@
             --font-2xl: 1.5rem;
             --font-3xl: 2rem;
         }
-
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            font-size: var(--font-base);
-            line-height: 1.6;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            background-image: radial-gradient(circle at 20% 30%, rgba(14,148,136,0.03) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 70%, rgba(200,150,62,0.03) 0%, transparent 50%);
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{
+            font-family:'Inter',system-ui,-apple-system,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            font-size:var(--font-base);
+            line-height:1.6;
+            min-height:100vh;
+            -webkit-font-smoothing:antialiased;
+            background-image:
+                radial-gradient(circle at 15% 35%, rgba(14,148,136,0.04) 0%, transparent 50%),
+                radial-gradient(circle at 85% 65%, rgba(200,150,62,0.04) 0%, transparent 50%);
         }
 
         /* ── APOLLO HEADER ── */
         .apollo-header {
             background: linear-gradient(135deg, #0A1F3F 0%, #132D56 40%, #1B4F8A 100%);
-            color: #fff;
-            padding: 0.7rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            border-bottom: 3px solid var(--apollo-gold);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
+            color:#fff;
+            padding:0.7rem 2rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:0.75rem;
+            border-bottom:3px solid var(--apollo-gold);
+            position:relative;
+            overflow:hidden;
+            box-shadow:var(--shadow-md);
         }
-        .apollo-header::after {
-            content: '';
-            position: absolute;
-            top: -60%;
-            right: -5%;
-            width: 320px; height: 320px;
-            background: radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+        .apollo-header::after{
+            content:'';
+            position:absolute;
+            top:-60%; right:-5%;
+            width:320px; height:320px;
+            background:radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%);
+            border-radius:50%;
+            pointer-events:none;
         }
-        .header-left { display:flex; align-items:center; gap:0.85rem; z-index:1; }
-        .header-logo { width:50px; height:50px; flex-shrink:0; }
-        .header-logo svg { width:100%; height:100%; }
-        .header-title-group { display:flex; flex-direction:column; }
-        .header-main-title { font-weight:900; font-size:var(--font-xl); letter-spacing:-0.02em; line-height:1.2; }
-        .header-main-title span { color:var(--apollo-gold); }
-        .header-subtitle { font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.7); text-transform:uppercase; }
-        .header-right { display:flex; align-items:center; gap:1rem; z-index:1; flex-wrap:wrap; }
-        .header-badge { background:var(--apollo-red); padding:0.25rem 0.75rem; border-radius:50px; font-weight:700; font-size:0.6rem; animation:pulse-emergency 2s infinite; letter-spacing:0.04em; white-space:nowrap; }
-        @keyframes pulse-emergency { 0%,100%{ box-shadow:0 0 0 0 rgba(198,40,40,0.5); } 50%{ box-shadow:0 0 0 10px rgba(198,40,40,0); } }
-        .header-contact { font-size:0.6rem; font-weight:500; color:rgba(255,255,255,0.85); white-space:nowrap; }
-        .back-link {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: var(--font-xs);
-            color: #fff;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.25);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            text-decoration: none;
-            backdrop-filter: blur(4px);
+        .header-left{display:flex; align-items:center; gap:0.85rem; z-index:1;}
+        .header-logo{width:50px; height:50px; flex-shrink:0;}
+        .header-logo svg{width:100%;height:100%;}
+        .header-title-group{display:flex; flex-direction:column;}
+        .header-main-title{font-weight:900; font-size:var(--font-xl); letter-spacing:-0.02em; line-height:1.2;}
+        .header-main-title span{color:var(--apollo-gold);}
+        .header-subtitle{font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.7); text-transform:uppercase;}
+        .header-right{display:flex; align-items:center; gap:1rem; z-index:1; flex-wrap:wrap;}
+        .back-link{
+            background:rgba(255,255,255,0.1);
+            padding:0.5rem 1.2rem;
+            border-radius:50px;
+            font-weight:600;
+            font-size:var(--font-xs);
+            color:#fff;
+            cursor:pointer;
+            transition:var(--transition);
+            border:1px solid rgba(255,255,255,0.25);
+            display:inline-flex;
+            align-items:center;
+            gap:0.35rem;
+            text-decoration:none;
         }
-        .back-link:hover { background: rgba(255,255,255,0.2); border-color: var(--apollo-gold); }
+        .back-link:hover{background:rgba(255,255,255,0.2); border-color:var(--apollo-gold);}
 
-        /* ── MIND MAP CONTAINER ── */
-        .mindmap-wrapper {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            position: relative;
+        /* ── PAGE CONTENT ── */
+        .mindmap-container {
+            max-width:1500px;
+            margin:2rem auto;
+            padding:0 1.5rem;
         }
         .mindmap-title {
-            text-align: center;
-            margin-bottom: 3rem;
+            text-align:center;
+            margin-bottom:2.5rem;
         }
-        .mindmap-title h2 {
-            font-weight: 900;
-            font-size: var(--font-3xl);
-            color: var(--apollo-navy);
-            letter-spacing: -0.03em;
+        .mindmap-title h1 {
+            font-weight:900;
+            font-size:var(--font-3xl);
+            color:var(--apollo-navy);
+            letter-spacing:-0.03em;
         }
-        .mindmap-title h2 span { color: var(--apollo-teal); }
+        .mindmap-title h1 span {color:var(--apollo-teal);}
         .mindmap-title p {
-            color: var(--gray-500);
-            font-size: var(--font-sm);
-            margin-top: 0.4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color:var(--gray-500);
+            font-size:var(--font-sm);
+            margin-top:0.4rem;
+            max-width:700px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .flow-progress {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:0.4rem;
+            margin:1.2rem 0;
+            flex-wrap:wrap;
+        }
+        .flow-step-dot {
+            width:12px; height:12px;
+            border-radius:50%;
+            background:var(--gray-300);
+            transition:var(--transition);
+            flex-shrink:0;
+        }
+        .flow-step-dot.active {background:var(--apollo-teal); box-shadow:0 0 12px rgba(14,148,136,0.5);}
+        .flow-arrow {color:var(--gray-300); font-size:0.6rem; margin:0 0.2rem;}
+
+        /* ── GRID ── */
+        .steps-grid {
+            display:grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap:2rem 1.5rem;
+        }
+        .step-card {
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);
+            border-radius:var(--radius-xl);
+            box-shadow:var(--shadow-lg);
+            border:2px solid var(--gray-200);
+            transition:var(--transition-slow);
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+        }
+        .step-card:hover {
+            transform:translateY(-6px);
+            box-shadow:var(--shadow-xl);
+            border-color:var(--apollo-teal);
+        }
+        .step-card.active-step {
+            border-color:var(--apollo-gold);
+            box-shadow:0 0 0 6px rgba(200,150,62,0.12), var(--shadow-xl);
         }
 
-        /* ── CENTRAL HUB LAYOUT ── */
-        .hub-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
+        /* ── VIDEO PLACEHOLDER ── */
+        .video-placeholder {
+            position:relative;
+            width:100%;
+            background:linear-gradient(145deg, #1E293B 0%, #0F172A 100%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            aspect-ratio:16/9;
+            cursor:pointer;
+            overflow:hidden;
         }
-        .hub-row {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            position: relative;
-            width: 100%;
+        .video-placeholder::before {
+            content:'';
+            position:absolute;
+            inset:0;
+            background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="white" stroke-opacity="0.2" stroke-width="2"/><polygon points="40,35 40,65 68,50" fill="white" fill-opacity="0.6"/></svg>') center/cover no-repeat;
+            opacity:0.15;
         }
-        /* Connector lines via pseudo-elements */
-        .hub-row::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 15%;
-            right: 15%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--apollo-teal), var(--apollo-gold), var(--apollo-teal));
-            border-radius: 3px;
-            opacity: 0.25;
-            z-index: 0;
-            pointer-events: none;
+        .video-placeholder .play-icon {
+            font-size:2.8rem;
+            color:white;
+            opacity:0.85;
+            z-index:1;
+            filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            transition:var(--transition);
         }
-        .hub-row.top-row::before { top: 50%; }
-        .hub-row.middle-row::before { top: 50%; }
-        .hub-row.bottom-row::before { top: 50%; }
-
-        /* ── NODE CARD ── */
-        .mindmap-node {
-            background: #fff;
-            border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-lg);
-            border: 2px solid var(--gray-200);
-            width: 300px;
-            transition: var(--transition-slow);
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(6px);
-            background: rgba(255,255,255,0.95);
+        .video-placeholder:hover .play-icon {
+            transform:scale(1.1);
+            opacity:1;
         }
-        .mindmap-node:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--apollo-teal);
+        .video-placeholder .webm-badge {
+            position:absolute;
+            bottom:10px;
+            right:12px;
+            background:rgba(0,0,0,0.7);
+            color:#ccc;
+            font-size:0.55rem;
+            font-weight:700;
+            padding:0.2rem 0.6rem;
+            border-radius:50px;
+            letter-spacing:0.04em;
+            backdrop-filter:blur(4px);
+            z-index:1;
         }
-        .mindmap-node.current-step {
-            border-color: var(--apollo-gold);
-            box-shadow: 0 0 0 8px rgba(200,150,62,0.1), var(--shadow-xl);
-            animation: pulse-gold 2s infinite;
-        }
-        @keyframes pulse-gold {
-            0%,100% { box-shadow: 0 0 0 8px rgba(200,150,62,0.1), var(--shadow-xl); }
-            50% { box-shadow: 0 0 0 18px rgba(200,150,62,0.03), var(--shadow-xl); }
-        }
-        .node-img-placeholder {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(145deg, #F1F5F9 0%, #E2E8F0 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 2px dashed var(--gray-300);
-            position: relative;
-            overflow: hidden;
-        }
-        .node-img-placeholder .placeholder-icon {
-            font-size: 3.2rem;
-            color: var(--gray-400);
-            opacity: 0.6;
-            margin-bottom: 0.25rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
-        }
-        .node-img-placeholder .placeholder-text {
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--gray-400);
-            background: rgba(255,255,255,0.85);
-            padding: 0.2rem 0.8rem;
-            border-radius: 50px;
-            border: 1px solid var(--gray-300);
-        }
-        .node-img-placeholder .placeholder-dims {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            font-size: 0.5rem;
-            color: var(--gray-400);
-            font-weight: 500;
-            background: rgba(255,255,255,0.7);
-            padding: 0.1rem 0.5rem;
-            border-radius: 4px;
-        }
-        .node-body {
-            padding: 1.2rem 1.3rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-        .node-step-num {
-            font-weight: 900;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--apollo-teal);
-        }
-        .node-step-title {
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--apollo-navy);
-            letter-spacing: -0.01em;
-        }
-        .node-step-desc {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            line-height: 1.5;
-            margin-bottom: 0.3rem;
-        }
-        .node-step-tags {
-            display: flex;
-            gap: 0.35rem;
-            flex-wrap: wrap;
-            margin-top: auto;
-        }
-        .node-tag {
-            font-size: 0.55rem;
-            font-weight: 700;
-            padding: 0.15rem 0.55rem;
-            border-radius: 50px;
-            background: var(--apollo-teal-light);
-            color: #0F766E;
-            letter-spacing: 0.03em;
-        }
-        .node-tag.gold-tag {
-            background: var(--apollo-gold-light);
-            color: #7C5E1A;
+        .video-placeholder .step-number-overlay {
+            position:absolute;
+            top:12px;
+            left:12px;
+            background:var(--apollo-teal);
+            color:white;
+            font-weight:800;
+            font-size:0.7rem;
+            padding:0.25rem 0.6rem;
+            border-radius:50px;
+            z-index:2;
+            letter-spacing:0.04em;
+            box-shadow:0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* ── ANIMATED FLOW INDICATOR ── */
-        .flow-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 1rem 0 0.5rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* ── CARD BODY ── */
+        .card-body {
+            padding:1.2rem 1.3rem;
+            flex:1;
+            display:flex;
+            flex-direction:column;
+            gap:0.5rem;
         }
-        .flow-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--gray-300);
-            transition: var(--transition);
+        .card-title {
+            font-weight:800;
+            font-size:1.05rem;
+            color:var(--apollo-navy);
+            letter-spacing:-0.01em;
         }
-        .flow-dot.active-dot {
-            background: var(--apollo-teal);
-            box-shadow: 0 0 12px rgba(14,148,136,0.6);
-            animation: bounce-dot 0.5s ease-out;
+        .card-summary {
+            font-size:0.72rem;
+            color:var(--gray-500);
+            line-height:1.5;
+            margin-bottom:0.3rem;
         }
-        @keyframes bounce-dot {
-            0%,100% { transform: scale(1); }
-            40% { transform: scale(1.6); }
+
+        /* ── EXPANDABLE DETAILS ── */
+        .details-toggle {
+            background:var(--apollo-teal-light);
+            border:1px solid #B2ECE0;
+            border-radius:50px;
+            padding:0.45rem 0.9rem;
+            font-weight:700;
+            font-size:0.65rem;
+            color:#0F766E;
+            cursor:pointer;
+            transition:var(--transition);
+            display:inline-flex;
+            align-items:center;
+            gap:0.3rem;
+            align-self:flex-start;
+            font-family:'Inter',sans-serif;
+            letter-spacing:0.02em;
         }
-        .flow-dot.done-dot { background: #10B981; }
+        .details-toggle:hover {
+            background:#B2ECE0;
+            border-color:var(--apollo-teal);
+        }
+        .details-toggle i {
+            transition:transform 0.3s;
+        }
+        .details-toggle.open i {
+            transform:rotate(180deg);
+        }
+        .details-content {
+            max-height:0;
+            overflow:hidden;
+            transition:max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top:0.5rem;
+        }
+        .details-content.expanded {
+            max-height:600px;
+        }
+        .details-list {
+            list-style:none;
+            padding:0;
+            margin:0;
+        }
+        .details-list li {
+            padding:0.4rem 0;
+            font-size:0.7rem;
+            color:var(--gray-600);
+            display:flex;
+            gap:0.5rem;
+            align-items:baseline;
+            border-bottom:1px solid var(--gray-100);
+        }
+        .details-list li:last-child {border-bottom:none;}
+        .details-list li::before {
+            content:'▹';
+            color:var(--apollo-teal);
+            font-weight:700;
+            flex-shrink:0;
+        }
+        .details-subheader {
+            font-weight:700;
+            font-size:0.65rem;
+            text-transform:uppercase;
+            letter-spacing:0.05em;
+            color:var(--apollo-navy);
+            margin:0.6rem 0 0.2rem;
+        }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 1100px) {
-            .hub-row { gap: 1.5rem; }
-            .mindmap-node { width: 260px; }
-            .node-img-placeholder { height: 140px; }
-        }
-        @media (max-width: 800px) {
-            .hub-row { flex-direction: column; align-items: center; }
-            .hub-row::before { display: none; }
-            .mindmap-node { width: 90%; max-width: 380px; }
-            .mindmap-title h2 { font-size: 1.8rem; }
-        }
+        @media (max-width:1100px){.steps-grid{grid-template-columns:repeat(2,1fr); gap:1.5rem;}}
+        @media (max-width:700px){.steps-grid{grid-template-columns:1fr; gap:1.2rem;}}
     </style>
 </head>
 <body>
@@ -346,157 +341,269 @@
     <header class="apollo-header">
         <div class="header-left">
             <div class="header-logo">
-                <svg viewBox="0 0 50 50" fill="none">
-                    <rect width="50" height="50" rx="12" fill="#0A1F3F"/>
-                    <rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/>
-                    <line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="39" cy="39" r="8" fill="#C8963E"/>
-                    <text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text>
-                </svg>
+                <svg viewBox="0 0 50 50" fill="none"><rect width="50" height="50" rx="12" fill="#0A1F3F"/><rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/><line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="39" cy="39" r="8" fill="#C8963E"/><text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text></svg>
             </div>
             <div class="header-title-group">
                 <div class="header-main-title">Apollo <span>Smart Clinic AI</span></div>
-                <div class="header-subtitle">Full Process Mind Map • सम्पूर्ण प्रक्रिया का नक्शा</div>
+                <div class="header-subtitle">9‑Step Process Mind Map • विस्तृत प्रक्रिया</div>
             </div>
         </div>
         <div class="header-right">
-            <span class="header-contact"><i class="fa-solid fa-phone"></i> +91 44 2829 0200</span>
-            <span class="header-badge">🆘 EMERGENCY: 1066</span>
+            <span style="font-size:0.6rem;color:rgba(255,255,255,0.7);"><i class="fa-solid fa-phone"></i> +91 44 2829 0200</span>
             <a href="./dashboard.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
         </div>
     </header>
 
     <!-- ═══════════ MIND MAP CONTENT ═══════════ -->
-    <div class="mindmap-wrapper">
+    <div class="mindmap-container">
         <div class="mindmap-title">
-            <h2>🧠 Visual Process <span>Mind Map</span></h2>
-            <p>Every step of the Apollo Smart Clinic AI journey is visually mapped below. Replace placeholder PNGs with actual screenshots from the live system.</p>
-            <div class="flow-indicator" id="flowIndicator">
-                <span class="flow-dot active-dot" data-step="1"></span> Step 1
-                <span class="flow-dot" data-step="2"></span> Step 2
-                <span class="flow-dot" data-step="3"></span> Step 3
-                <span class="flow-dot" data-step="4"></span> Step 4
-                <span class="flow-dot" data-step="5"></span> Step 5
-                <span class="flow-dot" data-step="6"></span> Step 6
+            <h1>🧠 Full Workflow <span>Mind Map</span></h1>
+            <p>Every stage of the Apollo Smart Clinic journey — from entry to exit — is visualized with <strong>.webm video placeholders</strong> and expandable, point‑by‑point explanations.</p>
+            <div class="flow-progress">
+                <span class="flow-step-dot active" title="Step 1"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 2"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 3"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 4"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 5"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 6"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 7"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 8"></span><span class="flow-arrow">→</span>
+                <span class="flow-step-dot" title="Step 9"></span>
             </div>
         </div>
 
-        <!-- Central Hub Layout: Two rows of three nodes each -->
-        <div class="hub-container">
-            <!-- Row 1: Steps 1,2,3 -->
-            <div class="hub-row top-row">
-                <!-- Node 1 -->
-                <div class="mindmap-node" data-step="1">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">📱</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 1</span>
-                        <span class="node-step-title">📱 Patient Check‑in</span>
-                        <span class="node-step-desc">Patient scans QR code at reception or sends WhatsApp. Details captured automatically.</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">QR Code</span>
-                            <span class="node-tag">WhatsApp</span>
-                            <span class="node-tag gold-tag">Auto-detect</span>
-                        </div>
-                    </div>
+        <!-- 9 Steps Grid -->
+        <div class="steps-grid" id="stepsGrid">
+            <!-- Card 1 -->
+            <div class="step-card" data-step="1">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">1</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
                 </div>
-                <!-- Node 2 -->
-                <div class="mindmap-node" data-step="2">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">🤖</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 2</span>
-                        <span class="node-step-title">🤖 AI Triage Bot</span>
-                        <span class="node-step-desc">AI chatbot captures name, age, and chief concern before doctor sees them.</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">NLP</span>
-                            <span class="node-tag">Auto-form</span>
-                            <span class="node-tag gold-tag">Smart</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Node 3 -->
-                <div class="mindmap-node" data-step="3">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">🔢</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 3</span>
-                        <span class="node-step-title">🔢 Token Queue System</span>
-                        <span class="node-step-desc">Token number generated. Queue updates in real-time. Digital "number lagao".</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">Token</span>
-                            <span class="node-tag">Queue</span>
-                            <span class="node-tag gold-tag">Real-time</span>
-                        </div>
+                <div class="card-body">
+                    <div class="card-title">📱 Patient Check‑in</div>
+                    <p class="card-summary">QR scan at reception, WhatsApp opens instantly.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <ul class="details-list">
+                            <li>Patient arrives, scans QR code on reception desk</li>
+                            <li>WhatsApp opens with pre‑filled greeting message</li>
+                            <li>Receptionist confirms identity digitally</li>
+                            <li>System logs check‑in time automatically</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Row 2: Steps 4,5,6 -->
-            <div class="hub-row bottom-row">
-                <!-- Node 4 -->
-                <div class="mindmap-node" data-step="4">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">👨‍⚕️</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 4</span>
-                        <span class="node-step-title">👨‍⚕️ Live Consultation</span>
-                        <span class="node-step-desc">Doctor speaks naturally. AI transcribes in real-time, highlights medical entities.</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">AI Live</span>
-                            <span class="node-tag">Transcribe</span>
-                            <span class="node-tag gold-tag">Voice</span>
-                        </div>
+            <!-- Card 2 -->
+            <div class="step-card" data-step="2">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">2</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">🤖 AI Triage Bot</div>
+                    <p class="card-summary">WhatsApp chat captures name, age, concern.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <div class="details-subheader">Bot Interaction</div>
+                        <ul class="details-list">
+                            <li>AI bot asks patient’s full name</li>
+                            <li>Patient replies “Rahul Sharma”</li>
+                            <li>Bot immediately requests age</li>
+                            <li>Patient types “32”</li>
+                            <li>Bot asks chief concern; patient describes “Fever and cough for 2 days”</li>
+                        </ul>
+                        <div class="details-subheader">Data Processing</div>
+                        <ul class="details-list">
+                            <li>AI extracts structured data (age, symptoms)</li>
+                            <li>Patient’s information populates dashboard in real‑time</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Node 5 -->
-                <div class="mindmap-node" data-step="5">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">💊</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
-                    </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 5</span>
-                        <span class="node-step-title">💊 Prescription AI Engine</span>
-                        <span class="node-step-desc">AI extracts medicine names, dosages, instructions. Updates live widget.</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">AI Extract</span>
-                            <span class="node-tag">Dosage</span>
-                            <span class="node-tag gold-tag">Auto</span>
-                        </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="step-card" data-step="3">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">3</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">🔢 Token Queue System</div>
+                    <p class="card-summary">Digital token assigned, live queue on phone.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <ul class="details-list">
+                            <li>System generates token #12 for Rahul</li>
+                            <li>WhatsApp message confirms token and queue position (3 patients ahead)</li>
+                            <li>Live progress bar shows real‑time position</li>
+                            <li>Waiting room display board updates dynamically</li>
+                            <li>No physical token paper needed</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Node 6 -->
-                <div class="mindmap-node" data-step="6">
-                    <div class="node-img-placeholder">
-                        <span class="placeholder-icon">📄</span>
-                        <span class="placeholder-text">PNG Placeholder</span>
-                        <span class="placeholder-dims">800×500px</span>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="step-card" data-step="4">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">4</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">📞 AI Voice Call</div>
+                    <p class="card-summary">Auto‑call when token is near, directed to room.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <div class="details-subheader">Incoming Call</div>
+                        <ul class="details-list">
+                            <li>Rahul’s phone rings, caller ID: “Clinic Assistant”</li>
+                            <li>He answers; AI voice announces: “Your turn in ~5 minutes. Please go to Room 3.”</li>
+                            <li>Call duration auto‑logged (22 sec)</li>
+                        </ul>
+                        <div class="details-subheader">Patient Action</div>
+                        <ul class="details-list">
+                            <li>Patient stands, walks toward consultation area</li>
+                            <li>No need to ask staff for directions</li>
+                        </ul>
                     </div>
-                    <div class="node-body">
-                        <span class="node-step-num">Step 6</span>
-                        <span class="node-step-title">📄 WhatsApp Report Delivery</span>
-                        <span class="node-step-desc">PDF prescription generated & sent via WhatsApp API. Patient receives instantly.</span>
-                        <div class="node-step-tags">
-                            <span class="node-tag">PDF</span>
-                            <span class="node-tag">WhatsApp API</span>
-                            <span class="node-tag gold-tag">Instant</span>
-                        </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="step-card" data-step="5">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">5</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">👨‍⚕️ Live Consultation</div>
+                    <p class="card-summary">Doctor speaks, AI transcribes live.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <div class="details-subheader">In‑Room Setup</div>
+                        <ul class="details-list">
+                            <li>Doctor (white coat, stethoscope) greets patient</li>
+                            <li>Laptop on desk shows AI dashboard with patient card</li>
+                            <li>Microphone icon pulses green – transcription active</li>
+                        </ul>
+                        <div class="details-subheader">Real‑Time Transcription</div>
+                        <ul class="details-list">
+                            <li>Speech instantly converted to text</li>
+                            <li>Medical entities (fever, cough, chest congestion) highlighted in blue</li>
+                            <li>Conversation scrolls smoothly in chat panel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="step-card" data-step="6">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">6</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">💊 Prescription AI Engine</div>
+                    <p class="card-summary">AI extracts meds, dosages, preventive measures.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <div class="details-subheader">Auto‑Extraction</div>
+                        <ul class="details-list">
+                            <li>Floating “Prescription Extractor” widget appears</li>
+                            <li>Detects Azithromycin 500mg – Once daily, 3 days</li>
+                            <li>Paracetamol 650mg – Twice daily, 5 days</li>
+                            <li>Timing: After breakfast / With food</li>
+                        </ul>
+                        <div class="details-subheader">Smart Additions</div>
+                        <ul class="details-list">
+                            <li>Diagnosis auto‑filled: “Acute Viral Infection”</li>
+                            <li>Preventive tips: hydration, rest, avoid cold drinks</li>
+                            <li>“Generate Report” button pulses softly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="step-card" data-step="7">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">7</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">🖥️ Dashboard Queue Control</div>
+                    <p class="card-summary">Doctor clicks “Next” to call next patient.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <ul class="details-list">
+                            <li>Dashboard shows live queue with statuses</li>
+                            <li>Current patient: #09 Rajesh (With Doctor)</li>
+                            <li>Next: #10 Priya (Waiting), #11 Amit, #12 Rahul</li>
+                            <li>Doctor clicks green “✅ Next” button</li>
+                            <li>Toast notification: “📞 Calling Patient #10 (Priya)…”</li>
+                            <li>Queue updates automatically, call log recorded</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="step-card" data-step="8">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">8</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">📄 WhatsApp Report Delivery</div>
+                    <p class="card-summary">PDF report sent instantly to patient.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <ul class="details-list">
+                            <li>Dashboard shows “✅ Report sent to Rahul Sharma”</li>
+                            <li>Patient receives WhatsApp message with PDF attachment</li>
+                            <li>Push notification: “Your consultation report is ready”</li>
+                            <li>PDF opens – clinic letterhead, medicine timetable, diagnosis</li>
+                            <li>Full transcribed conversation included at end</li>
+                            <li>Patient scrolls through report seamlessly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="step-card" data-step="9">
+                <div class="video-placeholder">
+                    <div class="step-number-overlay">9</div>
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                    <span class="webm-badge">WEBM</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">✅ Workflow Complete & Patient Exit</div>
+                    <p class="card-summary">Happy patient leaves, dashboard shows summary.</p>
+                    <button class="details-toggle"><i class="fa-solid fa-chevron-down"></i> See detailed steps</button>
+                    <div class="details-content">
+                        <div class="details-subheader">Closure</div>
+                        <ul class="details-list">
+                            <li>Rahul walks out, gives thumbs‑up to receptionist</li>
+                            <li>Receptionist waves back</li>
+                        </ul>
+                        <div class="details-subheader">Dashboard Recap</div>
+                        <ul class="details-list">
+                            <li>Total patients today: 24</li>
+                            <li>Queue cleared, reports sent: 18</li>
+                            <li>Token #12 marked “Completed” with green check</li>
+                            <li>Bird’s‑eye view of clinic with workflow overlay</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -504,30 +611,44 @@
     </div>
 
     <!-- ═══════════ FOOTER ═══════════ -->
-    <div style="text-align:center; padding:2rem 1rem; color:var(--gray-400); font-size:0.65rem; border-top:1px solid var(--gray-200); margin-top:2rem;">
-        © Apollo Hospitals Enterprise Limited • Smart Clinic AI v1.0 • All placeholder images to be replaced with actual screenshots.
+    <div style="text-align:center; padding:2rem 1rem; color:var(--gray-400); font-size:0.65rem; border-top:1px solid var(--gray-200); margin-top:2.5rem;">
+        © Apollo Hospitals Enterprise Limited • Smart Clinic AI • Replace .webm placeholders with actual demonstration videos.
     </div>
 
-    <!-- Optional: Lightweight script to simulate step highlighting -->
     <script>
-        // Highlight nodes on hover or click (demonstration)
-        const nodes = document.querySelectorAll('.mindmap-node');
-        const flowDots = document.querySelectorAll('.flow-dot');
-
-        nodes.forEach(node => {
-            node.addEventListener('mouseenter', () => {
-                const step = node.dataset.step;
-                flowDots.forEach(dot => {
-                    dot.classList.remove('active-dot');
-                    if (dot.dataset.step === step) dot.classList.add('active-dot');
+        // Accordion behavior for all detail toggles
+        document.querySelectorAll('.details-toggle').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.step-card');
+                const content = card.querySelector('.details-content');
+                const isOpen = content.classList.contains('expanded');
+                // Close any other open in the same card (just in case)
+                card.querySelectorAll('.details-content.expanded').forEach(c => {
+                    if (c !== content) c.classList.remove('expanded');
                 });
-                // Remove current-step from all, add to hovered
-                nodes.forEach(n => n.classList.remove('current-step'));
-                node.classList.add('current-step');
+                content.classList.toggle('expanded');
+                this.classList.toggle('open');
+                // Toggle icon
+                const icon = this.querySelector('i');
+                if (icon) icon.classList.toggle('fa-chevron-down', !content.classList.contains('expanded'));
+                if (icon) icon.classList.toggle('fa-chevron-up', content.classList.contains('expanded'));
             });
-            node.addEventListener('mouseleave', () => {
-                node.classList.remove('current-step');
-                flowDots.forEach(dot => dot.classList.remove('active-dot'));
+        });
+
+        // Interactive flow dots: highlight on card hover
+        const cards = document.querySelectorAll('.step-card');
+        const flowDots = document.querySelectorAll('.flow-step-dot');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const step = card.dataset.step;
+                flowDots.forEach(dot => dot.classList.remove('active'));
+                if (step && flowDots[step-1]) flowDots[step-1].classList.add('active');
+                cards.forEach(c => c.classList.remove('active-step'));
+                card.classList.add('active-step');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('active-step');
+                flowDots.forEach(dot => dot.classList.remove('active'));
             });
         });
     </script>
