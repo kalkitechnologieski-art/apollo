@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apollo Hospitals | Smart Clinic AI — Full Process Mind Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --apollo-navy: #0A1F3F;
+            --apollo-navy-light: #132D56;
+            --apollo-blue: #1B4F8A;
+            --apollo-teal: #0E9488;
+            --apollo-teal-light: #CCFBF1;
+            --apollo-gold: #C8963E;
+            --apollo-gold-light: #FDF2E0;
+            --apollo-red: #C62828;
+            --white: #FFFFFF;
+            --bg: #F4F6F9;
+            --gray-50: #F9FAFB;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --text: #1E293B;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 32px rgba(0,0,0,0.10);
+            --shadow-xl: 0 24px 48px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-xs: 0.68rem;
+            --font-sm: 0.78rem;
+            --font-base: 0.875rem;
+            --font-md: 0.95rem;
+            --font-lg: 1.05rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 2rem;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: var(--font-base);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(circle at 20% 30%, rgba(14,148,136,0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(200,150,62,0.03) 0%, transparent 50%);
+        }
+
+        /* ── APOLLO HEADER ── */
+        .apollo-header {
+            background: linear-gradient(135deg, #0A1F3F 0%, #132D56 40%, #1B4F8A 100%);
+            color: #fff;
+            padding: 0.7rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            border-bottom: 3px solid var(--apollo-gold);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        .apollo-header::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -5%;
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(200,150,62,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .header-left { display:flex; align-items:center; gap:0.85rem; z-index:1; }
+        .header-logo { width:50px; height:50px; flex-shrink:0; }
+        .header-logo svg { width:100%; height:100%; }
+        .header-title-group { display:flex; flex-direction:column; }
+        .header-main-title { font-weight:900; font-size:var(--font-xl); letter-spacing:-0.02em; line-height:1.2; }
+        .header-main-title span { color:var(--apollo-gold); }
+        .header-subtitle { font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.7); text-transform:uppercase; }
+        .header-right { display:flex; align-items:center; gap:1rem; z-index:1; flex-wrap:wrap; }
+        .header-badge { background:var(--apollo-red); padding:0.25rem 0.75rem; border-radius:50px; font-weight:700; font-size:0.6rem; animation:pulse-emergency 2s infinite; letter-spacing:0.04em; white-space:nowrap; }
+        @keyframes pulse-emergency { 0%,100%{ box-shadow:0 0 0 0 rgba(198,40,40,0.5); } 50%{ box-shadow:0 0 0 10px rgba(198,40,40,0); } }
+        .header-contact { font-size:0.6rem; font-weight:500; color:rgba(255,255,255,0.85); white-space:nowrap; }
+        .back-link {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: var(--font-xs);
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+        }
+        .back-link:hover { background: rgba(255,255,255,0.2); border-color: var(--apollo-gold); }
+
+        /* ── MIND MAP CONTAINER ── */
+        .mindmap-wrapper {
+            max-width: 1600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+        .mindmap-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .mindmap-title h2 {
+            font-weight: 900;
+            font-size: var(--font-3xl);
+            color: var(--apollo-navy);
+            letter-spacing: -0.03em;
+        }
+        .mindmap-title h2 span { color: var(--apollo-teal); }
+        .mindmap-title p {
+            color: var(--gray-500);
+            font-size: var(--font-sm);
+            margin-top: 0.4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── CENTRAL HUB LAYOUT ── */
+        .hub-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+        .hub-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            width: 100%;
+        }
+        /* Connector lines via pseudo-elements */
+        .hub-row::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--apollo-teal), var(--apollo-gold), var(--apollo-teal));
+            border-radius: 3px;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hub-row.top-row::before { top: 50%; }
+        .hub-row.middle-row::before { top: 50%; }
+        .hub-row.bottom-row::before { top: 50%; }
+
+        /* ── NODE CARD ── */
+        .mindmap-node {
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--gray-200);
+            width: 300px;
+            transition: var(--transition-slow);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(6px);
+            background: rgba(255,255,255,0.95);
+        }
+        .mindmap-node:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--apollo-teal);
+        }
+        .mindmap-node.current-step {
+            border-color: var(--apollo-gold);
+            box-shadow: 0 0 0 8px rgba(200,150,62,0.1), var(--shadow-xl);
+            animation: pulse-gold 2s infinite;
+        }
+        @keyframes pulse-gold {
+            0%,100% { box-shadow: 0 0 0 8px rgba(200,150,62,0.1), var(--shadow-xl); }
+            50% { box-shadow: 0 0 0 18px rgba(200,150,62,0.03), var(--shadow-xl); }
+        }
+        .node-img-placeholder {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(145deg, #F1F5F9 0%, #E2E8F0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px dashed var(--gray-300);
+            position: relative;
+            overflow: hidden;
+        }
+        .node-img-placeholder .placeholder-icon {
+            font-size: 3.2rem;
+            color: var(--gray-400);
+            opacity: 0.6;
+            margin-bottom: 0.25rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        }
+        .node-img-placeholder .placeholder-text {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+            background: rgba(255,255,255,0.85);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--gray-300);
+        }
+        .node-img-placeholder .placeholder-dims {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.5rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            background: rgba(255,255,255,0.7);
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+        }
+        .node-body {
+            padding: 1.2rem 1.3rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .node-step-num {
+            font-weight: 900;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--apollo-teal);
+        }
+        .node-step-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--apollo-navy);
+            letter-spacing: -0.01em;
+        }
+        .node-step-desc {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+            margin-bottom: 0.3rem;
+        }
+        .node-step-tags {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+        .node-tag {
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 50px;
+            background: var(--apollo-teal-light);
+            color: #0F766E;
+            letter-spacing: 0.03em;
+        }
+        .node-tag.gold-tag {
+            background: var(--apollo-gold-light);
+            color: #7C5E1A;
+        }
+
+        /* ── ANIMATED FLOW INDICATOR ── */
+        .flow-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .flow-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            transition: var(--transition);
+        }
+        .flow-dot.active-dot {
+            background: var(--apollo-teal);
+            box-shadow: 0 0 12px rgba(14,148,136,0.6);
+            animation: bounce-dot 0.5s ease-out;
+        }
+        @keyframes bounce-dot {
+            0%,100% { transform: scale(1); }
+            40% { transform: scale(1.6); }
+        }
+        .flow-dot.done-dot { background: #10B981; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .hub-row { gap: 1.5rem; }
+            .mindmap-node { width: 260px; }
+            .node-img-placeholder { height: 140px; }
+        }
+        @media (max-width: 800px) {
+            .hub-row { flex-direction: column; align-items: center; }
+            .hub-row::before { display: none; }
+            .mindmap-node { width: 90%; max-width: 380px; }
+            .mindmap-title h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════ APOLLO HEADER ═══════════ -->
+    <header class="apollo-header">
+        <div class="header-left">
+            <div class="header-logo">
+                <svg viewBox="0 0 50 50" fill="none">
+                    <rect width="50" height="50" rx="12" fill="#0A1F3F"/>
+                    <rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/>
+                    <line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="39" cy="39" r="8" fill="#C8963E"/>
+                    <text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text>
+                </svg>
+            </div>
+            <div class="header-title-group">
+                <div class="header-main-title">Apollo <span>Smart Clinic AI</span></div>
+                <div class="header-subtitle">Full Process Mind Map • सम्पूर्ण प्रक्रिया का नक्शा</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="header-contact"><i class="fa-solid fa-phone"></i> +91 44 2829 0200</span>
+            <span class="header-badge">🆘 EMERGENCY: 1066</span>
+            <a href="./dashboard.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+        </div>
+    </header>
+
+    <!-- ═══════════ MIND MAP CONTENT ═══════════ -->
+    <div class="mindmap-wrapper">
+        <div class="mindmap-title">
+            <h2>🧠 Visual Process <span>Mind Map</span></h2>
+            <p>Every step of the Apollo Smart Clinic AI journey is visually mapped below. Replace placeholder PNGs with actual screenshots from the live system.</p>
+            <div class="flow-indicator" id="flowIndicator">
+                <span class="flow-dot active-dot" data-step="1"></span> Step 1
+                <span class="flow-dot" data-step="2"></span> Step 2
+                <span class="flow-dot" data-step="3"></span> Step 3
+                <span class="flow-dot" data-step="4"></span> Step 4
+                <span class="flow-dot" data-step="5"></span> Step 5
+                <span class="flow-dot" data-step="6"></span> Step 6
+            </div>
+        </div>
+
+        <!-- Central Hub Layout: Two rows of three nodes each -->
+        <div class="hub-container">
+            <!-- Row 1: Steps 1,2,3 -->
+            <div class="hub-row top-row">
+                <!-- Node 1 -->
+                <div class="mindmap-node" data-step="1">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">📱</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 1</span>
+                        <span class="node-step-title">📱 Patient Check‑in</span>
+                        <span class="node-step-desc">Patient scans QR code at reception or sends WhatsApp. Details captured automatically.</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">QR Code</span>
+                            <span class="node-tag">WhatsApp</span>
+                            <span class="node-tag gold-tag">Auto-detect</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Node 2 -->
+                <div class="mindmap-node" data-step="2">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">🤖</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 2</span>
+                        <span class="node-step-title">🤖 AI Triage Bot</span>
+                        <span class="node-step-desc">AI chatbot captures name, age, and chief concern before doctor sees them.</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">NLP</span>
+                            <span class="node-tag">Auto-form</span>
+                            <span class="node-tag gold-tag">Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Node 3 -->
+                <div class="mindmap-node" data-step="3">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">🔢</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 3</span>
+                        <span class="node-step-title">🔢 Token Queue System</span>
+                        <span class="node-step-desc">Token number generated. Queue updates in real-time. Digital "number lagao".</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">Token</span>
+                            <span class="node-tag">Queue</span>
+                            <span class="node-tag gold-tag">Real-time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Steps 4,5,6 -->
+            <div class="hub-row bottom-row">
+                <!-- Node 4 -->
+                <div class="mindmap-node" data-step="4">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">👨‍⚕️</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 4</span>
+                        <span class="node-step-title">👨‍⚕️ Live Consultation</span>
+                        <span class="node-step-desc">Doctor speaks naturally. AI transcribes in real-time, highlights medical entities.</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">AI Live</span>
+                            <span class="node-tag">Transcribe</span>
+                            <span class="node-tag gold-tag">Voice</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Node 5 -->
+                <div class="mindmap-node" data-step="5">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">💊</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 5</span>
+                        <span class="node-step-title">💊 Prescription AI Engine</span>
+                        <span class="node-step-desc">AI extracts medicine names, dosages, instructions. Updates live widget.</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">AI Extract</span>
+                            <span class="node-tag">Dosage</span>
+                            <span class="node-tag gold-tag">Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Node 6 -->
+                <div class="mindmap-node" data-step="6">
+                    <div class="node-img-placeholder">
+                        <span class="placeholder-icon">📄</span>
+                        <span class="placeholder-text">PNG Placeholder</span>
+                        <span class="placeholder-dims">800×500px</span>
+                    </div>
+                    <div class="node-body">
+                        <span class="node-step-num">Step 6</span>
+                        <span class="node-step-title">📄 WhatsApp Report Delivery</span>
+                        <span class="node-step-desc">PDF prescription generated & sent via WhatsApp API. Patient receives instantly.</span>
+                        <div class="node-step-tags">
+                            <span class="node-tag">PDF</span>
+                            <span class="node-tag">WhatsApp API</span>
+                            <span class="node-tag gold-tag">Instant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <div style="text-align:center; padding:2rem 1rem; color:var(--gray-400); font-size:0.65rem; border-top:1px solid var(--gray-200); margin-top:2rem;">
+        © Apollo Hospitals Enterprise Limited • Smart Clinic AI v1.0 • All placeholder images to be replaced with actual screenshots.
+    </div>
+
+    <!-- Optional: Lightweight script to simulate step highlighting -->
+    <script>
+        // Highlight nodes on hover or click (demonstration)
+        const nodes = document.querySelectorAll('.mindmap-node');
+        const flowDots = document.querySelectorAll('.flow-dot');
+
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                const step = node.dataset.step;
+                flowDots.forEach(dot => {
+                    dot.classList.remove('active-dot');
+                    if (dot.dataset.step === step) dot.classList.add('active-dot');
+                });
+                // Remove current-step from all, add to hovered
+                nodes.forEach(n => n.classList.remove('current-step'));
+                node.classList.add('current-step');
+            });
+            node.addEventListener('mouseleave', () => {
+                node.classList.remove('current-step');
+                flowDots.forEach(dot => dot.classList.remove('active-dot'));
+            });
+        });
+    </script>
+</body>
+</html>
