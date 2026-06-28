@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAIDYA Dashboard · Apollo Smart Clinic Demo</title>
+    <title>VAIDYA · Apollo Smart Clinic Demo · Production Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --navy: #0A1F3F;
-            --navy-light: #132D56;
-            --teal: #0E9488;
-            --teal-dark: #0B7A6F;
-            --teal-light: #CCFBF1;
-            --gold: #C8963E;
-            --gold-light: #FDF2E0;
-            --red: #C62828;
+            --apollo-navy: #0A1F3F;
+            --apollo-teal: #0E9488;
+            --apollo-teal-light: #CCFBF1;
+            --apollo-gold: #C8963E;
+            --apollo-gold-light: #FDF2E0;
+            --apollo-red: #C62828;
             --white: #FFFFFF;
             --bg: #F4F6F9;
             --gray-50: #F9FAFB;
@@ -29,15 +27,14 @@
             --gray-600: #475569;
             --text: #1E293B;
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-            --shadow: 0 4px 12px rgba(0,0,0,0.06);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 16px 40px rgba(0,0,0,0.10);
-            --shadow-xl: 0 24px 60px rgba(0,0,0,0.14);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.12);
             --radius-sm: 8px;
             --radius: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            --radius-2xl: 24px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             --font-xs: 0.68rem;
@@ -47,7 +44,6 @@
             --font-lg: 1.05rem;
             --font-xl: 1.2rem;
             --font-2xl: 1.5rem;
-            --font-3xl: 1.8rem;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -60,712 +56,818 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-        /* ── HEADER ── */
-        .header {
-            position: sticky;
-            top:0; z-index:1000;
-            background: rgba(10,26,47,0.92);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom:1px solid rgba(255,255,255,0.08);
-            padding:0.75rem 1.8rem;
-            display:flex; align-items:center; justify-content:space-between;
-            gap:2rem; box-shadow:0 10px 30px -10px rgba(0,0,0,0.3);
+        /* ── APOLLO HEADER ── */
+        .apollo-header {
+            background: linear-gradient(135deg, #0A1F3F 0%, #0C2040 100%);
+            color:#fff;
+            padding:0.55rem 1.5rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:0.5rem;
+            border-bottom:3px solid var(--apollo-gold);
+            position:sticky;
+            top:0;
+            z-index:100;
+            box-shadow:var(--shadow-md);
         }
-        .header-brand { display:flex; align-items:center; gap:0.8rem; }
-        .brand-icon {
-            width:44px; height:44px;
-            background:linear-gradient(135deg, var(--teal) 0%, #0B7A6F 100%);
-            border-radius:14px;
-            display:flex; align-items:center; justify-content:center;
-            color:#fff; font-size:1.4rem;
-            box-shadow:0 8px 20px rgba(14,148,136,0.35);
+        .header-left { display:flex; align-items:center; gap:0.75rem; }
+        .header-logo { width:42px; height:42px; }
+        .header-logo svg { width:100%; height:100%; }
+        .header-title-group { display:flex; flex-direction:column; }
+        .header-main-title { font-weight:900; font-size:var(--font-lg); letter-spacing:-0.02em; line-height:1.2; }
+        .header-main-title span { color:var(--apollo-gold); }
+        .header-subtitle { font-size:0.55rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.65); text-transform:uppercase; }
+        .header-right { display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap; }
+        .header-badge { background:var(--apollo-red); padding:0.2rem 0.65rem; border-radius:50px; font-weight:700; font-size:0.55rem; animation:pulse-emergency 2s infinite; letter-spacing:0.04em; white-space:nowrap; }
+        @keyframes pulse-emergency { 0%,100%{ box-shadow:0 0 0 0 rgba(198,40,40,0.5); } 50%{ box-shadow:0 0 0 8px rgba(198,40,40,0); } }
+        .btn-sm {
+            padding:0.4rem 0.9rem;
+            border-radius:50px;
+            font-weight:600;
+            font-size:0.6rem;
+            cursor:pointer;
+            border:none;
+            transition:var(--transition);
+            font-family:'Inter',sans-serif;
+            letter-spacing:0.01em;
+            display:inline-flex;
+            align-items:center;
+            gap:0.3rem;
+            text-decoration:none;
+            background:rgba(255,255,255,0.1);
+            color:#fff;
+            border:1px solid rgba(255,255,255,0.2);
         }
-        .brand-text { display:flex; flex-direction:column; }
-        .brand-name { font-weight:900; font-size:1.45rem; letter-spacing:-0.02em; color:#fff; line-height:1.2; }
-        .brand-tagline { font-size:0.6rem; font-weight:500; letter-spacing:0.06em; color:rgba(255,255,255,0.55); text-transform:uppercase; }
-        .header-actions { display:flex; align-items:center; gap:0.75rem; }
-        .btn-header {
-            padding:0.5rem 1.2rem; border-radius:50px;
-            font-weight:600; font-size:0.7rem; cursor:pointer;
-            border:1.5px solid rgba(255,255,255,0.3); background:transparent; color:#fff;
-            transition:var(--transition); font-family:'Inter',sans-serif;
-            display:inline-flex; align-items:center; gap:0.4rem; text-decoration:none;
-        }
-        .btn-header:hover { background:rgba(255,255,255,0.1); border-color:var(--teal); }
-        .btn-header-primary { background:var(--teal); border-color:var(--teal); }
-        .btn-header-primary:hover { background:var(--teal-dark); }
-        .btn-header.auto-demo-active { background:var(--red); border-color:var(--red); }
+        .btn-sm:hover { background:rgba(255,255,255,0.2); }
+        .btn-sm-primary { background:var(--apollo-teal); border-color:var(--apollo-teal); }
 
         /* ── MAIN LAYOUT ── */
         .dashboard-grid {
             display:grid;
-            grid-template-columns: 1fr 360px;
-            gap:1.25rem;
-            padding:1.25rem 1.5rem;
-            max-width:1600px;
+            grid-template-columns: 280px 1fr 320px;
+            gap:1rem;
+            padding:1rem;
+            height:calc(100vh - 130px);
             margin:0 auto;
-            min-height:calc(100vh - 150px);
+            max-width:1600px;
         }
-        @media (max-width:1200px) {
-            .dashboard-grid { grid-template-columns:1fr; }
+        .left-sidebar {
+            background:var(--white);
+            border-radius:var(--radius-xl);
+            box-shadow:var(--shadow-md);
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            border:1px solid var(--gray-200);
         }
-        .left-panel { display:flex; flex-direction:column; gap:1.25rem; }
-        .right-panel { display:flex; flex-direction:column; gap:1.25rem; }
-
-        .panel {
-            background:#fff;
-            border-radius:var(--radius-lg);
-            padding:1.3rem 1.5rem;
-            box-shadow:var(--shadow);
+        .sidebar-header {
+            padding:1rem;
+            background:var(--apollo-navy);
+            color:#fff;
+            font-weight:700;
+            font-size:0.8rem;
+            text-align:center;
+            letter-spacing:0.02em;
+            border-bottom:1px solid var(--gray-200);
+        }
+        .queue-list-sidebar {
+            flex:1;
+            overflow-y:auto;
+            padding:0.5rem;
+            display:flex;
+            flex-direction:column;
+            gap:0.35rem;
+        }
+        .queue-item-sidebar {
+            background:var(--gray-50);
+            border-radius:var(--radius);
+            padding:0.6rem 0.7rem;
+            display:flex;
+            align-items:center;
+            gap:0.5rem;
             border:1px solid var(--gray-200);
             transition:var(--transition);
+            cursor:pointer;
         }
-        .panel-header { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; flex-wrap:wrap; }
-        .panel-title { font-weight:700; font-size:var(--font-md); color:var(--navy); }
+        .queue-item-sidebar:hover { background:var(--apollo-teal-light); border-color:var(--apollo-teal); }
+        .queue-item-sidebar.active { background:var(--apollo-gold-light); border-color:var(--apollo-gold); }
+        .queue-token-num { font-weight:900; color:var(--apollo-teal); font-size:0.9rem; min-width:28px; text-align:center; }
+        .queue-info { flex:1; min-width:0; }
+        .queue-name { font-weight:700; font-size:0.7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .queue-concern { font-size:0.6rem; color:var(--gray-500); }
+        .queue-wait-badge { font-weight:700; font-size:0.55rem; background:#FEF3C7; color:#B45309; padding:0.1rem 0.4rem; border-radius:50px; }
 
-        /* ── CHAT ── */
-        .chat-container {
-            background:var(--gray-50); border-radius:var(--radius);
-            padding:1rem; max-height:320px; min-height:180px; overflow-y:auto;
-            display:flex; flex-direction:column; gap:0.5rem; border:1px solid var(--gray-200);
+        .center-panel {
+            display:flex;
+            flex-direction:column;
+            gap:1rem;
+            overflow-y:auto;
         }
-        .chat-bubble {
-            max-width:84%; padding:0.55rem 0.8rem; border-radius:var(--radius);
-            font-size:0.78rem; line-height:1.5; animation:fadeSlide 0.35s ease-out;
-            word-break:break-word;
+        .right-sidebar {
+            background:var(--white);
+            border-radius:var(--radius-xl);
+            box-shadow:var(--shadow-md);
+            border:1px solid var(--gray-200);
+            display:flex;
+            flex-direction:column;
+            overflow:hidden;
         }
-        @keyframes fadeSlide { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-        .chat-bubble.doctor { align-self:flex-start; background:#fff; border:1.5px solid var(--gray-200); border-bottom-left-radius:4px; }
-        .chat-bubble.patient { align-self:flex-end; background:#E8F5F5; border:1.5px solid #C5E5E2; border-bottom-right-radius:4px; }
-        .speaker-label { font-weight:700; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:0.12rem; opacity:0.7; }
-        .entity-highlight { background:#FEF08A; padding:0.08rem 0.3rem; border-radius:3px; font-weight:700; color:#92400E; border-bottom:2px solid #F59E0B; }
-
-        /* ── RX WIDGET ── */
-        .rx-widget {
-            background:linear-gradient(135deg,#FFFBF0,#FFF7ED); border:2px dashed #FCD34D;
-            border-radius:var(--radius); padding:0.65rem 1rem; margin-top:0.5rem;
-            font-size:0.8rem; font-weight:600; color:#92400E;
-            display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
+        .right-sidebar-header {
+            background:var(--apollo-navy);
+            color:#fff;
+            padding:0.75rem 1rem;
+            font-weight:700;
+            font-size:0.8rem;
+            text-align:center;
         }
-        .rx-pill {
-            background:#fff; border:1.5px solid #FCD34D; border-radius:50px;
-            padding:0.25rem 0.65rem; font-weight:700; font-size:0.7rem; color:#B45309;
-        }
-
-        /* ── FORM ── */
-        .form-overlay {
-            background:#fff; border-radius:var(--radius-lg); padding:1.3rem 1.5rem;
-            box-shadow:var(--shadow-md); border:2px solid var(--teal); border-top:4px solid var(--teal);
-            display:none; transition:var(--transition-slow);
-        }
-        .form-overlay.visible { display:block; animation:slideDown 0.4s ease-out; }
-        @keyframes slideDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
-        .form-row { display:flex; gap:0.7rem; flex-wrap:wrap; }
-        .form-group { display:flex; flex-direction:column; gap:0.2rem; flex:1; min-width:100px; }
-        .form-group label { font-weight:700; font-size:0.6rem; color:var(--gray-600); text-transform:uppercase; }
-        .form-group input {
-            padding:0.5rem 0.7rem; border:2px solid var(--gray-300); border-radius:var(--radius-sm);
-            font-family:'Inter',sans-serif; font-size:0.8rem; background:var(--gray-50);
-        }
-        .form-group input:focus { border-color:var(--teal); outline:none; }
-
-        .btn {
-            padding:0.6rem 1.3rem; border-radius:50px; font-weight:700; font-size:0.8rem; cursor:pointer;
-            border:none; transition:var(--transition); font-family:'Inter',sans-serif;
-            display:inline-flex; align-items:center; gap:0.4rem;
-        }
-        .btn-teal { background:var(--teal); color:#fff; box-shadow:0 4px 12px rgba(14,148,136,0.3); }
-        .btn-teal:hover { background:var(--teal-dark); transform:translateY(-2px); }
-        .btn-gold { background:var(--gold); color:#fff; box-shadow:0 4px 12px rgba(200,150,62,0.3); }
-        .btn-gold:hover { background:#B8862D; transform:translateY(-2px); }
-        .btn:disabled { background:var(--gray-300); cursor:not-allowed; box-shadow:none; transform:none; }
-        .btn-spinner { display:none; width:15px; height:15px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; }
-        .btn.loading .btn-spinner { display:inline-block; }
-        @keyframes spin { to { transform:rotate(360deg); } }
-
         /* ── PATIENT CARD ── */
         .patient-card {
-            background:#fff; border-radius:var(--radius-lg); padding:1.2rem 1.5rem;
-            box-shadow:var(--shadow-md); border:1px solid var(--gray-200);
-            border-left:5px solid var(--teal); min-height:80px; display:flex; flex-direction:column; justify-content:center;
+            background:#fff;
+            border-radius:var(--radius-lg);
+            padding:1rem;
+            box-shadow:var(--shadow);
+            border-left:5px solid var(--apollo-teal);
         }
-        .patient-card.empty { border-left-color:var(--gray-300); opacity:0.6; }
         .card-eyebrow { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--gray-400); font-weight:700; }
-        .patient-name-lg { font-weight:800; font-size:1.5rem; color:var(--navy); }
+        .patient-name-lg { font-weight:800; font-size:1.2rem; color:var(--apollo-navy); }
+        .patient-meta { font-size:0.7rem; color:var(--gray-600); margin-top:0.2rem; display:flex; gap:0.8rem; }
+        .token-chip { background:var(--apollo-teal-light); color:#0F766E; font-weight:800; padding:0.15rem 0.6rem; border-radius:50px; font-size:0.6rem; }
 
-        /* ── QUEUE ── */
-        .queue-list { list-style:none; display:flex; flex-direction:column; gap:0.4rem; max-height:200px; overflow-y:auto; }
-        .queue-item {
-            display:flex; align-items:center; gap:0.55rem; padding:0.55rem 0.75rem;
-            border-radius:var(--radius); border:2px solid var(--gray-200); cursor:pointer;
-            transition:var(--transition); background:#fff;
+        /* ── CONSULTATION PANEL ── */
+        .consultation-panel {
+            background:#fff;
+            border-radius:var(--radius-lg);
+            box-shadow:var(--shadow);
+            border:1px solid var(--gray-200);
+            padding:1rem;
+            display:flex;
+            flex-direction:column;
+            gap:0.5rem;
         }
-        .queue-item:hover { border-color:var(--teal); transform:translateX(3px); }
-        .queue-item.next { border-color:#10B981; background:#F0FDF9; }
-        .token-num { font-weight:900; font-size:1.1rem; color:var(--teal); min-width:30px; }
+        .chat-area {
+            background:var(--gray-50);
+            border-radius:var(--radius);
+            padding:0.8rem;
+            height:200px;
+            overflow-y:auto;
+            border:1px solid var(--gray-200);
+            font-size:0.75rem;
+        }
+        .chat-area::-webkit-scrollbar { width:4px; }
+        .chat-area::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:10px; }
+        .chat-bubble {
+            max-width:85%;
+            padding:0.4rem 0.7rem;
+            margin-bottom:0.4rem;
+            border-radius:var(--radius);
+            font-size:0.7rem;
+            line-height:1.4;
+            animation:fadeSlide 0.3s ease;
+        }
+        @keyframes fadeSlide { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+        .chat-bubble.doctor { background:#fff; border:1px solid var(--gray-200); align-self:flex-start; border-bottom-left-radius:2px; }
+        .chat-bubble.patient { background:#E8F5F5; border:1px solid #C5E5E2; align-self:flex-end; border-bottom-right-radius:2px; }
+        .speaker-label { font-weight:700; font-size:0.55rem; text-transform:uppercase; opacity:0.7; display:block; }
+        .highlight-med { background:#FEF08A; font-weight:700; color:#92400E; padding:0 0.2rem; border-radius:3px; }
+        .prescription-widget {
+            background:linear-gradient(135deg,#FFFBF0,#FFF7ED);
+            border:2px dashed #FCD34D;
+            border-radius:var(--radius);
+            padding:0.5rem 0.8rem;
+            font-size:0.7rem;
+            font-weight:600;
+            color:#92400E;
+        }
+        .rx-pill {
+            background:#fff;
+            border:1px solid #FCD34D;
+            border-radius:50px;
+            padding:0.15rem 0.5rem;
+            font-size:0.6rem;
+            margin-right:0.3rem;
+        }
+        .form-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.5rem; }
+        .form-group { flex:1; min-width:100px; }
+        .form-group label { font-weight:700; font-size:0.6rem; color:var(--gray-600); text-transform:uppercase; }
+        .form-group input {
+            width:100%;
+            padding:0.4rem;
+            border:2px solid var(--gray-300);
+            border-radius:var(--radius-sm);
+            font-family:'Inter',sans-serif;
+            font-size:0.7rem;
+            outline:none;
+        }
+        .form-group input:focus { border-color:var(--apollo-teal); }
+        .btn { padding:0.5rem 1rem; border-radius:50px; font-weight:700; font-size:0.7rem; cursor:pointer; border:none; transition:var(--transition); font-family:'Inter',sans-serif; display:inline-flex; align-items:center; gap:0.3rem; }
+        .btn-teal { background:var(--apollo-teal); color:#fff; }
+        .btn-teal:hover { background:#0F766E; }
+        .btn-gold { background:var(--apollo-gold); color:#fff; }
+        .btn-gold:hover { background:#B8862D; }
 
         /* ── MOBILE SIMULATOR ── */
-        .phone-frame {
-            width:100%; max-width:320px; margin:0 auto;
-            background:#111; border-radius:40px; padding:12px; box-shadow:var(--shadow-xl);
+        .mobile-frame {
+            width:280px;
+            height:500px;
+            background:#111;
+            border-radius:36px;
+            padding:12px;
+            box-shadow:var(--shadow-xl);
+            margin:0 auto;
             position:relative;
         }
-        .phone-screen {
-            background:#fff; border-radius:28px; overflow:hidden; height:600px;
-            display:flex; flex-direction:column; font-size:0.75rem;
+        .mobile-screen {
+            background:#fff;
+            height:100%;
+            border-radius:24px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
         }
-        .phone-status-bar {
-            background:#f8f8f8; padding:8px 16px; display:flex; justify-content:space-between;
-            font-weight:600; font-size:0.65rem;
+        .whatsapp-header {
+            background:#075E54;
+            color:#fff;
+            padding:0.5rem;
+            display:flex;
+            align-items:center;
+            gap:0.5rem;
+            font-size:0.7rem;
+            font-weight:600;
         }
-        .phone-content { flex:1; overflow-y:auto; padding:12px; background:#e5ddd5; }
-        .phone-whatsapp { background:#fff; border-radius:12px; padding:10px; }
-        .phone-msg {
-            max-width:85%; margin:8px 0; padding:8px 12px; border-radius:16px;
-            font-size:0.7rem; line-height:1.4;
+        .whatsapp-chat {
+            flex:1;
+            background:#ECE5DD;
+            padding:0.5rem;
+            overflow-y:auto;
+            font-size:0.65rem;
         }
-        .phone-msg.bot { background:#fff; align-self:flex-start; border-bottom-left-radius:4px; }
-        .phone-msg.user { background:#dcf8c6; align-self:flex-end; border-bottom-right-radius:4px; text-align:right; }
-        .phone-token-card {
-            background:#fff; border-radius:16px; padding:16px; margin:12px 0;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;
+        .whatsapp-input {
+            background:#fff;
+            padding:0.4rem;
+            display:flex;
+            gap:0.3rem;
+            align-items:center;
         }
-        .phone-call-ui {
-            background:#1c1c1e; color:#fff; border-radius:24px; padding:20px; text-align:center;
+        .whatsapp-input input {
+            flex:1;
+            border:none;
+            background:var(--gray-100);
+            border-radius:20px;
+            padding:0.3rem 0.7rem;
+            font-family:'Inter',sans-serif;
+            font-size:0.65rem;
+            outline:none;
         }
-        .phone-pdf-view { background:#fff; border-radius:12px; padding:16px; }
-
-        /* ── STATS BAR ── */
-        .stats-bar { display:flex; gap:1rem; margin-top:0.8rem; font-size:0.65rem; font-weight:600; }
-        .stats-bar span { background:var(--gray-100); padding:0.25rem 0.7rem; border-radius:50px; }
-
-        /* ── TOAST ── */
-        .toast-container { position:fixed; bottom:1.5rem; right:1.5rem; z-index:9999; display:flex; flex-direction:column-reverse; gap:0.5rem; }
+        .whatsapp-input button {
+            background:var(--apollo-teal);
+            color:#fff;
+            border:none;
+            border-radius:50%;
+            width:28px;
+            height:28px;
+            font-size:0.8rem;
+            cursor:pointer;
+        }
+        .chat-msg {
+            padding:0.3rem 0.5rem;
+            border-radius:8px;
+            margin-bottom:0.3rem;
+            max-width:80%;
+            position:relative;
+            animation:msgPop 0.2s ease;
+        }
+        @keyframes msgPop { from { transform:scale(0.9); opacity:0; } }
+        .chat-msg.bot { background:#fff; align-self:flex-start; }
+        .chat-msg.user { background:#DCF8C6; align-self:flex-end; }
+        .chat-msg .msg-text { word-break:break-word; }
+        .chat-msg .msg-time { font-size:0.5rem; color:#999; text-align:right; }
+        .toast-container { position:fixed; bottom:1rem; right:1rem; z-index:9999; display:flex; flex-direction:column-reverse; gap:0.4rem; pointer-events:none; }
         .toast {
-            background:var(--navy); color:#fff; padding:0.65rem 1rem; border-radius:var(--radius);
-            font-weight:600; font-size:0.8rem; box-shadow:var(--shadow-xl); animation:toastIn 0.4s ease-out, toastOut 0.35s ease-in forwards; animation-delay:0s, 3.8s;
-            max-width:400px; border-left:4px solid var(--gold);
+            background:var(--apollo-navy);
+            color:#fff;
+            padding:0.5rem 0.8rem;
+            border-radius:var(--radius);
+            font-weight:600;
+            font-size:0.7rem;
+            box-shadow:var(--shadow-xl);
+            animation:toastIn 0.4s ease-out;
+            border-left:4px solid var(--apollo-gold);
+            pointer-events:auto;
         }
-        @keyframes toastIn { from { opacity:0; transform:translateX(50px); } to { opacity:1; transform:translateX(0); } }
-        @keyframes toastOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(50px); } }
+        @keyframes toastIn { from { opacity:0; transform:translateX(30px); } }
 
-        .ripple-effect {
-            position:absolute; border-radius:50%; background:rgba(255,255,255,0.5);
-            transform:scale(0); animation:ripple 0.6s ease-out; pointer-events:none;
+        /* ── FLOW MINI DOTS ── */
+        .flow-mini {
+            background:#fff;
+            border-radius:var(--radius-lg);
+            padding:0.8rem;
+            border:1px solid var(--gray-200);
+            text-align:center;
         }
-        @keyframes ripple { to { transform:scale(4); opacity:0; } }
+        .flow-dots-row { display:flex; justify-content:center; gap:0.2rem; }
+        .flow-dot-mini { width:8px; height:8px; border-radius:50%; background:var(--gray-300); }
+        .flow-dot-mini.active { background:var(--apollo-teal); box-shadow:0 0 6px var(--apollo-teal); }
+        .flow-dot-mini.done { background:#10B981; }
+        .flow-arrow-mini { color:var(--gray-300); font-size:0.45rem; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-brand">
-            <div class="brand-icon"><i class="fa-solid fa-staff-snake"></i></div>
-            <div class="brand-text">
-                <span class="brand-name">VAIDYA</span>
-                <span class="brand-tagline">by KALKI INTELLIGENCE</span>
+    <!-- HEADER -->
+    <header class="apollo-header">
+        <div class="header-left">
+            <div class="header-logo">
+                <svg viewBox="0 0 50 50"><rect width="50" height="50" rx="12" fill="#0A1F3F"/><rect x="10" y="13" width="30" height="24" rx="3" fill="none" stroke="white" stroke-width="3.5"/><line x1="16" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="24" x2="34" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="29" x2="28" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="39" cy="39" r="8" fill="#C8963E"/><text x="39" y="42.5" text-anchor="middle" fill="white" font-size="9" font-weight="900">+</text></svg>
+            </div>
+            <div class="header-title-group">
+                <div class="header-main-title">VAIDYA <span>by KALKI</span></div>
+                <div class="header-subtitle">Apollo Hospitals · Production Demo</div>
             </div>
         </div>
-        <div class="header-actions">
-            <a href="index.html" class="btn-header"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="mind-map.html" class="btn-header"><i class="fa-solid fa-brain"></i> Mind Map</a>
-            <button class="btn-header btn-header-primary" id="btnAutoDemo"><i class="fa-solid fa-play"></i> Auto Demo</button>
-            <button class="btn-header" id="btnReset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        <div class="header-right">
+            <span class="header-badge">🆘 1066</span>
+            <a href="index.html" class="btn-sm"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="mind-map.html" class="btn-sm"><i class="fa-solid fa-brain"></i> Mind Map</a>
+            <button class="btn-sm btn-sm-primary" id="btnAutoDemo"><i class="fa-solid fa-play"></i> Auto Demo</button>
+            <button class="btn-sm" id="btnReset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
         </div>
     </header>
 
+    <!-- DASHBOARD GRID -->
     <div class="dashboard-grid">
-        <!-- LEFT: Doctor Dashboard -->
-        <div class="left-panel">
-            <div class="panel" id="consultationPanel">
-                <div class="panel-header">
-                    <span style="font-size:1.2rem;">🎙️</span>
-                    <span class="panel-title">Live Consultation & AI Transcription</span>
-                    <span class="badge badge-idle" id="transcriptionBadge" style="font-size:0.7rem; background:#E2E8F0; padding:0.2rem 0.6rem; border-radius:50px;">⏸ Idle</span>
-                </div>
-                <div class="chat-container" id="chatContainer">
-                    <div style="text-align:center; color:#94A3B8; padding:2rem;" id="chatPlaceholder">
-                        <i class="fa-solid fa-microphone-lines" style="font-size:2rem; opacity:0.3;"></i><br>
-                        <span style="font-size:0.8rem;">Click <b>NEXT PATIENT</b> or <b>Auto Demo</b></span>
-                    </div>
-                </div>
-                <div class="rx-widget" id="rxWidget">
-                    <span>💊</span> <span id="rxContent" style="color:#94A3B8;">Waiting for AI extraction...</span>
-                </div>
+        <!-- LEFT SIDEBAR: QUEUE -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">📌 Waiting Queue (Token)</div>
+            <div class="queue-list-sidebar" id="queueSidebar">
+                <!-- Rendered via JS -->
             </div>
-
-            <div class="form-overlay" id="patientFormOverlay">
-                <div style="font-weight:800; font-size:1rem; color:var(--navy); margin-bottom:0.6rem;">📋 Finalize & Send Patient Report</div>
-                <div class="form-row">
-                    <div class="form-group"><label>Full Name</label><input type="text" id="patient_name" placeholder="Rahul Sharma"></div>
-                    <div class="form-group" style="max-width:70px;"><label>Age</label><input type="number" id="patient_age" placeholder="32"></div>
-                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="patient_whatsapp" placeholder="+91 98101 23456"></div>
+            <div class="flow-mini" style="margin:0.5rem;">
+                <div class="flow-dots-row" id="flowMiniDots">
+                    <span class="flow-dot-mini active" data-step="1"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="2"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="3"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="4"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="5"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="6"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="7"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="8"></span><span class="flow-arrow-mini">→</span>
+                    <span class="flow-dot-mini" data-step="9"></span>
                 </div>
-                <button class="btn btn-gold" id="sendReportBtn" style="margin-top:0.7rem;" disabled>
-                    <span class="btn-spinner"></span> 🚀 Generate PDF & Send via WhatsApp
-                </button>
+                <small style="color:var(--gray-500);">Step <span id="flowStepLabel">1</span>/9 · <span id="flowStepName">Check‑in</span></small>
             </div>
         </div>
 
-        <!-- RIGHT: Patient Simulator + Queue -->
-        <div class="right-panel">
-            <div class="patient-card empty" id="currentPatientCard">
+        <!-- CENTER: CONSULTATION -->
+        <div class="center-panel">
+            <div class="patient-card" id="currentPatientCard">
                 <div class="card-eyebrow">🪪 Currently Consulting</div>
-                <div id="currentPatientContent" style="color:#94A3B8;">Waiting for next patient...</div>
+                <div id="currentPatientContent" style="font-style:italic;color:var(--gray-400);">No active patient</div>
             </div>
-            <div class="panel">
-                <div style="font-weight:700; margin-bottom:0.5rem;">📱 Patient's Phone</div>
-                <div class="phone-frame">
-                    <div class="phone-screen" id="phoneScreen">
-                        <div class="phone-status-bar"><span>9:41</span><span>📶 🔋</span></div>
-                        <div class="phone-content" id="phoneContent">
-                            <!-- Dynamic patient journey UI -->
-                            <div style="text-align:center; padding:30px; color:#888;">Waiting for check-in...</div>
+            <div class="consultation-panel" id="consultationPanel">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+                    <span style="font-weight:700;">🎙️ Live Transcription</span>
+                    <span class="badge badge-idle" id="transcriptionBadge" style="font-size:0.6rem;background:var(--gray-100);padding:0.15rem 0.5rem;border-radius:50px;">Idle</span>
+                </div>
+                <div class="chat-area" id="chatArea">
+                    <div style="text-align:center;color:var(--gray-400);">Waiting for consultation...</div>
+                </div>
+                <div class="prescription-widget" id="rxWidget">
+                    💊 <span id="rxContent">AI listening...</span>
+                </div>
+                <div class="form-row" id="reportForm" style="display:none;">
+                    <div class="form-group"><label>Name</label><input type="text" id="patient_name" placeholder="Auto"></div>
+                    <div class="form-group" style="max-width:70px;"><label>Age</label><input type="number" id="patient_age" placeholder="Age"></div>
+                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="patient_whatsapp" placeholder="+91..."></div>
+                    <button class="btn btn-gold" id="sendReportBtn" disabled>🚀 Send PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR: MOBILE SIMULATOR + STATS -->
+        <div class="right-sidebar">
+            <div class="right-sidebar-header">📱 Patient Simulator (WhatsApp)</div>
+            <div style="padding:0.5rem; display:flex; justify-content:center;">
+                <div class="mobile-frame">
+                    <div class="mobile-screen">
+                        <div class="whatsapp-header">
+                            <i class="fa-solid fa-arrow-left" style="font-size:0.7rem;"></i>
+                            <div>VAIDYA Clinic Bot</div>
+                        </div>
+                        <div class="whatsapp-chat" id="whatsappChat">
+                            <div class="chat-msg bot"><div class="msg-text">Welcome! Please enter your <strong>full name</strong>:</div><div class="msg-time">10:01</div></div>
+                        </div>
+                        <div class="whatsapp-input">
+                            <input type="text" id="whatsappInput" placeholder="Type your answer..." autocomplete="off">
+                            <button id="sendWhatsappBtn"><i class="fa-solid fa-paper-plane"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel">
-                <div style="font-weight:700; margin-bottom:0.3rem;">📌 Waiting Queue</div>
-                <ul class="queue-list" id="queueList"></ul>
-                <button class="btn btn-teal" id="nextPatientBtn" style="width:100%; margin-top:0.5rem;">⏩ CALL NEXT PATIENT</button>
-                <div class="stats-bar">
-                    <span><i class="fa-solid fa-users"></i> Today: <b id="statPatients">0</b></span>
-                    <span><i class="fa-solid fa-file-pdf"></i> Reports: <b id="statReports">0</b></span>
+            <div style="padding:0.5rem; font-size:0.6rem; color:var(--gray-500); text-align:center;">
+                <span id="simulatorStep">Step 1/3: Enter name</span>
+            </div>
+            <div style="padding:0.5rem; text-align:center;">
+                <button class="btn btn-teal" id="btnNextPatient" style="width:100%;">⏩ CALL NEXT PATIENT</button>
+                <div style="display:flex; gap:0.4rem; margin-top:0.4rem;">
+                    <span style="font-size:0.6rem; color:var(--gray-500);">Today: <strong id="statPatients">0</strong> patients</span>
+                    <span style="font-size:0.6rem; color:var(--gray-500);">Reports: <strong id="statReports">0</strong></span>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-        // ─── STATE ───────────────────────────
+        // ──────────────────────────────────────
+        // GLOBAL STATE
+        // ──────────────────────────────────────
         const state = {
+            waitingQueue: [],
             currentPatient: null,
-            waitingQueue: [
-                { token: 12, name: 'Ravi Singh', age: 34, concern: 'Persistent cough & fever' },
-                { token: 13, name: 'Anita Desai', age: 52, concern: 'Joint pain in knees' },
-                { token: 14, name: 'Vikram Patel', age: 28, concern: 'Allergic skin rash' },
-            ],
             isTranscribing: false,
-            transcriptionTimeouts: [],
+            transcriptionTimeoutIds: [],
             extractedMeds: [],
-            formVisible: false,
-            autoDemoActive: false,
-            autoDemoTimeouts: [],
-            stats: { patients:0, reports:0 },
-            phoneStep: 0, // 0=idle,1=WhatsApp,2=token,3=voice call,4=consulting,5=report
-            phonePatient: null,
+            stats: { patientsSeen: 0, reportsSent: 0 },
+            currentStep: 1,
+            simulatorState: { step: 0, name: '', age: '', concern: '' }, // 0=name,1=age,2=concern
         };
 
         const mockScript = [
-            { speaker:'Doctor', text:'Good morning, Mr. Ravi. Tell me about your symptoms.' },
-            { speaker:'Patient', text:'Doctor, 5 days se dry cough hai. Raat mein bohot takleef hoti hai.' },
-            { speaker:'Doctor', text:'Any fever or body pain?' },
-            { speaker:'Patient', text:'Haan, evening mein mild fever aata hai.' },
-            { speaker:'Doctor', text:'I am prescribing Azithromycin 500mg once daily for 3 days. Also Paracetamol 650mg if fever exceeds 101°F.' },
-            { speaker:'Patient', text:'Okay doctor. Aur kuch?' },
-            { speaker:'Doctor', text:'Take warm fluids. Avoid cold items. Diet chart bhej raha hoon.' },
+            { speaker: 'Doctor', text: 'Good morning. Tell me about your symptoms.' },
+            { speaker: 'Patient', text: 'Doctor, 5 days se dry cough hai. Raat mein bohot takleef hoti hai.' },
+            { speaker: 'Doctor', text: 'Any fever?' },
+            { speaker: 'Patient', text: 'Haan, evening mein mild fever aata hai.' },
+            { speaker: 'Doctor', text: 'I prescribe Azithromycin 500mg once daily for 3 days, and Paracetamol 650mg if fever >101°F.' },
+            { speaker: 'Patient', text: 'Okay doctor.' },
+            { speaker: 'Doctor', text: 'Take warm fluids, avoid cold items. Diet chart via WhatsApp.' },
         ];
 
-        // ─── DOM ─────────────────────────────
-        const $ = s => document.querySelector(s);
-        const $$ = s => document.querySelectorAll(s);
+        // DOM refs
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => document.querySelectorAll(s);
 
-        const btnAutoDemo = $('#btnAutoDemo');
-        const btnReset = $('#btnReset');
-        const nextPatientBtn = $('#nextPatientBtn');
-        const sendReportBtn = $('#sendReportBtn');
-        const chatContainer = $('#chatContainer');
-        const chatPlaceholder = $('#chatPlaceholder');
+        const queueSidebar = $('#queueSidebar');
+        const currentPatientContent = $('#currentPatientContent');
+        const currentPatientCard = $('#currentPatientCard');
+        const chatArea = $('#chatArea');
+        const transcriptionBadge = $('#transcriptionBadge');
         const rxContent = $('#rxContent');
-        const patientFormOverlay = $('#patientFormOverlay');
+        const reportForm = $('#reportForm');
         const patientNameInput = $('#patient_name');
         const patientAgeInput = $('#patient_age');
         const patientWhatsappInput = $('#patient_whatsapp');
-        const currentPatientContent = $('#currentPatientContent');
-        const queueList = $('#queueList');
-        const phoneContent = $('#phoneContent');
-        const transcriptionBadge = $('#transcriptionBadge');
-        const consultationPanel = $('#consultationPanel');
-        const toastContainer = $('#toastContainer');
+        const sendReportBtn = $('#sendReportBtn');
+        const btnNextPatient = $('#btnNextPatient');
+        const btnAutoDemo = $('#btnAutoDemo');
+        const btnReset = $('#btnReset');
+        const whatsappChat = $('#whatsappChat');
+        const whatsappInput = $('#whatsappInput');
+        const sendWhatsappBtn = $('#sendWhatsappBtn');
+        const simulatorStepSpan = $('#simulatorStep');
+        const flowMiniDots = $('#flowMiniDots');
+        const flowStepLabel = $('#flowStepLabel');
+        const flowStepName = $('#flowStepName');
         const statPatients = $('#statPatients');
         const statReports = $('#statReports');
+        const consultationPanel = $('#consultationPanel');
+        const toastContainer = $('#toastContainer');
 
-        // ─── INIT ────────────────────────────
-        function init() {
-            renderQueue();
-            updateStats();
-            attachEvents();
-        }
-        function attachEvents() {
-            btnAutoDemo.addEventListener('click', toggleAutoDemo);
-            btnReset.addEventListener('click', fullReset);
-            nextPatientBtn.addEventListener('click', handleNextPatient);
-            sendReportBtn.addEventListener('click', handleSendReport);
-            patientWhatsappInput.addEventListener('input', () => {
-                sendReportBtn.disabled = !patientWhatsappInput.value.trim() || !state.currentPatient;
-            });
-        }
+        const stepNames = ['Check‑in','AI Triage','Token Queue','Voice Call','Consultation','Prescription AI','Queue Control','WhatsApp Report','Exit'];
 
-        function renderQueue() {
-            queueList.innerHTML = '';
+        // ──────────────────────────────────────
+        // RENDER QUEUE SIDEBAR
+        // ──────────────────────────────────────
+        function renderQueueSidebar() {
+            queueSidebar.innerHTML = '';
             if (state.waitingQueue.length === 0) {
-                queueList.innerHTML = '<li style="text-align:center;color:#94A3B8;padding:1rem;">Queue empty</li>';
+                queueSidebar.innerHTML = '<div style="text-align:center;color:var(--gray-400);padding:1rem;">No patients waiting</div>';
             } else {
                 state.waitingQueue.forEach((p, idx) => {
-                    const li = document.createElement('li');
-                    li.className = 'queue-item' + (idx===0 ? ' next' : '');
-                    li.dataset.token = p.token;
-                    li.innerHTML = `<span style="color:#CBD5E1;">⋮⋮</span><span class="token-num">#${p.token}</span><div><b>${p.name}</b><br><small>${p.concern}</small></div>`;
-                    li.addEventListener('click', ()=> { if(!state.isTranscribing && !state.autoDemoActive) loadSpecificPatient(p.token); });
-                    queueList.appendChild(li);
+                    const div = document.createElement('div');
+                    div.className = 'queue-item-sidebar' + (idx === 0 ? ' active' : '');
+                    div.innerHTML = `
+                        <span class="queue-token-num">#${p.token}</span>
+                        <div class="queue-info">
+                            <div class="queue-name">${p.name}</div>
+                            <div class="queue-concern">${p.concern}</div>
+                        </div>
+                        <span class="queue-wait-badge">⏱ ${p.wait_time}</span>`;
+                    div.addEventListener('click', () => {
+                        if (!state.isTranscribing) loadPatientFromQueue(p.token);
+                    });
+                    queueSidebar.appendChild(div);
                 });
             }
-            nextPatientBtn.disabled = state.waitingQueue.length===0 || state.isTranscribing;
         }
 
         function updateStats() {
-            statPatients.textContent = state.stats.patients;
-            statReports.textContent = state.stats.reports;
+            statPatients.textContent = state.stats.patientsSeen;
+            statReports.textContent = state.stats.reportsSent;
         }
 
-        // ─── PATIENT PHONE UI ─────────────────
-        function updatePhoneUI(step, patient) {
-            state.phoneStep = step;
-            state.phonePatient = patient;
-            const pc = phoneContent;
-            pc.innerHTML = '';
-            switch(step) {
-                case 1: // WhatsApp AI
-                    pc.innerHTML = `
-                        <div class="phone-whatsapp">
-                            <div style="font-weight:700; color:#075E54;">🏥 Apollo Clinic</div>
-                            <div class="phone-msg bot">🤖 Hello! I'm VAIDYA AI assistant. May I know your full name?</div>
-                            <div class="phone-msg user">${patient.name}</div>
-                            <div class="phone-msg bot">Age?</div>
-                            <div class="phone-msg user">${patient.age}</div>
-                            <div class="phone-msg bot">What brings you today?</div>
-                            <div class="phone-msg user">${patient.concern}</div>
-                            <div class="phone-msg bot">✅ Thank you! We've captured your details.</div>
-                        </div>`;
-                    break;
-                case 2: // Token
-                    pc.innerHTML = `
-                        <div class="phone-token-card">
-                            <div style="font-size:2rem;">🎫</div>
-                            <div style="font-size:2.5rem; font-weight:900; color:var(--teal);">#${patient.token}</div>
-                            <div>Your token number</div>
-                            <div style="margin-top:8px;"><b>Queue position:</b> 3 ahead</div>
-                            <div style="background:#eee; height:6px; border-radius:3px; margin:8px 0;"><div style="width:25%; background:var(--teal); height:100%; border-radius:3px;"></div></div>
-                            <small>We'll notify you when it's your turn.</small>
-                        </div>`;
-                    break;
-                case 3: // Voice call
-                    pc.innerHTML = `
-                        <div class="phone-call-ui">
-                            <div style="font-size:3rem;">📞</div>
-                            <div style="font-size:1.2rem; font-weight:700;">Clinic Assistant</div>
-                            <div style="margin:12px 0;">"Hello ${patient.name}, your turn is in 5 minutes. Please proceed to Room 201."</div>
-                            <div style="color:#aaa;">Call ended · 0:22</div>
-                        </div>`;
-                    break;
-                case 4: // Consulting
-                    pc.innerHTML = `
-                        <div style="text-align:center; padding:20px;">
-                            <i class="fa-solid fa-user-doctor" style="font-size:3rem; color:var(--teal);"></i>
-                            <p style="margin-top:10px;">Consultation in progress...</p>
-                            <small>AI is transcribing your conversation.</small>
-                        </div>`;
-                    break;
-                case 5: // Report received
-                    pc.innerHTML = `
-                        <div class="phone-pdf-view">
-                            <div style="font-weight:700; margin-bottom:10px;">📄 Consultation Report</div>
-                            <div><b>Patient:</b> ${patient.name}</div>
-                            <div><b>Date:</b> ${new Date().toLocaleDateString()}</div>
-                            <div style="margin-top:8px;"><b>Prescription:</b></div>
-                            <div>💊 Azithromycin 500mg - Once daily x 3 days</div>
-                            <div>💊 Paracetamol 650mg - Twice daily x 5 days</div>
-                            <div style="margin-top:10px; background:#e0f7fa; padding:8px; border-radius:8px;">
-                                <small>✅ Report saved to your phone.</small>
-                            </div>
-                        </div>`;
-                    break;
-                default: pc.innerHTML = '<div style="text-align:center; padding:30px; color:#888;">Waiting for check-in...</div>';
+        // ──────────────────────────────────────
+        // SIMULATOR: WhatsApp interaction
+        // ──────────────────────────────────────
+        function appendWhatsappMessage(text, type) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-msg ' + type;
+            msgDiv.innerHTML = `<div class="msg-text">${text}</div><div class="msg-time">${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>`;
+            whatsappChat.appendChild(msgDiv);
+            whatsappChat.scrollTop = whatsappChat.scrollHeight;
+        }
+
+        function sendWhatsappMessage() {
+            const input = whatsappInput.value.trim();
+            if (!input) return;
+            appendWhatsappMessage(input, 'user');
+            whatsappInput.value = '';
+            // Process based on simulator state
+            const sim = state.simulatorState;
+            if (sim.step === 0) {
+                sim.name = input;
+                sim.step = 1;
+                setTimeout(() => {
+                    appendWhatsappMessage('Thank you, <strong>' + sim.name + '</strong>. Please enter your <strong>age</strong>:', 'bot');
+                    simulatorStepSpan.textContent = 'Step 2/3: Enter age';
+                }, 600);
+            } else if (sim.step === 1) {
+                sim.age = input;
+                sim.step = 2;
+                setTimeout(() => {
+                    appendWhatsappMessage('Got it. Briefly describe your <strong>concern</strong>:', 'bot');
+                    simulatorStepSpan.textContent = 'Step 3/3: Enter concern';
+                }, 600);
+            } else if (sim.step === 2) {
+                sim.concern = input;
+                sim.step = 0; // reset
+                // Create new patient entry
+                const newPatient = {
+                    token: Math.floor(Math.random() * 20) + 10,
+                    name: sim.name,
+                    age: parseInt(sim.age) || 30,
+                    concern: sim.concern,
+                    wait_time: '0 mins',
+                };
+                state.waitingQueue.push(newPatient);
+                renderQueueSidebar();
+                updateStats();
+                // Bot confirmation
+                setTimeout(() => {
+                    appendWhatsappMessage(`✅ Thank you! Your token is <strong>#${newPatient.token}</strong>. You are now in the queue. We will notify you.`, 'bot');
+                    simulatorStepSpan.textContent = 'Check-in complete. New patient can be added.';
+                    // Reset simulator name/age/concern
+                    state.simulatorState = { step: 0, name: '', age: '', concern: '' };
+                }, 800);
+                showToast(`📱 Patient ${newPatient.name} added to queue. Token #${newPatient.token}.`);
             }
         }
 
-        // ─── NEXT PATIENT ────────────────────
-        function handleNextPatient() {
-            if (state.isTranscribing) return showToast('⚠️ Consultation in progress.');
-            if (state.waitingQueue.length===0) return showToast('📭 Queue empty.');
-            clearTranscriptionTimeouts();
-            const patient = state.waitingQueue.shift();
+        sendWhatsappBtn.addEventListener('click', sendWhatsappMessage);
+        whatsappInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendWhatsappMessage();
+        });
+
+        // ──────────────────────────────────────
+        // LOAD PATIENT FROM QUEUE
+        // ──────────────────────────────────────
+        function loadPatientFromQueue(token) {
+            const idx = state.waitingQueue.findIndex(p => p.token === token);
+            if (idx === -1) return;
+            const patient = state.waitingQueue.splice(idx, 1)[0];
+            startConsultationWithPatient(patient);
+            renderQueueSidebar();
+        }
+
+        function startConsultationWithPatient(patient) {
             state.currentPatient = patient;
             state.extractedMeds = [];
-            state.formVisible = false;
-            rxContent.innerHTML = '<span style="color:#94A3B8;">Listening...</span>';
-            patientFormOverlay.classList.remove('visible');
-            patientNameInput.value = ''; patientAgeInput.value = ''; patientWhatsappInput.value = '';
-            sendReportBtn.disabled = true; sendReportBtn.classList.remove('loading');
-            updateCurrentPatientCard(patient);
-            renderQueue();
-            chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'none';
             state.isTranscribing = true;
-            updateTranscriptionBadge('live');
-            consultationPanel.classList.add('highlight-gold');
-            // Phone steps sequence
-            updatePhoneUI(1, patient);
-            setTimeout(() => updatePhoneUI(2, patient), 1500);
+            updateCurrentPatientUI();
+            clearChat();
+            rxContent.innerHTML = 'AI listening...';
+            reportForm.style.display = 'none';
+            transcriptionBadge.textContent = '🔴 LIVE';
+            transcriptionBadge.style.background = '#FEF2F2';
+            state.currentStep = 4;
+            updateFlowUI();
+            // Simulate voice call
+            showToast(`📞 AI Voice Call: Token #${patient.token} — "Your turn! Room 201."`);
             setTimeout(() => {
-                updatePhoneUI(3, patient);
-                showToast(`📞 AI voice call to ${patient.name} · Token #${patient.token}`, 'whatsapp-toast');
-            }, 3000);
-            setTimeout(() => {
-                updatePhoneUI(4, patient);
-                startTranscription(patient);
-            }, 4500);
+                state.currentStep = 5;
+                updateFlowUI();
+                startTranscription();
+            }, 1000);
         }
 
-        function loadSpecificPatient(token) {
-            const idx = state.waitingQueue.findIndex(p=>p.token===token);
-            if (idx===-1) return;
-            const patient = state.waitingQueue.splice(idx,1)[0];
-            state.currentPatient = patient; state.extractedMeds=[]; state.formVisible=false;
-            rxContent.innerHTML = '<span style="color:#94A3B8;">Listening...</span>';
-            patientFormOverlay.classList.remove('visible');
-            patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';
-            sendReportBtn.disabled=true; sendReportBtn.classList.remove('loading');
-            updateCurrentPatientCard(patient);
-            renderQueue();
-            chatContainer.innerHTML=''; chatPlaceholder.style.display='none';
-            state.isTranscribing=true;
-            updateTranscriptionBadge('live');
-            consultationPanel.classList.add('highlight-gold');
-            updatePhoneUI(1, patient);
-            setTimeout(()=>updatePhoneUI(2, patient),1500);
-            setTimeout(()=>{updatePhoneUI(3, patient); showToast(`📞 Voice call to ${patient.name}`, 'whatsapp-toast');},3000);
-            setTimeout(()=>{updatePhoneUI(4, patient); startTranscription(patient);},4500);
-        }
-
-        function updateCurrentPatientCard(p) {
-            const card = $('#currentPatientCard');
-            if (!p) {
-                card.classList.add('empty');
-                currentPatientContent.innerHTML = '<span style="color:#94A3B8;">Waiting for next patient...</span>';
-            } else {
-                card.classList.remove('empty');
-                currentPatientContent.innerHTML = `<div class="patient-name-lg">${p.name}</div><div>🎂 ${p.age} · 🩺 ${p.concern} <span class="token-chip" style="background:#CCFBF1; padding:2px 8px; border-radius:20px;">#${p.token}</span></div>`;
+        function handleNextPatient() {
+            if (state.waitingQueue.length === 0) {
+                showToast('No patients in queue.');
+                return;
             }
+            if (state.isTranscribing) {
+                showToast('Wait for current consultation to finish.');
+                return;
+            }
+            const patient = state.waitingQueue.shift();
+            startConsultationWithPatient(patient);
+            renderQueueSidebar();
         }
+        btnNextPatient.addEventListener('click', handleNextPatient);
 
-        function updateTranscriptionBadge(status) {
-            if (status==='live') { transcriptionBadge.textContent='🔴 LIVE'; transcriptionBadge.style.background='#FEF2F2'; }
-            else if (status==='done') { transcriptionBadge.textContent='✅ Done'; transcriptionBadge.style.background='#ECFDF5'; }
-            else { transcriptionBadge.textContent='⏸ Idle'; transcriptionBadge.style.background='#E2E8F0'; }
-        }
-
-        // ─── TRANSCRIPTION ────────────────────
-        function startTranscription(patient) {
+        // ──────────────────────────────────────
+        // TRANSCRIPTION
+        // ──────────────────────────────────────
+        function startTranscription() {
             state.isTranscribing = true;
-            chatContainer.innerHTML = '';
+            transcriptionBadge.textContent = '🔴 LIVE';
             const allWords = [];
             mockScript.forEach(entry => {
-                const words = entry.text.split(/\s+/);
-                words.forEach((w,i)=> allWords.push({ speaker:entry.speaker, word:w, isFirst:i===0 }));
+                const words = entry.text.split(' ');
+                words.forEach((w, i) => allWords.push({ speaker: entry.speaker, word: w, first: i===0 }));
             });
-            let idx=0, currentBubble=null, currentSpeaker=null;
+            let idx = 0;
+            let currentBubble = null;
+            let currentSpeaker = '';
             function stream() {
                 if (idx >= allWords.length) {
-                    finishTranscription(patient); return;
+                    finishTranscription();
+                    return;
                 }
-                const entry = allWords[idx];
-                if (entry.isFirst || entry.speaker!==currentSpeaker) {
-                    currentSpeaker = entry.speaker;
+                const w = allWords[idx];
+                if (w.first || w.speaker !== currentSpeaker) {
+                    currentSpeaker = w.speaker;
                     currentBubble = document.createElement('div');
-                    currentBubble.className = `chat-bubble ${entry.speaker==='Doctor'?'doctor':'patient'}`;
-                    const label = document.createElement('span'); label.className='speaker-label';
-                    label.textContent = entry.speaker==='Doctor'?'👨‍⚕️ Doctor':'🧑‍🦰 Patient';
-                    currentBubble.appendChild(label);
-                    const msg = document.createElement('span');
-                    currentBubble.appendChild(msg);
-                    chatContainer.appendChild(currentBubble);
+                    currentBubble.className = 'chat-bubble ' + (w.speaker === 'Doctor' ? 'doctor' : 'patient');
+                    currentBubble.innerHTML = `<span class="speaker-label">${w.speaker === 'Doctor' ? '👨‍⚕️ Doctor' : '🧑‍🦰 Patient'}</span>`;
+                    chatArea.appendChild(currentBubble);
+                    chatArea.scrollTop = chatArea.scrollHeight;
                 }
-                const msgSpan = currentBubble.lastChild;
-                const highlighted = highlightEntity(entry.word);
-                if (highlighted !== entry.word) {
-                    const span = document.createElement('span'); span.innerHTML = ' ' + highlighted;
-                    msgSpan.appendChild(span);
-                    extractMed(entry.word);
-                } else {
-                    msgSpan.appendChild(document.createTextNode(' ' + entry.word));
+                const wordSpan = document.createElement('span');
+                wordSpan.textContent = w.word + ' ';
+                // Highlight meds
+                if (/Azithromycin|Paracetamol|500mg|650mg|once daily|twice daily|for 3 days/i.test(w.word)) {
+                    wordSpan.innerHTML = `<mark class="highlight-med">${w.word}</mark> `;
+                    extractMed(w.word);
                 }
-                updateRxWidget();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
+                currentBubble.appendChild(wordSpan);
+                chatArea.scrollTop = chatArea.scrollHeight;
                 idx++;
-                state.transcriptionTimeouts.push(setTimeout(stream, 260+Math.random()*90));
+                const tid = setTimeout(stream, 200 + Math.random()*80);
+                state.transcriptionTimeoutIds.push(tid);
             }
-            state.transcriptionTimeouts.push(setTimeout(stream, 350));
+            stream();
         }
 
-        function highlightEntity(word) {
-            const clean = word.replace(/[.,;!?]+$/, ''); const suffix = word.slice(clean.length);
-            if (/\d+mg/i.test(clean) || /\d+ml/i.test(clean)) return `<mark class="entity-highlight">${clean}</mark>${suffix}`;
-            if (/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine)$/i.test(clean)) return `<mark class="entity-highlight">${clean}</mark>${suffix}`;
-            return word;
-        }
         function extractMed(word) {
-            const clean = word.replace(/[.,;!?]+$/, '');
-            const medMatch = clean.match(/^(Azithromycin|Paracetamol|Amoxicillin|Ibuprofen|Cetirizine)$/i);
-            const doseMatch = clean.match(/^(\d+mg|\d+ml)$/i);
-            if (medMatch && !state.extractedMeds.find(m=>m.name.toLowerCase()===medMatch[1].toLowerCase())) {
-                state.extractedMeds.push({ name:medMatch[1], dosage:'', instruction:'' });
+            // simple extraction
+            if (/Azithromycin/i.test(word) && !state.extractedMeds.find(m=>m.name==='Azithromycin')) {
+                state.extractedMeds.push({ name:'Azithromycin', dosage:'500mg', instruction:'once daily for 3 days' });
             }
-            if (doseMatch && state.extractedMeds.length) {
-                const last = state.extractedMeds[state.extractedMeds.length-1];
-                if (!last.dosage) last.dosage = doseMatch[1];
+            if (/Paracetamol/i.test(word) && !state.extractedMeds.find(m=>m.name==='Paracetamol')) {
+                state.extractedMeds.push({ name:'Paracetamol', dosage:'650mg', instruction:'as needed for fever' });
             }
-            const freq = clean.match(/^(once|twice|three\s+times)\s+daily\s+for\s+(\d+)\s+days?$/i);
-            if (freq && state.extractedMeds.length) {
-                state.extractedMeds[state.extractedMeds.length-1].instruction = freq[0];
-            }
-        }
-        function updateRxWidget() {
-            if (!state.extractedMeds.length) { rxContent.innerHTML='<span style="color:#94A3B8;">Listening...</span>'; return; }
-            rxContent.innerHTML = state.extractedMeds.map(m => `<span class="rx-pill">💊 ${m.name} ${m.dosage} ${m.instruction}</span>`).join(' ');
-        }
-        function finishTranscription(patient) {
-            state.isTranscribing = false;
-            updateTranscriptionBadge('done');
-            consultationPanel.classList.remove('highlight-gold');
-            clearTranscriptionTimeouts();
             updateRxWidget();
-            showToast('✅ Prescription extracted. Fill the form to send report.', 'success-toast');
-            setTimeout(() => {
-                patientFormOverlay.classList.add('visible');
-                state.formVisible = true;
-                patientNameInput.value = patient.name;
-                patientAgeInput.value = patient.age;
-                patientWhatsappInput.value = '';
-                sendReportBtn.disabled = true;
-                sendReportBtn.classList.remove('loading');
-            }, 600);
         }
 
-        // ─── SEND REPORT ──────────────────────
-        function handleSendReport() {
-            if (!state.currentPatient) return;
-            const whatsapp = patientWhatsappInput.value.trim();
-            if (!whatsapp) { showToast('⚠️ Enter WhatsApp number.'); return; }
-            sendReportBtn.classList.add('loading');
-            sendReportBtn.disabled = true;
-            setTimeout(() => {
-                const pname = patientNameInput.value;
-                const pdfContent = `VAIDYA Prescription\nPatient: ${pname}\n${state.extractedMeds.map(m=>`${m.name} ${m.dosage} ${m.instruction}`).join('\n')}`;
-                const blob = new Blob([pdfContent], {type:'application/pdf'});
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href=url; a.download=`VAIDYA_${pname}_Report.pdf`;
-                document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-                sendReportBtn.classList.remove('loading'); sendReportBtn.disabled=false;
-                state.stats.reports++; state.stats.patients++;
-                updateStats();
-                showToast(`📄 PDF sent via WhatsApp to ${whatsapp.slice(0,5)}**** ✅`, 'whatsapp-toast');
-                patientFormOverlay.classList.remove('visible'); state.formVisible=false;
-                updatePhoneUI(5, state.currentPatient);
-                // Reset current patient after a while
-                setTimeout(() => {
-                    state.currentPatient = null;
-                    updateCurrentPatientCard(null);
-                    updatePhoneUI(0, null);
-                }, 4000);
-            }, 2000);
+        function updateRxWidget() {
+            if (state.extractedMeds.length === 0) {
+                rxContent.innerHTML = 'AI listening...';
+            } else {
+                rxContent.innerHTML = state.extractedMeds.map(m => `<span class="rx-pill">💊 ${m.name} ${m.dosage} - ${m.instruction}</span>`).join(' ');
+            }
         }
 
-        // ─── AUTO DEMO ─────────────────────────
-        function toggleAutoDemo() {
-            state.autoDemoActive ? stopAutoDemo() : startAutoDemo();
-        }
-        function startAutoDemo() {
-            state.autoDemoActive = true;
-            btnAutoDemo.classList.add('auto-demo-active');
-            btnAutoDemo.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Demo';
-            showToast('▶️ Auto Demo started — full patient journey.', 'info');
-            fullResetSilent();
-            // Simulate a patient check-in
-            setTimeout(() => {
-                if (!state.autoDemoActive) return;
-                const patient = state.waitingQueue[0];
-                updatePhoneUI(1, patient);
-                showToast('📱 Patient WhatsApp check-in started.', 'info');
-            }, 500);
-            setTimeout(() => {
-                if (!state.autoDemoActive) return;
-                const patient = state.waitingQueue[0];
-                updatePhoneUI(2, patient);
-            }, 2000);
-            setTimeout(() => {
-                if (!state.autoDemoActive) return;
-                handleNextPatient(); // triggers full flow with voice call etc.
-            }, 3500);
-        }
-        function stopAutoDemo() {
-            state.autoDemoActive = false;
-            btnAutoDemo.classList.remove('auto-demo-active');
-            btnAutoDemo.innerHTML = '<i class="fa-solid fa-play"></i> Auto Demo';
-            state.autoDemoTimeouts.forEach(clearTimeout);
-            state.autoDemoTimeouts = [];
-        }
-
-        // ─── RESET ────────────────────────────
-        function fullReset() {
-            stopAutoDemo();
-            fullResetSilent();
-            showToast('🔄 Dashboard fully reset.', 'info');
-        }
-        function fullResetSilent() {
-            clearTranscriptionTimeouts();
-            state.autoDemoTimeouts.forEach(clearTimeout);
-            state.autoDemoTimeouts = [];
+        function finishTranscription() {
             state.isTranscribing = false;
-            state.autoDemoActive = false;
+            transcriptionBadge.textContent = '✅ Done';
+            transcriptionBadge.style.background = '#ECFDF5';
+            state.currentStep = 6;
+            updateFlowUI();
+            // Show report form
+            if (state.currentPatient) {
+                patientNameInput.value = state.currentPatient.name;
+                patientAgeInput.value = state.currentPatient.age;
+                patientWhatsappInput.value = '';
+                sendReportBtn.disabled = false;
+                reportForm.style.display = 'flex';
+                state.currentStep = 7;
+                updateFlowUI();
+            }
+            showToast('Prescription extracted. Ready to send report.');
+        }
+
+        function clearChat() {
+            chatArea.innerHTML = '';
+        }
+
+        // ──────────────────────────────────────
+        // REPORT SEND
+        // ──────────────────────────────────────
+        sendReportBtn.addEventListener('click', () => {
+            const whatsapp = patientWhatsappInput.value.trim();
+            if (!whatsapp) return showToast('Enter WhatsApp number.');
+            sendReportBtn.disabled = true;
+            sendReportBtn.textContent = 'Sending...';
+            setTimeout(() => {
+                state.stats.reportsSent++;
+                updateStats();
+                showToast(`📄 PDF sent to ${whatsapp} ✅`);
+                reportForm.style.display = 'none';
+                state.currentStep = 8;
+                updateFlowUI();
+                setTimeout(() => {
+                    state.currentStep = 9;
+                    state.stats.patientsSeen++;
+                    updateStats();
+                    updateFlowUI();
+                    state.currentPatient = null;
+                    updateCurrentPatientUI();
+                    showToast('Patient journey complete.');
+                }, 1000);
+            }, 1500);
+        });
+
+        // ──────────────────────────────────────
+        // FLOW UI
+        // ──────────────────────────────────────
+        function updateFlowUI() {
+            const dots = $$('.flow-dot-mini');
+            dots.forEach((dot, i) => {
+                const step = i+1;
+                dot.classList.remove('active','done');
+                if (step < state.currentStep) dot.classList.add('done');
+                if (step === state.currentStep) dot.classList.add('active');
+            });
+            flowStepLabel.textContent = state.currentStep;
+            flowStepName.textContent = stepNames[state.currentStep-1] || '';
+        }
+
+        function updateCurrentPatientUI() {
+            if (!state.currentPatient) {
+                currentPatientContent.innerHTML = '<span style="color:var(--gray-400);font-style:italic;">No active patient</span>';
+            } else {
+                currentPatientContent.innerHTML = `
+                    <div class="patient-name-lg">${state.currentPatient.name}</div>
+                    <div class="patient-meta">
+                        <span>🎂 Age: ${state.currentPatient.age}</span>
+                        <span>🩺 ${state.currentPatient.concern}</span>
+                        <span class="token-chip">Token #${state.currentPatient.token}</span>
+                    </div>`;
+            }
+        }
+
+        // ──────────────────────────────────────
+        // AUTO DEMO (quick simulation)
+        // ──────────────────────────────────────
+        function autoDemo() {
+            // Add a patient via simulator
+            state.simulatorState.name = 'Rahul';
+            state.simulatorState.age = '32';
+            state.simulatorState.concern = 'Fever & Cough';
+            const p = { token: 15, name: 'Rahul', age: 32, concern: 'Fever & Cough', wait_time: '0 min' };
+            state.waitingQueue.push(p);
+            renderQueueSidebar();
+            // Immediately load
+            setTimeout(() => {
+                loadPatientFromQueue(15);
+            }, 500);
+        }
+
+        btnAutoDemo.addEventListener('click', autoDemo);
+        btnReset.addEventListener('click', () => {
+            state.waitingQueue = [];
             state.currentPatient = null;
+            state.isTranscribing = false;
             state.extractedMeds = [];
-            state.formVisible = false;
-            state.waitingQueue = [
-                { token:12, name:'Ravi Singh', age:34, concern:'Persistent cough & fever' },
-                { token:13, name:'Anita Desai', age:52, concern:'Joint pain in knees' },
-                { token:14, name:'Vikram Patel', age:28, concern:'Allergic skin rash' },
-            ];
-            state.stats = { patients:0, reports:0 };
-            chatContainer.innerHTML = ''; chatPlaceholder.style.display = 'block';
-            rxContent.innerHTML = '<span style="color:#94A3B8;">Waiting for AI extraction...</span>';
-            patientFormOverlay.classList.remove('visible');
-            patientNameInput.value='';patientAgeInput.value='';patientWhatsappInput.value='';
-            sendReportBtn.disabled=true; sendReportBtn.classList.remove('loading');
-            consultationPanel.classList.remove('highlight-gold');
-            updateTranscriptionBadge('idle');
-            updateCurrentPatientCard(null);
-            renderQueue();
+            state.stats = { patientsSeen:0, reportsSent:0 };
+            state.currentStep = 1;
+            state.simulatorState = { step:0, name:'', age:'', concern:'' };
+            renderQueueSidebar();
+            updateCurrentPatientUI();
+            clearChat();
+            rxContent.innerHTML = 'AI listening...';
+            reportForm.style.display = 'none';
+            updateFlowUI();
             updateStats();
-            updatePhoneUI(0, null);
+            whatsappChat.innerHTML = '<div class="chat-msg bot"><div class="msg-text">Welcome! Please enter your <strong>full name</strong>:</div><div class="msg-time">10:01</div></div>';
+            simulatorStepSpan.textContent = 'Step 1/3: Enter name';
+            showToast('Dashboard reset.');
+        });
+
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.className = 'toast';
+            t.innerHTML = msg;
+            toastContainer.appendChild(t);
+            setTimeout(() => t.remove(), 3500);
         }
 
-        function clearTranscriptionTimeouts() {
-            state.transcriptionTimeouts.forEach(clearTimeout);
-            state.transcriptionTimeouts = [];
-        }
-
-        // ─── TOAST ────────────────────────────
-        function showToast(msg, type='info') {
-            const t = document.createElement('div'); t.className = 'toast';
-            if (type==='whatsapp-toast') t.style.borderLeftColor='#25D366';
-            else if (type==='success-toast') t.style.borderLeftColor='#10B981';
-            t.innerHTML = msg; toastContainer.appendChild(t);
-            setTimeout(() => { if(t.parentNode) t.remove(); }, 4300);
-        }
-
-        init();
+        // init
+        renderQueueSidebar();
+        updateFlowUI();
+        updateStats();
     </script>
 </body>
 </html>
